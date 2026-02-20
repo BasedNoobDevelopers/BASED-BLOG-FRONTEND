@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <header class="header>
+            <img class="PS4" src="images/PS4-Controller-1.svg" alt="ps4-controller">
+    </header> 
+    <h1 className="font-bold">Sign up for free access</h1>
+    <h2> to the best modern gaming news</h2>
+    <form class="registration-page fade" action="/registration-page" method="post">
+         <div class="registration">
+            <div class="user-input">
+                <label for="username"></label>
+                    <input type="text" title="user-name"placeholder="Username:">
+                        <label for="first-name"></label>
+                            <input type="text" title="first-name"placeholder="First:">
+                        <label for="last-name"></label>
+                            <input type="text" title="last-name"placeholder="Last:" >
+                        <label for="email"></label>
+                        <div class="input-container">
+                            <input class="registration-box" type="text" placeholder="Email:">
+                        </div>
+            <!-- <h1>Address</h1>
+                <p>
+                    <label for="address">Street:</label>
+                    <input type="text" title="address">
+                </p>
+                <p>
+                    <label for="city">City:</label>
+                    <input type="text" title="city">
+                </p>
+                <p>
+                    <label for="zip">Zip:</label>
+                    <input type="text" title="zip">
+                </p>
+                <p>
+                    <label for="state">State:</label>
+                    <input type="text" title="state" id="state" name="state">
+                </p>  -->
+                <p> 
+                    <label for="fav-game">Favorite Game?</label>
+                    <div class="input-container">
+                        <input type="text" title="fav-game" placeholder="optional" >
+                    </div>
+                </p>
+          
+            </div>
+              <div class="right-box">
+                <gmp-map
+                    center="41.881832, -87.623177"
+                    zoom="10"
+                    map-id="DEMO_MAP_ID">
+                </gmp-map>
+            </div>
+            <div class="btn-box">
+                <button class="reset-btn" type="reset">Reset</button>
+                <button class="login-btn2" id="submit-btn" class="submit-btn" type="submit">Sign Up</button>
+            </div>
+                <a href="login.html">Sign In? </a>
+        </div>
+      
+    </form> 
+    
+    <!-- 
+      The `defer` attribute causes the script to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises. See
+      https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=maps&v=beta"
+      defer
+    ></script>
+</body>
+</html>
+
+<!--  autofill address
+https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform#maps_places_autocomplete_addressform-javascript -->

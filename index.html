@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+     <meta charset="utf-8">
+     <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>videogame-blog</title>
+</head>
+<body class="fade">
+
+    <header>
+          <div class="video-background">
+            <video autoplay muted playsinline id="myVideo">
+                <source src="images/original-gameboy.mp4" type="video/mp4">
+                <source src="images/original-gameboy.web" type="video/webm">
+            </video>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="user.html">
+            <img class="nav-img" src="images/gear1.png" alt="user-img">
+        </a>
+        <ul class="pages">
+            <li id="home-btn"><a href="index.html"> Home</a></li>
+            <li id="blogs-btn"><a href="blogs.html">Blogs</a></li>
+            <li>Games</li>
+        </ul>
+    </nav> 
+   
+    <div class="content">
+        <div class="main-div"> WELCOME!
+             <a href="login.html"> login?</a>
+            <h1 class="heading">?</h1>
+        </div> 
+        <section class="blog-section">
+            <h2 class="blog-heading">Check it out!</h2>
+            <div class="blog-grid" id="blogGrid">
+                <div class="blog-card">
+                    <div class="inner-blog">
+                        <div class="title-div">
+                            <h1 class="blog-title">HOT NEW GAMES</h1>
+                        </div>
+                        <div class="img-div">
+                            <img class="blog-image" src="images/PS4-Controller-1.svg" alt="">
+                        </div>
+                        <div class="modal"></div>
+                    </div>
+                </div>
+                <div class="blog-card">                
+                    <div class="inner-blog">
+                        <h1 class="blog-title">HOT NEW GAMES</h1>
+                        <img class="blog-image" src="images/PS4-Controller-1.svg" alt="">
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="inner-blog">
+                        <h1 class="blog-title">HOT NEW GAMES!
+                            <p>THIS IS PLACEMENT TEXT</p>
+                        </h1>
+                        <img class="blog-image" src="images/PS4-Controller-1.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>    
+        <div class="scroller-container">
+            <div class="slide-list fade">
+                <div class="slide-number">1 / 3</div>
+                <img src="images/PS4-Controller-1.svg" alt="gear1">
+                <div class="text">Slide 1</div>
+            </div>
+
+            <div class="slide-list fade">
+                <div class="slide-number">2 / 3</div>
+                <img src="images/wave_band.svg" alt="wave">
+                <div class="text">Slide 2</div>
+            </div>
+
+            <div class="slide-list fade">
+                <div class="slide-number">3 / 3</div>
+                <img src="images/gums.jpg" alt="gums">
+                <div class="text">Slide 3</div>
+            </div>
+
+            <button class="left-scroll" id="left-scroll" onclick="nextSlide(-1)">❮</button>
+            <button class="right-scroll" id="right-scroll"  onclick="nextSlide(1)">❯</button>
+
+        </div>
+
+        <!-- BLOG SECTION -->
+        <section class="blog-section">
+            <h2 class="blog-heading">Latest Articles</h2>
+            <div class="blog-grid" id="blogGrid">
+                <div class="blog-card">
+                    <div class="inner-blog">
+                        <div class="title-div">
+                            <h1 class="blog-title">HOT NEW GAMES</h1>
+                        </div>
+                        <div class="img-div">
+                            <img class="blog-image" src="images/PS4-Controller-1.svg" alt="">
+                        </div>
+                        <div class="modal"></div>
+                    </div>
+                </div>
+                <div class="blog-card">                
+                    <div class="inner-blog">
+                        <h1 class="blog-title">HOT NEW GAMES</h1>
+                        <img class="blog-image" src="images/PS4-Controller-1.svg" alt="">
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="inner-blog">
+                        <h1 class="blog-title">HOT NEW GAMES!
+                            <p>THIS IS PLACEMENT TEXT</p>
+                        </h1>
+                        <img class="blog-image" src="images/PS4-Controller-1.svg" alt="">
+            </div>
+        </section>
+
+    </div>
+    <div id="blogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalAuthor"></p>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+ <script src="main.js"></script>
+
+</body>
+</html>
