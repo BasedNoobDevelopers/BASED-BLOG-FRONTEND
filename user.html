@@ -8,15 +8,53 @@
     <title>user-page</title>
 </head>
 <body class="fade">
-     <section class="blog-section">
-            <h2>USER PAGE</h2>
-            <div class="user-grid" id="userGrid">
-                <div class="user-div">
+    <nav>
+        <a href="user.html">
+            <img class="nav-img" src="images/gear1.png" alt="user-img">
+        </a>
+        <ul class="pages">
+            <li id="home-btn"><a href="index.html"> Home</a></li>
+            <li id="blogs-btn"><a href="blogs.html">Blogs</a></li>
+            <li>Games</li>
+        </ul>
+    </nav> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-                </div>
-            </div>
-    </section>
-        <div class="main-div"> WELCOME!
-            <a href="login.html"> login?</a>
-        </div> 
+<body>
+
+<nav class="navbar">
+  <h2>GameBlog</h2>
+</nav>
+
+<section class="profile-container">
+
+  <div class="profile-card">
+
+
+    <h2 id="username"></h2>
+
+    <p id="email"></p>
+
+    <div class="profile-meta">
+      <p><strong>Joined:</strong> <span id="joined"></span></p>
+      <p><strong>Articles:</strong> <span id="articleCount"></span></p>
+    </div>
+
+    <button id="editProfile">Edit Profile</button>
+
+  </div>
+
+</section>
+
+<script src="profile.js"></script>
+
+</body>
+</html>
 </body>

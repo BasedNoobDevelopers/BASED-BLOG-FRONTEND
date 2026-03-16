@@ -1,14 +1,248 @@
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-     <meta charset="utf-8">
-     <link href="./src/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>videogame-blog</title>
-</head>
-   <body>
-        <header class="header>
-            <img class="PS4" src="images/PS4-Controller-1.svg" alt="ps4-controller">
-        </header> 
+    <head>
+        <meta charset="utf-8">
+        <link href="./src/output.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>videogame-blogs</title>
+    </head>
+    <body>
+        <nav>
+            <a href="user.html">
+                <img class="nav-img" src="images/gear1.png" alt="user-img">
+            </a>
+            <ul class="nav-pages">
+                <li id="home-btn"><a href="index.html"> Home</a></li>
+                <li id="blogs-btn"><a href="blogs.html">Blog</a></li>
+                <li>Games</li>
+               
+            </ul> 
+            <ul class="nav-profile">
+                <li id="login-btn"><a class="login-nav" href="login.html"> login?</a></li>
+                <li id="user-profile"><a class="user-nav" href="user.html"> Profile </a></li>
+            </ul>
+        </nav> 
+        
+        <header class="">
+            <!-- <div class="video-background">
+                <video autoplay muted playsinline id="myVideo">
+                    <source src="images/original-gameboy.mp4" type="video/mp4">
+                    <source src="images/original-gameboy.web" type="video/webm">
+                </video>
+            </div> -->
+        </header>
+       
+        <section class="blog-section">
+            <input 
+            type="text" 
+            id="searchBar"
+            placeholder="Search articles..."
+            class="search-bar"
+            />
+
+            <div class="blog-grid">
+
+            <div class="blog-card">
+            <div class="img-div">
+            <img title="search-image" src="images/wukong.jpg">
+            </div>
+
+            <div class="title-div">
+            <h3 class="blog-title">Article Title</h3>
+            </div>
+            </div>
+
+            </div>
+
+        </section>
+
+        <div class="content">
+            <section class="blog-section">
+                <h2 class="blog-heading">Check out this first blog section H2!</h2>
+                <div class="blog-grid" id="blogGrid1">
+                    
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=1">
+                            <div class="inner-blog"> 
+                                <div class="title-div">
+                                    <h1 class="blog-title">This will be the title of the article.</h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/SMB3_Artwork.webp" alt="">
+                                    </div>
+                                    <p class="blog-subtitle">This is placement text that will give us the description of the article</p>
+                                </div>
+                            </div> 
+                        </a>
+                    </div>
+
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=2">               
+                            <div class="inner-blog">
+                                <div class="title-div">
+                                    <h1 class="blog-title">Sonic</h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/SonicConcept5.png" alt="">
+                                    </div>
+                                    <p class="blog-subtitle">This is placement text that will give the description of the article</p>
+                                </div>
+                            </div>   
+                        </a> 
+                    </div>
+                    
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=3">
+                            <div class="inner-blog">
+                                <h1 class="blog-title">The Metal Gear Story You've Never Heard</h1>
+                                <div class="img-div">
+                                    <img class="blog-image" src="images/MGS_Drama_CD_story_3.webp" alt="">
+                                </div>
+                                <p class="blog-subtitle">The Metal Gear Solid audio drama</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="blog-grid" id="blogGrid2">
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=4">
+                            <div class="inner-blog"> 
+                                <div class="title-div">
+                                    <h1 class="blog-title">This will be the title of the article.</h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/ratchet_clank_!.jpg" alt="">
+                                    </div>
+                                    <p class="blog-subtitle">This is placement text that will give us the description of the article</p>
+                                </div>
+                            </div> 
+                        </a>
+                    </div>
+
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=5">               
+                            <div class="inner-blog">
+                                <div class="title-div">
+                                    <h1 class="blog-title">Halo Combat Evolved vs Halo Campaign Evolved</h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/halo-compare.webp" alt="">
+                                    </div>
+                                    <p class="blog-subtitle">A new combat evolved experience</p>
+                                </div>
+                            </div>   
+                        </a> 
+                    </div>
+                    
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=6">
+                            <div class="inner-blog">
+                                <div class="title-div">
+                                    <h1 class="blog-title"></h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/wukong.jpg" alt="">
+                                    </div>
+                                    <p class="blog-subtitle"></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>    
+        
+            <div class="main-div "> WELCOME! This is the BASED-BLOG-FRONTEND main-div
+                
+                <h1 class="main-div-h1">THIS is the the H1 main-div heading</h1>
+                
+                <div class="scroller-container">
+                    <div class="slide-list fade">
+                        <div class="slide-number">1 / 3</div>
+                        <div class="slide-img-div">
+                            <img class="slide-img" src="images/mario_party.jpg" alt="marioparty1">
+                        </div>
+                        <div class="slide-text">Slide 1</div>
+                    </div>
+
+                    <div class="slide-list fade">
+                        <div class="slide-number">2 / 3</div>
+                        <div class="slide-img-div">
+                            <img class="slide-img" src="images/super-mario-3d.jpg" alt="SM3D">
+                        </div>
+                        <div class="slide-text">Slide 2</div>
+                    </div>
+
+                    <div class="slide-list fade">
+                        <div class="slide-number">3 / 3</div>
+                        <div class="slide-img-div">
+                            <img class="slide-img" src="images/54_mgs_gamemain.jpg" alt="MGS1">
+                        </div>    
+                        <div class="slide-text">Slide 3</div>
+                    </div>
+
+                    <button class="left-scroll" id="left-scroll" onclick="nextSlide(-1)">❮</button>
+                    <button class="right-scroll" id="right-scroll"  onclick="nextSlide(1)">❯</button>
+
+                </div>
+            </div> 
+
+            <section class="blog-section">
+                <h2 class="blog-heading">Check out this first blog section H2!</h2>
+                <div class="blog-grid" id="blogGrid2">
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=4">
+                            <div class="inner-blog"> 
+                                <div class="title-div">
+                                    <h1 class="blog-title">This will be the title of the article.</h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/ratchet_clank_!.jpg" alt="">
+                                    </div>
+                                    <p class="blog-subtitle">This is placement text that will give us the description of the article</p>
+                                </div>
+                            </div> 
+                        </a>
+                    </div>
+
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=5">               
+                            <div class="inner-blog">
+                                <div class="title-div">
+                                    <h1 class="blog-title">Halo Combat Evolved vs Halo Campaign Evolved</h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/halo-compare.webp" alt="">
+                                    </div>
+                                    <p class="blog-subtitle">A new combat evolved experience</p>
+                                </div>
+                            </div>   
+                        </a> 
+                    </div>
+                    
+                    <div class="blog-card">
+                        <a title="article" href="article.html?id=6">
+                            <div class="inner-blog">
+                                <div class="title-div">
+                                    <h1 class="blog-title"></h1>
+                                    <div class="img-div">
+                                        <img class="blog-image" src="images/wukong.jpg" alt="">
+                                    </div>
+                                    <p class="blog-subtitle"></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+            </section>
+            </div>
+        </div>
+        <!-- <button id="open-btn"> OPEN</button>
+        <div id="blog-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-btn" class="close-btn">&times;</span>
+                <h2 id="modalTitle">THIS IS THE MODAL HEADER H2</h2>
+                <p id="modalAuthor">THIS IS THE MODAL AUTHOR PARAGRAPH</p>
+                <div id="modalBody">THIS IS THE MODAL BODY THAT WILL HAVE GAME INFORMATION AND LINKS</div>
+            </div>
+        </div> -->
+        <script src="/js/main.js" defer></script>
+        <script src="/js/article.js"></script>
+
     </body>
+    </body>
+</html>
