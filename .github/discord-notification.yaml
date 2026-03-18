@@ -70,7 +70,7 @@ jobs:
 
       - name: Send webhook
         env:
-          WEBHOOK_URL: ${{ secrets.BASED_BLOG_BACKEND_DISCORD_HOOK_URL }}
+          WEBHOOK_URL: ${{ secrets.BASED_BLOG_FRONTEND_DISCORD_HOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
