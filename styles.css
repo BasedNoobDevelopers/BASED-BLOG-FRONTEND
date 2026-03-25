@@ -128,7 +128,7 @@ ul {
     
     display: flex;
     flex-direction: column;
-    text-align: end;
+    text-align: center;
     margin: auto;
     color: rgba(0, 0, 0, 0.3)
 }
@@ -498,7 +498,7 @@ button:hover{
  
 } */
  .right-box{
-   margin-top: 20px;
+  margin-top: 20px;
   align-items: end;
   height: 300px;
   width: 50%;
@@ -524,19 +524,76 @@ button:hover{
   margin-top: 10px;
 }
 
+.card-form-content-block{
+  display: flex;
+  flex-direction: row;
+  /* align-items: start;
+  text-align: center; */
+  justify-content: space-evenly;
+  width: 60%;
+  background: rgba(242, 242, 242, 0.5);
+  border: 10px solid gray;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.form-answer{
+  background: rgb(142, 204, 216, .3);
+  border: 6px solid rgb(142,204,216,.3);
+  border-radius: 9px;
+  width: 27%;
+}
+
+.form-answer:hover,
+.form-answer:has(input:checked){
+    background-color: rgba(240, 248, 255, 0.5);
+    box-shadow: 1px 3px 3px rgba(128, 128, 128, 0.6);
+    text-shadow: 1px 1px 1px rgba(218, 165, 32, 0.3);
+}
+.form-answer:has(input:checked) {
+    border: 6px solid rgba(142,204,216,.8);
+    transform: scale(1.03);
+}
+
+
+.interest-label{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+}
+.interest-img{
+  height: 160px;
+  width: 240px;
+  object-fit: cover;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  border:none;
+  background-color: rgba(250, 235, 215, 0.2);
+  box-shadow: 1px 15px 40px rgba(0,0,0,0.3);
+  margin: auto;
+}
+
+.interest-fieldset{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-content: center;
+  align-items: stretch;
+
+}
+
 input-containter{
   display: flex;
 }
 
 input{
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  width: auto;
-  height:25px;
-  border-radius: 20px;
-  border:none;
-  background-color: rgba(250, 235, 215, 0.2);
-  box-shadow: 1px 15px 40px rgba(0,0,0,0.3);
-  margin-top: 5px;
+
   text-align: center;
   font-size: large;
 }
@@ -548,10 +605,7 @@ input:hover{
     box-shadow: 1px 3px 3px rgba(128, 128, 128, 0.6);
     text-shadow: 1px 1px 1px rgba(218, 165, 32, 0.3);
 }
-input:focus{
-    height: 30px;
-    font-weight: bold;
-    
+
 
 }
 /* .btn-box{
