@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="src/output.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interest-page</title>
+</head>
+
+<body class="fade">
+    <div class="card-form-content-block" data-cy="form-content-block">
+        <form action="#" data-cy="form-content" class="form-content">
+            <fieldset id="interest-fieldset1" class="interest-fieldset" role="checkbox" aria-checked="form-question">
+                
+                <legend class="stack">
+                    <span class="stack">
+                        <h2 class="interest-headline"id="form-question">
+                            Please select up to 5 interests from the list
+                        </h2>
+                    </span>
+                </legend>
+
+                <label class="form-answer" for="interest-1">
+                    <span class="interest-text">Gaming</span>
+                    <img class="interest-img" src="images/PS4-Controller-1.svg" alt="">                                    
+                    <input 
+                        class="interest-checkbox" 
+                        id="interest-1" 
+                        title="img1" 
+                        name="img1" 
+                        type="checkbox" 
+                        name="interests"
+                        value="gaming"
+                    >
+                    <div class="interest-title"> <p> The achievement chaser </p>  </div>
+               </label>
+
+                <label class="form-answer" for="interest-2">
+                
+                    <span class="interest-text">Streaming</span>
+
+                    <img class="interest-img" src="images/interests/streaming.jpg" alt="">
+                    <input 
+                        class="interest-checkbox" 
+                        id="interest-2" 
+                        name="interests" 
+                        type="checkbox" 
+                        value="streaming"
+                    >
+                    <div class=interest-title ">The knowledge seeker</div> 
+                    
+                </label>
+
+                <label class="form-answer" for="interest-3">
+
+                    <span class="interest-text">Tech</span>
+                    <img class="interest-img" src="images/interests/tech-hardware.jpg" alt="Tech">
+                    <input 
+                        class="interest-checkbox" 
+                        id="interest-3" 
+                        name="interests" 
+                        type="checkbox" 
+                        value="tech"
+                    >
+                    <div class="interest-title"><p>The modern wizard</p></div>
+                </label>
+                       
+
+                <label class="form-answer" for="interest-4">
+                    <span class="interest-text">Slice of Life</span>
+                    <img class="interest-img" src="images/interests/empty_seats.jpg" alt="Slice of Life">
+                    <input class="interest-checkbox" id="interest-4" name="interests" type="checkbox" value="slice-of-life">
+                    <div class="interest-title"></div>
+                </label>
+
+                <label class="form-answer" for="interest-5">
+                    <span class="interest-text">Music</span>
+                    <img class="interest-img" src="images/interests/artwork-sonic1-concept-sonicband.jpg" alt="Music">
+                    <input class="interest-checkbox" id="interest-5" name="interests" type="checkbox" value="music">
+                    <div class="interest-title"></div>
+                </label>
+
+                <label class="form-answer" for="interest-6">
+                    <span class="interest-text">Manga</span>
+                    <img class="interest-img" src="images/interests/anime1.jpg" alt="Manga">
+                     <input class="interest-checkbox" id="interest-6" name="interests" type="checkbox" value="manga">
+                    <div class="interest-title"></div>
+                </label>
+
+                <label class="form-answer" for="interest-7">
+                    <span class="interest-text">Sports</span>
+                    <img class="interest-img" src="images/interests/basket.jpg" alt="Sports">
+                    <input class="interest-checkbox" id="interest-7" name="interests" type="checkbox" value="sports">
+                    <div class="interest-title"></div>
+                </label>
+
+                <input name="answerText" type="hidden" value="">
+
+            </fieldset>
+            <span class="stack form-controls">
+                <button
+                    class="submit-btn" title="Skip" disabled="" type="submit" data-cy="skip-btn">Skip
+                </button>
+                <button class="submit-btn" title="Continue" type="submit" data-cy="continue-btn">Continue
+                </button>
+            </span>
+        </form>
+    </div>
+</body>
+<script src="interests.js"></script>
