@@ -5,15 +5,16 @@ let leftScroll = document.getElementById("left-scroll");
 let closeButton = document.getElementById("close-btn");
 let openButton = document.getElementById("open-btn");
 let deleteButton = document.getElementById("delete-btn");
-let slides = document.getElementsByClassName("slide-list");
 let blogCards =document.querySelectorAll(".blog-card");
 let blogModal = document.getElementById("blog-modal");
 
+let slides = document.getElementsByClassName("slide-list");
 document.addEventListener("DOMContentLoaded", () => {
 
 
 
 let slideCount = 1;
+
 slideScroller(slideCount);
 
 
@@ -40,6 +41,23 @@ function slideScroller(n) {
 } 
     window.nextSlide = nextSlide;
 });
+
+let slideIndex = 0;
+
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("user-slides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 5000);
+}
+
 // document.addEventListener("DOMContentLoaded", () => {
 
 //     function openModal() {

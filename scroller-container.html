@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="src/output.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home-page</title>
+</head>
+
+<body class="fade">
+        <div class="main-div "> WELCOME! This is the BASED-BLOG-FRONTEND main-div
+
+            <h1 class="main-div-h1">THIS is the the H1 main-div heading</h1>
+
+            <div class="scroller-container">
+                <div class="slide-list fade">
+                    <div class="slide-number">1 / 3</div>
+                    <div class="slide-img-div">
+                        <img class="slide-img" src="images/mario_party.jpg" alt="marioparty1">
+                    </div>
+                    <div class="slide-text">Slide 1</div>
+                </div>
+
+                <div class="slide-list fade">
+                    <div class="slide-number">2 / 3</div>
+                    <div class="slide-img-div">
+                        <img class="slide-img" src="images/super-mario-3d.jpg" alt="SM3D">
+                    </div>
+                    <div class="slide-text">Slide 2</div>
+                </div>
+
+                <div class="slide-list fade">
+                    <div class="slide-number">3 / 3</div>
+                    <div class="slide-img-div">
+                        <img class="slide-img" src="images/54_mgs_gamemain.jpg" alt="MGS1">
+                    </div>
+                    <div class="slide-text">Slide 3</div>
+                </div>
+
+                <button class="left-scroll" id="left-scroll" onclick="nextSlide(-1)">❮</button>
+                <button class="right-scroll" id="right-scroll" onclick="nextSlide(1)">❯</button>
+
+            </div>
+        </div>
+            
+    </body>
+        <script src="article.js"></script>
+        <script src="main.js"></script>
