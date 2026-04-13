@@ -12,206 +12,56 @@
 
 <body class="fade">
 
-    <header class="">
-        BASED BLOG
-        <div class="video-background">
-                <video autoplay muted playsinline id="myVideo">
+    <header class="header-logo">
+        <!-- BASED BLOG -->
+        <!-- <div class="video-background">
+                <!-- <video autoplay muted playsinline id="myVideo">
                     <source src="images/original-gameboy.mp4" type="video/mp4">
                     <source src="images/original-gameboy.web" type="video/webm">
-                </video>
-            </div>
+                </video> -->
+            <!-- </div>  -->
     </header>
 
     <nav>
-        <a href="user.html">
-            <img class="nav-img" src="https://image-service-bucket-based.s3.us-east-2.amazonaws.com/MarkyMark322_lead-INFS-110022-JAPBAS-02.jpg" alt="user-img">
+        <a href="index.html">
+            <img class="nav-img" src="images/gear1.png" alt="logo-img">
         </a>
         <ul class="nav-pages">
-            <li id="home-btn"><a href="index.html"> Home</a></li>
-            <li id="blogs-btn"><a href="blogs.html">Blog</a></li>
-            <li>Games</li>
+            <li id="blogs-btn"><a href="blogs.html">Blogs</a></li>
+        </ul>
 
-        </ul>
+
+
         <ul class="nav-profile">
-            <li id="login-btn"><a class="login-nav" href="login.html"> Login</a></li>
+            <li id="login-btn"><a class="login-nav" href="login.html"> Login</a></li>           
+            <li id="register-btn"><a class="register-nav" href="registration.html"> Register</a></li>
             <li id="user-profile"><a class="user-nav" href="user.html"> Profile </a></li>
+            <li id =""></li>
         </ul>
+
+        <input type="search" placeholder="search">
+        
     </nav>
     
-     <div id="user-scroller" class="user-scroller-container">
-        <div class="user-slides fade">
-            <div class="slide-number">1 / 3</div>
-            
-            <div class="slide-img-div">
-                <a title="article" href="article.html?id=2">
-                    <div class="img-div">
-                        <img class="blog-image" src="images/SonicConcept5.png" alt="">
-                    </div>
-                </a>
-            </div>  
-
-        </div>
-
-            <div class="user-slides fade">
-                <div class="slide-number">2 / 3</div>
-                
-                <div class="slide-img-div">
-                    <a title="article" href="article.html?id=2">
-                        <div class="img-div">
-                            <img class="blog-img" src="images/super-mario-3d.jpg" alt="SM3D">
-                        </div>
-                    </a>
-                </div>
-                
-            </div>
-
-            <div class="user-slides fade">
-                <div class="slide-number">3 / 3</div>
-                <div class="slide-img-div">
-                    <img class="slide-img" src="images/54_mgs_gamemain.jpg" alt="MGS1">
-                </div>
-            </div>
-        </div>
+    
+    <div class="carousel"> 
+        <div class="group" id="group"></div>
+        <div class="group" id="group-duplicate" aria-hidden="true"></div>
     </div>
+    <!-- <h2 class="carousel-heading">Latest</h2> -->
 
-
+    
     <div class="content">
         <section class="blog-section">
-            <h2 class="blog-heading">Check out this first blog section H2!</h2>
             <div class="blog-grid" id="blogGrid1"></div>
             <div class="blog-grid" id="blogGrid2"></div>
+            <div class="blog-grid" id="blogGrid3"></div>
         </section>
-        <div class = "four-section-div">
-            <section class="four-section" id="four-section-1">
-                <ul class="four-section-list"></ul>
-            </section>
-        
-
-        <section class="four-section-small" id="four-section-small-1">
-        
-            <ul>
-                <li>One
-                    <div> 
-                        <div class="four-section-small-img-div"">
-                            <img class="blog-image" src="images/SMB3_Artwork.webp" alt="">
-                        </div>
-                    </div>
-                </li>
-                
-            </ul>
-            <ul>
-                <li>Two
-                    <div class="four-section-small-img-div"">
-                    <img class="blog-image" src="images/wukong.jpg" alt="">
-                    </div>
-                </li>
-            
-            </ul>
-            <ul>
-                <li>Three
-                    <div class="four-section-small-img-div"">
-                        <img class="blog-image" src="images/halo-compare.webp" alt="">
-                    </div>
-                </li>
-                
-            </ul>
-            <ul>
-                <li>Four
-                    <div class="four-section-small-img-div"">
-                        <img class="blog-image" src="images/MGS_Drama_CD_story_3.webp" alt="">
-                    </div>
-                </li>
-            </ul>
-            <ul>
-                <li>Five
-                    <div> 
-                        <div class="four-section-small-img-div">
-                            <img class="blog-image" src="images/SMB3_Artwork.webp" alt="">
-                        </div>
-                    </div>
-                </li>
-                
-            </ul>
-            <ul>
-                <li>Six
-                    <div class="four-section-small-img-div">
-                    <img class="blog-image" src="images/wukong.jpg" alt="">
-                    </div>
-                </li>
-            
-            </ul>
-            <ul>
-                <li>Seven
-                    <div class="four-section-small-img-div">
-                        <img class="blog-image" src="images/halo-compare.webp" alt="">
-                    </div>
-                </li>
-                
-            </ul>
-            <ul>
-
-                <li>Eight
-                    <div class="four-section-small-img-div"">
-                        <img class="blog-image" src="images/MGS_Drama_CD_story_3.webp" alt="">
-                    </div>
-                </li>
-            </ul>
-        </section>
-        </div>
-        <section class="blog-section">
-            <h2 class="blog-heading">Check out this first blog section H2!</h2>
-            <div class="blog-grid" id="blogGrid2">
-                <div class="blog-card">
-                    <a title="article" href="article.html?id=4">
-                        <div class="inner-blog">
-                            <div class="title-div">
-                                <h1 class="blog-title">This will be the title of the article.</h1>
-                                <div class="img-div">
-                                    <img class="blog-image" src="images/ratchet_clank_!.jpg" alt="">
-                                </div>
-                                <p class="blog-subtitle">This is placement text that will give us the description of the
-                                    article</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="blog-card">
-                    <a title="article" href="article.html?id=5">
-                        <div class="inner-blog">
-                            <div class="title-div">
-                                <h1 class="blog-title">Halo Combat Evolved vs Halo Campaign Evolved</h1>
-                                <div class="img-div">
-                                    <img class="blog-image" src="images/halo-compare.webp" alt="">
-                                </div>
-                                <p class="blog-subtitle">A new combat evolved experience</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="blog-card">
-                    <a title="article" href="article.html?id=6">
-                        <div class="inner-blog">
-                            <div class="title-div">
-                                <h1 class="blog-title"></h1>
-                                <div class="img-div">
-                                    <img class="blog-image" src="images/wukong.jpg" alt="">
-                                </div>
-                                <p class="blog-subtitle"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-        </section>
-
     </div>
-
         
     </div>
     </div>
+    
     <!-- <button id="open-btn"> OPEN</button>
         <div id="blog-modal" class="modal">
             <div class="modal-content">
@@ -223,10 +73,9 @@
         </div> -->
 
 
-</body>
+
 <div class="newsletter">
 
-            <h3>Newsletter</h3>
 
             <p>Get weekly articles and gaming insights.</p>
 
@@ -254,14 +103,14 @@
                 WE ARE THE FUTURE!
             </p>
 
-            <div class="footer-social">
+            <!-- <div class="footer-social">
 
                 <a href="#">Twitter</a>
                 <a href="#">YouTube</a>
                 <a href="#">Discord</a>
                 <a href="#">GitHub</a>
 
-            </div>
+            </div> -->
 
         </div>
 
@@ -332,6 +181,7 @@
     </div>
 
 </footer>
+</body>
 
 </html>
 
