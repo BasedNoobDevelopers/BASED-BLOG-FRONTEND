@@ -3,17 +3,21 @@ import classes from './registration.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import userAvatar from '@/assets/user-avatar-var.jpg'
+import { useRouter } from 'next/navigation'
 
 
 
 
 export default function RegistrationPage() {
 
+    const router = useRouter();
+
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
+        router.push('/verification');
 
-        console.log("Sending...")
+        console.log("Sending...");
     }
 
 
@@ -21,9 +25,9 @@ export default function RegistrationPage() {
         <>
 
             <form className={classes.registrationForm} onSubmit={handleSubmit} action="/register" method="POST">
-               
+
                 <div className={classes.registration}>
-            <h3 className={classes.h3}>Join the community!</h3>
+                    <h3 className={classes.h3}>Join the community!</h3>
 
                     <div className={classes.registrationRow}>
                         <div className={classes.userInput}>

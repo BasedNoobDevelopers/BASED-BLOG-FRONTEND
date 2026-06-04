@@ -68,3 +68,7 @@
   color: var(--neon-pink);
   text-shadow: 2px 2px 0 var(--neon-cyan);
 }
+
+.btnBox {
+  margin: 10px 1px;
+}
