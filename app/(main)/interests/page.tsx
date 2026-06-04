@@ -1,9 +1,15 @@
 import classes from './interests.module.css'
 import Image from 'next/image'
-import ps4Controller from '@/assets/interests/PS4-Controller-1.svg'
+import gaming from '@/assets/interests/gaming.svg'
 import streaming from '@/assets/interests/streaming.jpg'
+import tech from '@/assets/interests/tech.jpg'
+import sports from '@/assets/interests/sports.jpg'
+import music from '@/assets/interests/music.jpg'
+import life from '@/assets/interests/sliceoflife.jpg'
+import manga from '@/assets/interests/manga.jpg'
 
 export default function InterestsPage() {
+
     return (
         <div>
             <div className={classes.cardFormContentBlock} data-cy="form-content-block">
@@ -11,8 +17,8 @@ export default function InterestsPage() {
                     <fieldset id="interest-fieldset1" className={classes.interestFieldset} >
 
                         <legend className={classes.stack}>
-                            <span className={classes.stack}>
-                                <h2 className={classes.interestHeadline} id="form-question">
+                            <span className={classes.interestHeadline}>
+                                <h2  id="form-question">
                                     Please select up to 5 interests from the list
                                 </h2>
                             </span>
@@ -21,7 +27,7 @@ export default function InterestsPage() {
                         <label className={classes.formAnswer} htmlFor="interest-1">
                             <span className={classes.interestText}>Gaming</span>
                             <Image className={classes.interestImg}
-                                src={ps4Controller}
+                                src={gaming}
                                 alt="PS4"
                                 height={210}
                                 width={240}
@@ -34,8 +40,7 @@ export default function InterestsPage() {
                                 name="interests"
                                 value="gaming"
                             />
-                            <div className={classes.interestTitle}>
-                                <span></span> </div>
+                            <div className={classes.interestTitle}> </div>
                         </label>
                         <label className={classes.formAnswer} htmlFor="interest-2">
 
@@ -56,20 +61,89 @@ export default function InterestsPage() {
                                 value="streaming"
                             />
                             <div className={classes.interestTitle} ></div>
+                        </label>
+                        <label className={classes.formAnswer} htmlFor="interest-3">
 
+                            <span className={classes.interestText}>Tech</span>
+                            <Image className={classes.interestImg}
+                                src={tech}
+                                alt="Tech" />
+                            <input
+                                className={classes.interestCheckbox}
+                                id="interest-3"
+                                name="interests"
+                                type="checkbox"
+                                value="tech"
+                            />
+                            <div className="interest-title"></div>
                         </label>
 
 
-                    </fieldset>
+                        <label className={classes.formAnswer} htmlFor="interest-4">
+                            <span className={classes.interestText}>Slice of Life</span>
+                            <Image
+                                className={classes.interestImg}
+                                src={life}
+                                alt="Slice of Life" />
+                            <input className={classes.interestCheckbox}
+                                id="interest-4"
+                                name="interests"
+                                type="checkbox"
+                                value="slice-of-life" />
+                            <div className="interest-title"></div>
+                        </label>
 
-                    <div className={classes.stackFormControls}>
-                        <button id="skip-btn" name="action" value="skip" title="Skip" className={classes.submitBtn} type="submit" data-cy="skip-btn">Skip</button>
-                        <button id="continue-btn" name="action" value="continue" title="Continue" className={classes.submitBtn} type="submit" data-cy="continue-btn">Continue</button>
-                    </div>
+                        <label className={classes.formAnswer} htmlFor="interest-5">
+                            <span className={classes.interestText}>Music</span>
+                            <Image className={classes.interestImg}
+                                src={music}
+                                alt="Music" />
+                            <input className={classes.interestCheckbox}
+                                id="interest-5"
+                                name="interests"
+                                type="checkbox"
+                                value="music" />
+                            <div className="interest-title"></div>
+                        </label>
+
+                        <label className={classes.formAnswer} htmlFor="interest-6">
+                            <span className={classes.interestText}>Manga</span>
+                            <Image className={classes.interestImg}
+                                src={manga}
+                                alt="Manga" />
+                            <input className={classes.interestCheckbox}
+                                id="interest-6"
+                                name="interests"
+                                type="checkbox"
+                                value="manga" />
+                            <div className="interest-title"></div>
+                        </label>
+
+                        <label className={classes.formAnswer} htmlFor="interest-7">
+                            <span className={classes.interestText}>Sports</span>
+                            <Image className={classes.interestImg}
+                                src={sports}
+                                alt="Sports" />
+                            <input className={classes.interestCheckbox}
+                                id="interest-7"
+                                name="interests"
+                                type="checkbox"
+                                value="sports" />
+                            <div className="interest-title"></div>
+                        </label>
+             
 
 
-                </form>
-            </div>
+                </fieldset>
+
+                <div className={classes.stackFormControls}>
+                    <button id="skip-btn" name="action" value="skip" title="Skip" className={classes.submitBtn} type="submit" data-cy="skip-btn">Skip</button>
+                    <button id="continue-btn" name="action" value="continue" title="Continue" className={classes.submitBtn} type="submit" data-cy="continue-btn">Continue</button>
+                </div>
+
+
+            </form>
         </div>
+        </div >
     )
 }

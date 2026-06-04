@@ -1,8 +1,25 @@
+.cardFormContentBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 60%;
+  background: var(--bg-panel);
+  text-align: center;
+  border-radius: 0;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid var(--neon-lilac);
+  box-shadow: 6px 6px 0 var(--neon-pink);
+}
+
 .formAnswer {
+  display: flex;
+  flex-direction: column;
   background: var(--bg-deep);
   border: 3px solid var(--neon-cyan);
   border-radius: 0;
-  width: 27%;
+  width: 26%;
+  height: 250px;
   color: var(--ink-soft);
   padding: 10px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -40,7 +57,10 @@
   font-family: 'VT323', monospace;
   font-size: 20px;
 }
-
+.interestText{
+  font-family: 'VT323';
+  font-size: xx-large;
+}
 .interestImg {
   height: 160px;
   width: 240px;
