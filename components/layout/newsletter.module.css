@@ -1,0 +1,43 @@
+  /* Hidden for now  */
+
+.newsletter {
+  margin-left: 20px;
+  visibility: hidden;     
+}
+
+.newsletter input {
+  padding: 10px;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 0;
+  margin-top: 6px;
+  width: 30%;
+  margin-left: 80px;
+  background: var(--bg-deep);
+  color: var(--neon-cyan);
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+}
+
+.newsletter button {
+  margin-top: 8px;
+  padding: 10px 8px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 11px;
+  width: auto;
+  margin-left: 10px;
+}
+
+.newsletter p {
+  font-family: 'Archivo Black', Impact, sans-serif;
+  font-size: 36px;
+  line-height: 1.2;
+  color: var(--neon-pink);
+  -webkit-text-fill-color: var(--neon-pink);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  text-shadow:
+    3px 3px 0 var(--neon-cyan),
+    0 0 20px rgba(255, 45, 149, 0.4);
+  opacity: 1;
+}

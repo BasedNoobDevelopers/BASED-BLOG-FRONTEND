@@ -1,7 +1,0 @@
-/privacy.html
-/terms.html
-/contact.html
-/about.html
-/team.html
-/careers.html
-/press.html

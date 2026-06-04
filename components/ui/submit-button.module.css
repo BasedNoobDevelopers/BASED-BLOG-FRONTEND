@@ -1,0 +1,30 @@
+.button {
+  width: auto;
+  min-width: 90px;
+  height: 42px;
+  padding: 0 16px;
+  background: var(--neon-pink);
+  color: var(--bg-deep);
+  border-radius: 6px;
+  margin: 12px 0 15px;
+  border: 2px solid var(--bg-deep);
+  box-shadow: 4px 4px 0 var(--neon-cyan);
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.button:hover {
+  background: var(--neon-yellow);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--neon-pink);
+  border-color: var(--bg-deep);
+}
+
+.button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--neon-pink);
+}

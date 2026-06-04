@@ -1,24 +1,26 @@
 {
-  "name": "based-blog-frontend",
-  "version": "1.0.0",
-  "description": "��F\u0000r\u0000o\u0000n\u0000t\u0000e\u0000n\u0000d\u0000 \u0000r\u0000e\u0000p\u0000o\u0000\r\u0000 \u0000",
-  "main": "main.js",
+  "name": "based-blog-fronted-next",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BasedNoobDevelopers/BASED-BLOG-FRONTEND.git"
+  "dependencies": {
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/BasedNoobDevelopers/BASED-BLOG-FRONTEND/issues"
-  },
-  "homepage": "https://github.com/BasedNoobDevelopers/BASED-BLOG-FRONTEND#readme",
   "devDependencies": {
-    "tailwindcss": "^3.4.19"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

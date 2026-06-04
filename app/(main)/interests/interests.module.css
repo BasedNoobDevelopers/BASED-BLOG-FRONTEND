@@ -1,0 +1,110 @@
+.formAnswer {
+  background: var(--bg-deep);
+  border: 3px solid var(--neon-cyan);
+  border-radius: 0;
+  width: 27%;
+  color: var(--ink-soft);
+  padding: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.formAnswer:hover,
+.formAnswer:has(input:checked) {
+  background: rgba(0, 240, 255, 0.1);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--neon-pink);
+  text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.formAnswer:has(input:checked) {
+  border-color: var(--neon-yellow);
+  box-shadow: 4px 4px 0 var(--neon-yellow);
+}
+
+.interestHeadline {
+  margin-bottom: 14px;
+  font-family: 'Archivo Black', Impact, sans-serif;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: var(--neon-pink);
+  text-shadow: 2px 2px 0 var(--neon-cyan);
+}
+
+.interestLabel {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-soft);
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+}
+
+.interestImg {
+  height: 160px;
+  width: 240px;
+  object-fit: cover;
+  border-radius: 0;
+  border: 3px solid var(--neon-cyan);
+  background: var(--bg-panel);
+  box-shadow: 5px 5px 0 var(--neon-pink);
+  margin: auto;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+.interestFieldset {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-content: center;
+  align-items: stretch;
+  margin-top: 20px;
+  border: 0;
+}
+
+.interestCheckbox {
+  margin-top: 20px;
+  accent-color: var(--neon-pink);
+  transform: scale(1.3);
+}
+
+.stackFormControls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 30px;
+  font-size: larger;
+  width: 100%;
+  color: var(--neon-cyan);
+}
+
+/* #skip-btn{
+  float: right;
+} */
+.input {
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  margin: auto;
+  padding: 6px 10px;
+  background: var(--bg-deep);
+  color: var(--ink);
+  border: 2px solid var(--neon-cyan);
+  border-radius: 6px;
+  caret-color: var(--neon-pink);
+}
+
+.input:hover {
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 0 2px var(--neon-pink), 0 0 18px rgba(255, 45, 149, 0.5);
+}
