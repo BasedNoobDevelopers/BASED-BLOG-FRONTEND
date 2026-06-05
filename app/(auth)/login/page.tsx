@@ -3,20 +3,39 @@
 import classes from './login.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 export default function Page() {
+    const [username, setUsername] = useState(' ')
+    const [password, setPassword] = useState(' ')
+    const [imageURL, setImageURL] = useState(' ')
 
     const router = useRouter();
+    
 
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        router.push('/interests')
-        console.log("Logging in...")
+    async function handleFormSubmit(e) {
+        e.preventDefault()
+        const url = "login"
+        const body = {username, password, url}
+    
+
+        const response = await fetch('/api/auth', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+
+        const result = await response.json();
+        console.log(result)
+        // console.log(result.jwtToken)
+        // setImageURL(result.userImage.thumbnailUrl)
+    
+        // router.push('/interests')
 
     }
     return (
         <div>
-            <form onSubmit={handleFormSubmit} className={classes.loginPage} action="interestPage.html" method="POST">
+            <form onSubmit={handleFormSubmit} className={classes.loginPage}>
                 <div className={classes.login}>
                     <h3>Welcome back!</h3>
 
@@ -26,14 +45,15 @@ export default function Page() {
                             Username
                         </h2>
                     </label>
-                    <input type="text" title="first-name" />
+                    <input type="text" title="first-name" onChange={(e) => setUsername(e.target.value)} />
 
                     <label htmlFor="last-name">
                         <h2 className={classes.loginHeadline} id="form-question">
                             Password
                         </h2>
                     </label>
-                    <input title="password" type="password" />
+                    <input title="password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+            
                     <div className={classes.btnBox}>
                         <button className="login-btn2" id="submit-btn" type="submit">Login</button>
                     </div>
