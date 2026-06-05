@@ -1,12 +1,12 @@
 import classes from './interests.module.css'
 import Image from 'next/image'
-import gaming from '@/assets/interests/gaming.svg'
-import streaming from '@/assets/interests/streaming.jpg'
-import tech from '@/assets/interests/tech.jpg'
-import sports from '@/assets/interests/sports.jpg'
-import music from '@/assets/interests/music.jpg'
-import life from '@/assets/interests/sliceoflife.jpg'
-import manga from '@/assets/interests/manga.jpg'
+import gaming from '@/public/assets/interests/gaming.svg'
+import streaming from '@/public/assets/interests/streaming.jpg'
+import tech from '@/public/assets/interests/tech.jpg'
+import sports from '@/public/assets/interests/sports.jpg'
+import music from '@/public/assets/interests/music.jpg'
+import life from '@/public/assets/interests/sliceoflife.jpg'
+import manga from '@/public/assets/interests/manga.jpg'
 
 export default function InterestsPage() {
 
