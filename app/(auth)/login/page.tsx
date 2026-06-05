@@ -27,10 +27,8 @@ export default function Page() {
 
         const result = await response.json();
         console.log(result)
-        // console.log(result.jwtToken)
-        // setImageURL(result.userImage.thumbnailUrl)
     
-        // router.push('/interests')
+        router.push('/interests')
 
     }
     return (

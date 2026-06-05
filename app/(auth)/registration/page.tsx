@@ -4,27 +4,67 @@ import Image from 'next/image'
 import Link from 'next/link'
 import userAvatar from '@/assets/user-avatar-var.jpg'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 
 
 
 export default function RegistrationPage() {
+    const [firstName, setFirstName] = useState(' ')
+    const [lastName, setLastName] = useState(' ')
+    const [userName, setUserName] = useState(' ')
+    const [password, setPassword] = useState(' ')
+    const [confirmPassword, setConfirmPassword] = useState(' ')
+    const [email, setEmail] = useState(' ')
+    const [avatar, setAvatarImage] = useState<string | ArrayBuffer | null>(null);
 
     const router = useRouter();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
-        router.push('/verification');
+        const url = "register"
+        const body = {firstName, lastName, userName, password, email, avatar, url} 
+    
 
-        console.log("Sending...");
+        const response = await fetch('/api/auth', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+
+
+         const result = await response.json();
+        console.log(result)
+
+    }
+
+    const handleImageInput = async (e) => {
+        e.preventDefault();
+        const reader = new FileReader();
+        const link = e.target.files[0];
+        if(!link) return;
+        const imageType = ['jpg', 'jpeg', 'png', 'gif'];
+        const ifImageType = imageType.some(imgType => link.type.includes(imgType));
+        console.log(link.size);
+        // const ifImageSize = link.size > 30000;
+        if (!ifImageType){
+            // const alertMessage = (!ifImageType)
+            //     ? "Please Upload Img Types: JPG, JPEG, PNG"
+            //     : 'File Size Must Not Be Greater Than 100KB';
+            alert("Please Upload Img Types: JPG, JPEG, PNG");
+            setAvatarImage(' ');
+            return;
+        }
+        reader.readAsDataURL(link);
+        reader.onload = () => setAvatarImage(reader.result);
     }
 
 
     return (
         <>
 
-            <form className={classes.registrationForm} onSubmit={handleSubmit} action="/register" method="POST">
+            <form className={classes.registrationForm} onSubmit={handleSubmit}>
 
                 <div className={classes.registration}>
                     <h3 className={classes.h3}>Join the community!</h3>
@@ -33,21 +73,21 @@ export default function RegistrationPage() {
                         <div className={classes.userInput}>
                             <div className={classes.inputContainer}>
                                 <label htmlFor="first-name">First Name</label>
-                                <input type="text" title="first-name" aria-placeholder="Please enter your first name" />
+                                <input type="text" title="first-name" aria-placeholder="Please enter your first name" onChange={(e) => setFirstName(e.target.value)} />
                                 <label htmlFor="last-name">Last Name</label>
-                                <input type="text" title="last-name" aria-placeholder="Please enter your last name" />
+                                <input type="text" title="last-name" aria-placeholder="Please enter your last name" onChange={(e) => setLastName(e.target.value)}/>
 
 
                                 <label htmlFor="username"> Username</label>
-                                <input type="text" title="user-name" aria-placeholder="Please enter a username" />
+                                <input type="text" title="user-name" aria-placeholder="Please enter a username" onChange={(e) => setUserName(e.target.value)} />
                                 <label htmlFor="email">Email</label>
-                                <input type="text" title="email" aria-placeholder="Please enter an email address" />
+                                <input type="text" title="email" aria-placeholder="Please enter an email address" onChange={(e) => setEmail(e.target.value)}/>
 
 
                                 <label htmlFor="password">Password</label>
-                                <input type="password" title="enter-password" aria-placeholder="Please enter a password" />
+                                <input type="password" title="enter-password" aria-placeholder="Please enter a password" onChange={(e) => setPassword(e.target.value)}/>
                                 <label htmlFor="password-reenter">Re-enter Password</label>
-                                <input type="password" title="reenter-password" aria-placeholder="Please re-enter your password" />
+                                <input type="password" title="reenter-password" aria-placeholder="Please re-enter your password" onChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
                         </div>
                         <div className={classes.rightBox}>
@@ -65,7 +105,7 @@ export default function RegistrationPage() {
                                 </label>
                             </div>
                             <p>(optional)</p>
-                            <input hidden title="avatar button" type="file" accept="image/jpeg, image/png, image/jpg" id="file-path" />
+                            <input hidden title="avatar button" type="file" accept="image/jpeg, image/png, image/jpg" id="file-path" onChange={(e) => handleImageInput(e)} />
                         </div>
                         {/* <!-- <span className="material-symbols-outlined">
                                     photo_camera_front
