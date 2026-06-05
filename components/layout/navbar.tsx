@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from './navbar.module.css';
-import navlogo from '@/assets/navbar-logo.png'
+import navlogo from '@/public/assets/navbar-logo.png'
 
 
 export default function Navbar() {
