@@ -6,14 +6,17 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function Page() {
+
+    const router = useRouter();
     const [username, setUsername] = useState(' ')
     const [password, setPassword] = useState(' ')
     const [imageURL, setImageURL] = useState(' ')
-
-    const router = useRouter();
     
 
-    async function handleFormSubmit(e) {
+    
+    
+
+    async function handleFormSubmit(e:any) {
         e.preventDefault()
         const url = "login"
         const body = {username, password, url}

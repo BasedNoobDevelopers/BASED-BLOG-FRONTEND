@@ -6,7 +6,9 @@ export default function AuthLayout({ children }) {
     return (
         <>
             <Navbar />
-            <main> {children} </main>
+           
+                {children}
+          
         </>
     );
 }

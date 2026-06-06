@@ -2,7 +2,6 @@
 import classes from './registration.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import userAvatar from '@/assets/user-avatar-var.jpg'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -10,6 +9,8 @@ import { useState } from 'react'
 
 
 export default function RegistrationPage() {
+
+    const router = useRouter();
     const [firstName, setFirstName] = useState(' ')
     const [lastName, setLastName] = useState(' ')
     const [userName, setUserName] = useState(' ')
@@ -17,8 +18,29 @@ export default function RegistrationPage() {
     const [confirmPassword, setConfirmPassword] = useState(' ')
     const [email, setEmail] = useState(' ')
     const [avatar, setAvatarImage] = useState<string | ArrayBuffer | null>(null);
+    
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [imageUrl, setImageUrl] = useState("/assets/user-avatar-var.jpg");
 
-    const router = useRouter();
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const objectUrl = URL.createObjectURL(file);
+
+            setImageFile(file);
+            setImageUrl(objectUrl);
+
+            console.log("Changing image to...")
+            console.log(file)
+
+            console.log("Changing URL...")
+            console.log(objectUrl)
+
+        }
+
+    }
+
+    
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -95,9 +117,9 @@ export default function RegistrationPage() {
                             <div className={classes.imageBox}>
                                 <label htmlFor="file-path">
                                     <Image
-                                        src={userAvatar}
+                                        src={imageUrl}
                                         id="registration-img"
-                                        className="registration-img"
+                                        className={classes.registrationImg}
                                         height={210}
                                         width={240}
                                         alt="User Avatar"
@@ -105,7 +127,7 @@ export default function RegistrationPage() {
                                 </label>
                             </div>
                             <p>(optional)</p>
-                            <input hidden title="avatar button" type="file" accept="image/jpeg, image/png, image/jpg" id="file-path" onChange={(e) => handleImageInput(e)} />
+                            <input hidden title="avatar button" type="file" onChange={handleImageInput} accept="image/jpeg, image/png, image/jpg" id="file-path" />
                         </div>
                         {/* <!-- <span className="material-symbols-outlined">
                                     photo_camera_front
