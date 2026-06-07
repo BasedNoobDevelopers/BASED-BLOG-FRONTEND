@@ -4,10 +4,24 @@ export async function POST(request: Request) {
    try {
         const body = await request.json();
         const { url } = body;
-        
-        // 1. Handle JSON-based Login route
-        if (url === 'login') {
-            const requestBody = getLoginBody(body);
+
+        switch(url) {
+            case 'login': return await loginPOSTRequest(body);
+            case 'register': return await registerPOSTRequest(body)
+            case 'verification': return ""
+            default: return NextResponse.json({ error: "Invalid URL route" }, { status: 400 });
+        }
+      
+
+   } catch(error: any) {
+        console.error(error);
+        return NextResponse.json({ error: error.message || error }, { status: 500 });
+   }
+}
+
+
+async function loginPOSTRequest(body: any) {
+    const requestBody = getLoginBody(body);
             const backendResponse = await fetch(`http://localhost:8080/v1/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -15,28 +29,26 @@ export async function POST(request: Request) {
             });
             const data = await backendResponse.json();
             return NextResponse.json(data, { status: 200 });
-        }
+}
 
-        // 2. Handle Multipart-based Register route
-        if (url === 'register') {
-            const formData = getRegisterFormData(body);
-            
-            const backendResponse = await fetch(`http://localhost:8080/v1/auth/register`, {
-                method: 'POST',
-                // CRITICAL: No 'Content-Type' header here. Fetch creates it with the proper boundary automatically.
-                body: formData, 
-            });
+async function registerPOSTRequest(body: any) {
+     const formData = getRegisterFormData(body);
+    const backendResponse = await fetch(`http://localhost:8080/v1/auth/register`, {
+        method: 'POST',
+        // CRITICAL: No 'Content-Type' header here. Fetch creates it with the proper boundary automatically.
+        body: formData, 
+    });
 
-            const data = await backendResponse.json();
-            return NextResponse.json(data, { status: 200 });
-        }
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: 200 });
+}
 
-        return NextResponse.json({ error: "Invalid URL route" }, { status: 400 });
 
-   } catch(error: any) {
-        console.error(error);
-        return NextResponse.json({ error: error.message || error }, { status: 500 });
-   }
+//#region  Helper Methods (Start)
+
+function getLoginBody(requestBody: any) {
+    const { username, password } = requestBody;
+    return { username, password };
 }
 
 // Helper to construct a real FormData object
@@ -81,8 +93,4 @@ function getRegisterFormData(requestBody: any): FormData {
     return formData;
 }
 
-
-function getLoginBody(requestBody: any) {
-    const { username, password } = requestBody;
-    return { username, password };
-}
+//#endregion Helper Methods (End)

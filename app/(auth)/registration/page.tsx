@@ -61,22 +61,19 @@ export default function RegistrationPage() {
     const handleImageInput = async (e:any) => {
         e.preventDefault();
         const reader = new FileReader();
-        const link = e.target.files[0];
-        if(!link) return;
-        handleImageChange(link)
+        const file = e.target.files[0];
+        if(!file) return;
         const imageType = ['jpg', 'jpeg', 'png', 'gif'];
-        const ifImageType = imageType.some(imgType => link.type.includes(imgType));
-        console.log(link.size);
-        // const ifImageSize = link.size > 30000;
+        const ifImageType = imageType.some(imgType => file.type.includes(imgType));
         if (!ifImageType){
-            // const alertMessage = (!ifImageType)
-            //     ? "Please Upload Img Types: JPG, JPEG, PNG"
-            //     : 'File Size Must Not Be Greater Than 100KB';
             alert("Please Upload Img Types: JPG, JPEG, PNG");
             setAvatarImage(' ');
             return;
         }
-        reader.readAsDataURL(link);
+
+        const objectUrl = URL.createObjectURL(file);
+        setImageUrl(objectUrl);
+        reader.readAsDataURL(file);
         reader.onload = () => setAvatarImage(reader.result);
     }
 
@@ -125,7 +122,7 @@ export default function RegistrationPage() {
                                 </label>
                             </div>
                             <p>(optional)</p>
-                            <input hidden title="avatar button" type="file" onChange={handleImageInput} accept="image/jpeg, image/png, image/jpg" id="file-path" />
+                            <input hidden title="avatar button" type="file" onChange={handleImageInput} accept="image/jpeg, image/png, image/jpg, image/gif" id="file-path" />
                         </div>
                         {/* <!-- <span className="material-symbols-outlined">
                                     photo_camera_front
