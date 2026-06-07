@@ -19,15 +19,13 @@ export default function RegistrationPage() {
     const [email, setEmail] = useState(' ')
     const [avatar, setAvatarImage] = useState<string | ArrayBuffer | null>(null);
     
-    const [imageFile, setImageFile] = useState<File | null>(null);
+
     const [imageUrl, setImageUrl] = useState("/assets/user-avatar-var.jpg");
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
+    const handleImageChange = (file:any) => {
         if (file) {
             const objectUrl = URL.createObjectURL(file);
 
-            setImageFile(file);
             setImageUrl(objectUrl);
 
             console.log("Changing image to...")
@@ -37,12 +35,11 @@ export default function RegistrationPage() {
             console.log(objectUrl)
 
         }
-
     }
 
     
 
-    async function handleSubmit(e) {
+    async function handleSubmit(e:any) {
         e.preventDefault();
 
         const url = "register"
@@ -61,11 +58,12 @@ export default function RegistrationPage() {
 
     }
 
-    const handleImageInput = async (e) => {
+    const handleImageInput = async (e:any) => {
         e.preventDefault();
         const reader = new FileReader();
         const link = e.target.files[0];
         if(!link) return;
+        handleImageChange(link)
         const imageType = ['jpg', 'jpeg', 'png', 'gif'];
         const ifImageType = imageType.some(imgType => link.type.includes(imgType));
         console.log(link.size);

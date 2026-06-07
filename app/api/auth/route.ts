@@ -51,6 +51,7 @@ function getRegisterFormData(requestBody: any): FormData {
     formData.append("email", email || "");
     formData.append("favoriteTopics", " ");
 
+
     // Handle the Base64 avatar conversion
     if (avatar && avatar.startsWith("data:")) {
         try {
@@ -64,15 +65,18 @@ function getRegisterFormData(requestBody: any): FormData {
 
             // Convert Buffer to a standard Blob that FormData understands
             const fileBlob = new Blob([buffer], { type: mimeType });
+            let imgType = mimeType.split("/")[1];
+            imgType = (imgType === "jpeg") ? "jpg" : imgType;
 
             // CRITICAL: Providing a filename (3rd argument) forces FormData 
             // to treat this property as a File instead of a plain string text field.
-            formData.append("avatar", fileBlob, `avatar.${mimeType.split("/")[1]}`);
+            formData.append("avatar", fileBlob, `avatar.${imgType}`);
         } catch (error) {
             console.error("Failed to parse avatar Base64 string:", error);
             // Optional fallback: formData.append("avatar", avatar);
         }
     }
+
 
     return formData;
 }
