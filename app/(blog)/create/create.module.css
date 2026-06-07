@@ -1,3 +1,4 @@
+
 .createArticle {
   display: flex;
   flex-direction: column;
@@ -28,6 +29,7 @@
 }
 
 .createArticleForm {
+  margin-top: 2rem;
   display: flex;
   height: 65rem;
   justify-content: center;
