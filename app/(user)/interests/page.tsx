@@ -1,4 +1,5 @@
 import classes from './interests.module.css'
+// import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import gaming from '@/public/assets/interests/gaming.svg'
 import streaming from '@/public/assets/interests/streaming.jpg'
@@ -8,7 +9,16 @@ import music from '@/public/assets/interests/music.jpg'
 import life from '@/public/assets/interests/sliceoflife.jpg'
 import manga from '@/public/assets/interests/manga.jpg'
 
+
+
 export default function InterestsPage() {
+    // const router = useRouter()
+   
+
+    // const  handleInterestSubmit = (e) => {
+    //     e.preventDefault();
+    //      router.push('/create')
+    // }
 
     return (
         <div>
@@ -18,7 +28,7 @@ export default function InterestsPage() {
 
                         <legend className={classes.stack}>
                             <span className={classes.interestHeadline}>
-                                <h2  id="form-question">
+                                <h2 id="form-question">
                                     Please select up to 5 interests from the list
                                 </h2>
                             </span>
@@ -131,19 +141,19 @@ export default function InterestsPage() {
                                 value="sports" />
                             <div className="interest-title"></div>
                         </label>
-             
 
 
-                </fieldset>
 
-                <div className={classes.stackFormControls}>
-                    <button id="skip-btn" name="action" value="skip" title="Skip" className={classes.submitBtn} type="submit" data-cy="skip-btn">Skip</button>
-                    <button id="continue-btn" name="action" value="continue" title="Continue" className={classes.submitBtn} type="submit" data-cy="continue-btn">Continue</button>
-                </div>
+                    </fieldset>
+
+                    <div className={classes.stackFormControls}>
+                        <button id="skip-btn" name="action" value="skip" title="Skip" className={classes.submitBtn} type="submit" data-cy="skip-btn">Skip</button>
+                        <button  id="continue-btn" name="action" value="continue" title="Continue" className={classes.submitBtn} type="submit" data-cy="continue-btn">Continue</button>
+                    </div>
 
 
-            </form>
-        </div>
+                </form>
+            </div>
         </div >
     )
 }

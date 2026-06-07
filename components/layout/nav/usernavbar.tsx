@@ -21,9 +21,8 @@ export default function Navbar() {
                 YOUNG BASED BLOG
             </header>
             <ul className="navPages">
-                <li id="blogs-btn"><Link href="">Blogs</Link></li>
-                <li id="login-btn"><Link className="login-nav" href="/login"> Login</Link></li>
-                <li id="register-btn"><Link className="register-nav" href="/registration"> Register</Link></li>
+                <li id="blogs-btn"><Link href="/create">Create Post</Link></li>
+                <li id="login-btn"><Link className="login-nav" href="/logout"> Logout</Link></li>
                 {/* <li id="user-profile"><Link className="user-nav" href="user.html"> Profile </Link></li> */}
             </ul>
 
