@@ -12,7 +12,6 @@ export default function RegistrationPage() {
 
     const router = useRouter();
 
-    const [imageFile, setImageFile] = useState<File | null>(null);
     const [imageUrl, setImageUrl] = useState("/assets/user-avatar-var.jpg");
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +19,6 @@ export default function RegistrationPage() {
         if (file) {
             const objectUrl = URL.createObjectURL(file);
 
-            setImageFile(file);
             setImageUrl(objectUrl);
 
             console.log("Changing image to...")

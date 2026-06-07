@@ -1,14 +1,14 @@
 
-import Navbar from "@/components/layout/nav/navbar";
+import UserNavbar from "@/components/layout/nav/usernavbar";
 import Footer from "@/components/layout/footer";
 
 
 
 
-export default function MainLayout({children}) {
+export default function UserLayout({children}) {
     return(
     <>
-        <Navbar />
+        <UserNavbar />
         <main> {children} </main>
         <Footer />
     </>
