@@ -1,0 +1,69 @@
+import classes from './article.module.css'
+
+
+const date = new Date();
+const now = date.toLocaleDateString('en-US', {
+  month: 'short',
+  day: '2-digit',
+  year: 'numeric'
+});
+const article =
+{
+       id: 2,
+    author: "Rick Flair",
+    title: "Sonic the Hedgehog 25th Anniversary",
+    uploadDate: now,
+    category: "Opinion",
+    subtitle: "The beginning of something big is right around the corner",
+    image: "assets/mock/SonicConcept5.png",
+    firstParagraph: `During the Sonic the Hedgehog 25th Anniversary event over in Japan, Sonic Team presented early concepts for Sonic the Hedgehog and Friends.`,
+    content: ` Some of the weirdest early prototypes included rabbit Sonic the Hedgehog, headband wearing Silver the Hedgehog and scarred up Shadow the Hedgehog. If you are a hedgehog, you started out with some weird designs.
+    Check out the concept art for Sonic the Hedgehog and Friends below. Tell us what you think of these early concept art prototypes and if they did right with the final designs. Of course, these are just more of the popular Sonic the Hedgehog and Friends designs as they didn’t show a lot of the more niche characters (Fang, please Sonic Team).
+    [Via NeoGAF]` 
+}
+export default function ArticlePage() {
+    return (
+        <>
+            <div className={classes.scrollHeader} id="scroll-header">
+                <span id="scroll-title">{article.title}</span>
+            </div>
+
+            <section className={classes.articleHero}>
+                <div className={classes.heroBackground} style={{ backgroundImage:` url(${article.image})` }} id="hero-bg">
+                </div>
+
+                <div className={classes.heroContent}>
+                    <div className={classes.heroMedia}>
+                        <img
+                            className={classes.heroMediaImage}
+                            id="hero-image"
+                            src={article.image}
+                            alt="article image"
+                          
+                         
+                        />
+                    </div>
+
+                    <div className={classes.heroText}>
+                        <span className={classes.categoryTag} id="hero-category">{article.category}</span>
+                        <h1 id="hero-title">{article.title}</h1>
+                        <p className={classes.heroSubtitle} id="hero-subtitle">{article.subtitle}</p>
+                        {/* <!-- <aside> --> */}
+                        <p className={classes.heroAuthor} id="hero-author">{article.author}</p>
+                        <p className={classes.uploadTime} id="upload-time">{article.uploadDate}</p>
+                        {/* <!-- </aside>   --> */}
+                    </div>
+                </div>
+
+            </section>
+
+            <main className={classes.articleBody}>
+                <div className={classes.articleContainer}>
+                    <p className={classes.articleFirstParagraph}>{article.firstParagraph}</p>
+                    <p className={classes.articleContent}>{article.content}</p>
+                </div>
+            </main>
+        </>
+
+    )
+}

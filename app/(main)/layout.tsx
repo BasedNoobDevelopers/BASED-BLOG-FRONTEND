@@ -1,5 +1,5 @@
 
-import Navbar from "@/components/layout/nav/navbar";
+import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
 

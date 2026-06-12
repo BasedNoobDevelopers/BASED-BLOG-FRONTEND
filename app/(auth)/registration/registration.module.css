@@ -29,10 +29,9 @@
   background: var(--bg-panel);
   color: var(--ink);
   border-radius: 0;
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 8px 8px 0 var(--neon-pink);
+  border: 2px solid var(--neon-pink);
   margin-bottom: 10px;
-    box-shadow:
+  box-shadow:
     10px 10px 0 var(--neon-cyan),
     0 0 40px rgba(255, 45, 149, 0.25);
 }

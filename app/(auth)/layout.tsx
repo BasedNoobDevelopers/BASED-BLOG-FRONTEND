@@ -1,5 +1,5 @@
 
-import Navbar from "@/components/layout/nav/navbar";
+import Navbar from "@/components/layout/navbar";
 
 
 export default function AuthLayout({ children }) {
