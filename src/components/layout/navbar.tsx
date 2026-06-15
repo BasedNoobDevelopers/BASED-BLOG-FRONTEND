@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from './navbar.module.css';
-import navlogo from '@/public/assets/navbar-logo.png'
 import { cookies } from "next/headers";
 // Change if user is signed in
 //Fetch cookies, session, or token?
@@ -15,7 +14,7 @@ export default async function Navbar() {
             <Link href="/">
                 <Image
                     className={classes.navImg}
-                    src={navlogo}
+                    src="/assets/navbar-logo.png" 
                     alt="Navbar logo"
                     width={80}
                     height={80}

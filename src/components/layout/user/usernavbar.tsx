@@ -4,7 +4,7 @@ import classes from './navbar.module.css';
 import navlogo from '@/public/assets/navbar-logo.png'
 
 
-export default function Navbar() {
+export default function UserNavbar() {
     return (
         <nav className={classes.nav}>
             <Link href="/">

@@ -1,14 +1,6 @@
 import classes from './interests.module.css'
 // import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import gaming from '@/public/assets/interests/gaming.svg'
-import streaming from '@/public/assets/interests/streaming.jpg'
-import tech from '@/public/assets/interests/tech.jpg'
-import sports from '@/public/assets/interests/sports.jpg'
-import music from '@/public/assets/interests/music.jpg'
-import life from '@/public/assets/interests/sliceoflife.jpg'
-import manga from '@/public/assets/interests/manga.jpg'
-
+// import Image from 'next/image'
 
 
 export default function InterestsPage() {
@@ -36,8 +28,8 @@ export default function InterestsPage() {
 
                         <label className={classes.formAnswer} htmlFor="interest-1">
                             <span className={classes.interestText}>Gaming</span>
-                            <Image className={classes.interestImg}
-                                src={gaming}
+                            <img className={classes.interestImg}
+                                src='/assets/interests/gaming.svg'
                                 alt="PS4"
                                 height={210}
                                 width={240}
@@ -56,11 +48,9 @@ export default function InterestsPage() {
 
                             <span className={classes.interestText}>Streaming</span>
 
-                            <Image
+                            <img
                                 className={classes.interestImg}
-                                src={streaming}
-                                height={210}
-                                width={240}
+                                src='/assets/interests/streaming.jpg'
                                 alt="streaming"
                             />
                             <input
@@ -75,9 +65,10 @@ export default function InterestsPage() {
                         <label className={classes.formAnswer} htmlFor="interest-3">
 
                             <span className={classes.interestText}>Tech</span>
-                            <Image className={classes.interestImg}
-                                src={tech}
-                                alt="Tech" />
+                            <img className={classes.interestImg}
+                                src='/assets/interests/tech.jpg'
+                                alt="Tech" 
+                            />
                             <input
                                 className={classes.interestCheckbox}
                                 id="interest-3"
@@ -91,10 +82,11 @@ export default function InterestsPage() {
 
                         <label className={classes.formAnswer} htmlFor="interest-4">
                             <span className={classes.interestText}>Slice of Life</span>
-                            <Image
+                            <img
                                 className={classes.interestImg}
-                                src={life}
-                                alt="Slice of Life" />
+                                src='/assets/interests/sliceoflife.jpg'
+                                alt="Slice of Life" 
+                            />
                             <input className={classes.interestCheckbox}
                                 id="interest-4"
                                 name="interests"
@@ -105,9 +97,10 @@ export default function InterestsPage() {
 
                         <label className={classes.formAnswer} htmlFor="interest-5">
                             <span className={classes.interestText}>Music</span>
-                            <Image className={classes.interestImg}
-                                src={music}
-                                alt="Music" />
+                            <img className={classes.interestImg}
+                                src='/assets/interests/music.jpg'
+                                alt="Music" 
+                            />
                             <input className={classes.interestCheckbox}
                                 id="interest-5"
                                 name="interests"
@@ -118,9 +111,10 @@ export default function InterestsPage() {
 
                         <label className={classes.formAnswer} htmlFor="interest-6">
                             <span className={classes.interestText}>Manga</span>
-                            <Image className={classes.interestImg}
-                                src={manga}
-                                alt="Manga" />
+                            <img className={classes.interestImg}
+                                src='/assets/interests/manga.jpg'
+                                alt="Manga" 
+                            />
                             <input className={classes.interestCheckbox}
                                 id="interest-6"
                                 name="interests"
@@ -131,9 +125,10 @@ export default function InterestsPage() {
 
                         <label className={classes.formAnswer} htmlFor="interest-7">
                             <span className={classes.interestText}>Sports</span>
-                            <Image className={classes.interestImg}
-                                src={sports}
-                                alt="Sports" />
+                            <img className={classes.interestImg}
+                                src='/assets/interests/sports.jpg'
+                                alt="Sports" 
+                            />
                             <input className={classes.interestCheckbox}
                                 id="interest-7"
                                 name="interests"
