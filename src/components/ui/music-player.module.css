@@ -1,0 +1,16 @@
+
+.personalFeedRightGrid {
+  height: 20rem;
+  width: 80%;
+  background: var(--bg-deep);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
+  border-radius: 10px;
+  /* display: grid; */
+  margin: 10px 10%;
+  /* grid-template-rows: 700px repeat(auto-fill, 250px); */
+  justify-content: space-evenly;
+}
+
+.musicPlayer {
+  height: 100px;
+}

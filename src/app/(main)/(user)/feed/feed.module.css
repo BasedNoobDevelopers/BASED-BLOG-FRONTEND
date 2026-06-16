@@ -1,0 +1,60 @@
+.personalFeedLayout {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.personalFeedLeft {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 5rem;
+  width: 65%;
+}
+
+
+.personalFeedRight {
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 30%;
+  background: var(--bg-panel);
+  position: sticky;
+  right: 40px;
+  top: 120px;
+  gap: 35px;
+  z-index: 1;
+  height: 85vh;
+  border-radius: 2px;
+  box-shadow: 0 0 5px var(--bg-deep), 0 0 5px var(--neon-yellow), 0 0 30px var(--neon-lilac);
+  text-align: center;
+
+  /* box-shadow: 0 0 5px var(--bg-deep), 0 0 10px var(--neon-yellow), 0 0 40px var(--neon-pink); */
+}
+
+.personalFeedRightGrid {
+  height: 20rem;
+  width: 80%;
+  background: var(--bg-deep);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
+  border-radius: 10px;
+  /* display: grid; */
+  margin: 10px 10%;
+  /* grid-template-rows: 700px repeat(auto-fill, 250px); */
+  justify-content: space-evenly;
+}
+
+
+
+
+
+
+#trendingarticles {
+  height: 100px;
+}
+
+#topic-selection {
+  height: 50px;
+}

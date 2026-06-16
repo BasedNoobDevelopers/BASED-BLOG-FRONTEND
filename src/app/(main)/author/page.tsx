@@ -1,0 +1,1 @@
+//display interests, avatar, background image, bio, article list, choose article order
