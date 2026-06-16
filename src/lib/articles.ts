@@ -44,7 +44,7 @@ export const articles: Article[] = [
     title: "Sonic the Hedgehog 25th Anniversary",
     uploadDate: now,
     category: "Opinion",
-    subtitle: "The beginning of something big is right around the corner",
+    subtitle: "I pity the fool who doesn't love sonic",
     image: "/assets/mock/SonicConcept5.png",
     firstParagraph: `During the Sonic the Hedgehog 25th Anniversary event over in Japan, Sonic Team presented early concepts for Sonic the Hedgehog and Friends.`,
     content: ` Some of the weirdest early prototypes included rabbit Sonic the Hedgehog, headband wearing Silver the Hedgehog and scarred up Shadow the Hedgehog. If you are a hedgehog, you started out with some weird designs.
@@ -71,7 +71,7 @@ export const articles: Article[] = [
     id: 4,
     author: "Man Rock",
     uploadDate: now,
-    title: "Ratchet and Clank a Classic",
+    title: "Ratchet and Clank a Classic that never ages",
     category: "Retro",
     subtitle: "Get Clanked with the Tank",
     image: "/assets/mock/ratchet_clank_!.jpg",
@@ -81,7 +81,7 @@ export const articles: Article[] = [
   },
   {
     id: 5,
-    title: "Halo Combat Evolved vs Halo Campaign Evolved",
+    title: "Halo Combat Evolved vs Halo",
     category: "Opinion",
     subtitle: "A new combat evolved experience",
     image: "/assets/mock/halo-compare.webp",
@@ -92,9 +92,9 @@ export const articles: Article[] = [
 
   {
     id: 6,
-    title: "Wukong the Game",
+    title: "Wukong the Game is killer",
     category: "Retro",
-    subtitle: "",
+    subtitle: "If you think this is the best, you haven't seen nothing yet!",
     image: "/assets/mock/wukong.jpg",
     content: `The Metal Gear Solid audio drama is a spinoff of the Metal Gear Solid video game released only in Japan. It was broadcast in weekly segments on a syndicate radio program called Club db, which aired on the radio station Nippon Cultural Broadcasting (JOQR) and its affiliates. The drama lasted twelve installments, which aired between October 24, 1998 and January 9, 1999. The drama was then collected in two albums, Drama CD Metal Gear Solid Vol. 1, released on December 4, 1998; and Drama CD Metal Gear Solid Vol. 2, released on January 8, 1999.
     While the audio drama did not receive an official overseas release, it saw an English translation by an online user named Juan. With his consent, an updated script was uploaded to MGS TUS by Marc Laidlaw. This script was used years later for a fandubbed version uploaded by Josh Griffiths.[1] Prior to this, Marc had been hoping do his own fandub with an updated translation.[2]
@@ -124,7 +124,7 @@ export const articles: Article[] = [
     uploadDate: now,
     category: "Opinion",
     subtitle: "The beginning of something big is right around the corner",
-    image: "/assets/mock/SonicConcept5.png",
+    image: "/assets/mock/PS4-controller-1.svg",
     firstParagraph: `During the Sonic the Hedgehog 25th Anniversary event over in Japan, Sonic Team presented early concepts for Sonic the Hedgehog and Friends.`,
     content: ` Some of the weirdest early prototypes included rabbit Sonic the Hedgehog, headband wearing Silver the Hedgehog and scarred up Shadow the Hedgehog. If you are a hedgehog, you started out with some weird designs.
     Check out the concept art for Sonic the Hedgehog and Friends below. Tell us what you think of these early concept art prototypes and if they did right with the final designs. Of course, these are just more of the popular Sonic the Hedgehog and Friends designs as they didn’t show a lot of the more niche characters (Fang, please Sonic Team).
@@ -134,10 +134,10 @@ export const articles: Article[] = [
   {
     id: 9,
     author: "Tony Stark",
-    title: "The Metal Gear Story You've Never Heard",
+    title: "Checking out what gifs look like",
     category: "Retro",
-    subtitle: "The Metal Gear Solid audio drama",
-    image: "/assets/mock/MGS_Drama_CD_story_3.webp",
+    subtitle: "Should we pause them for the article's background or not?",
+    image: "/assets/mock/BlueFlowerBall.gif",
     firstParagraph: `The Metal Gear Solid audio drama is a spinoff of the Metal Gear Solid video game released only in Japan. It was broadcast in weekly segments on a syndicate radio program called Club db, which aired on the radio station Nippon Cultural Broadcasting (JOQR) and its affiliates.`,
     content: ` The drama lasted twelve installments, which aired between October 24, 1998 and January 9, 1999. The drama was then collected in two albums, Drama CD Metal Gear Solid Vol. 1, released on December 4, 1998; and Drama CD Metal Gear Solid Vol. 2, released on January 8, 1999.
     While the audio drama did not receive an official overseas release, it saw an English translation by an online user named Juan. With his consent, an updated script was uploaded to MGS TUS by Marc Laidlaw. This script was used years later for a fandubbed version uploaded by Josh Griffiths.[1] Prior to this, Marc had been hoping do his own fandub with an updated translation.[2]

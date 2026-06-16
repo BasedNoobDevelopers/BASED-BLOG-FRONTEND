@@ -99,7 +99,7 @@ body {
   /* margin-bottom: 1rem; */
   border-radius: 0;
   border: 2px solid var(--bg-deep);
-  box-shadow: 4px 4px 0 var(--neon-cyan);
+  box-shadow: 2px 2px 0 var(--neon-cyan);
   font-weight: 700;
 }
 
@@ -121,7 +121,7 @@ body {
 
 .heroText h1 {
   font-family: 'Archivo Black', Impact, sans-serif;
-  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-size: clamp(2.4rem, 4vw, 3rem);
   line-height: 1;
   font-weight: 900;
   letter-spacing: -2px;
@@ -133,7 +133,7 @@ body {
   text-transform: uppercase;
   text-shadow:
     4px 4px 0 var(--neon-pink),
-    8px 8px 0 var(--neon-cyan);
+    6px 6px 0 var(--neon-cyan);
   border: 0;
 }
 

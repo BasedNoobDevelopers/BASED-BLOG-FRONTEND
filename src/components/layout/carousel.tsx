@@ -1,5 +1,4 @@
-"use client"
-
+/* eslint-disable @next/next/no-img-element */
 import classes from './carousel.module.css'
 import { articles } from '@/lib/articles';
 
@@ -18,7 +17,7 @@ export default function UserCarousel() {
                 <div className={classes.cardOverlay}>
                     <h4>{article.title}</h4>
                     <span>{article.subtitle}</span>
-                    <span>{article.author}</span>
+                    {/* <span>{article.author}</span> */}
                 </div>
             </a>
         </div>

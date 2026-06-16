@@ -14,7 +14,7 @@
     background-image: linear-gradient(180deg,
             var(--neon-yellow) 0%,
             var(--neon-cyan) 45%,
-            var(--neon-lilac) 100%);
+            var(--neon-lilac) 90%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -60,10 +60,7 @@
     z-index: 6;
 }
 
-.nav:hover ul li,
-.nav:hover li {
-    color: var(--neon-cyan);
-}
+
 
 .nav a {
     height: 100%;
@@ -84,12 +81,13 @@
 
 .nav input {
     width: 10%;
-    margin-right:50px;
+    margin-right:10%;
     margin-bottom: 20px;
     padding: 6px 10px;
     border-radius: 0;
     background: #000;
     border: 2px solid var(--neon-cyan);
+    border-radius: 10px;
     color: var(--neon-cyan);
     font-family: 'VT323', monospace;
     box-shadow: inset 0 0 8px rgba(0, 240, 255, 0.4);
@@ -111,20 +109,20 @@
     list-style-type: none;
     letter-spacing: 1px;
     text-transform: uppercase;
+    color: var(--ink-muted);
     transition: color 0.15s ease, text-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .nav li:hover {
-    color: var(--neon-yellow);
     cursor: pointer;
-    text-shadow:
-        0 0 8px var(--neon-yellow),
-        0 0 16px var(--neon-pink);
+    scale: 2.1;
     transform: translateX(4px);
 }
 
 .nav a:hover {
-    text-shadow: 0 0 12px var(--neon-cyan);
+       text-shadow:
+        0 0 8px var(--neon-yellow),
+        0 0 16px var(--neon-pink);
     color: var(--neon-cyan);
 }
 

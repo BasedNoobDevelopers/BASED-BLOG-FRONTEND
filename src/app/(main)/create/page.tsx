@@ -69,15 +69,15 @@ export default function CreateBlogPostPage() {
                                     id="articleTitle"
                                     name="title"
                                     title="articleTitle"
-                                    maxLength={50}
+                                    maxLength={60}
                                     spellCheck="true"
                                     value={characterValue.title}
                                     onChange={handleTextChange}
-
+                                    required
                                 />
                                 <p>
                                     <span id="current1">{characterValue.title.length}</span>
-                                    / 50 characters
+                                    / 60 characters
                                 </p>
 
                                 <label htmlFor="articleSubtitle">Article subtitle</label>
@@ -85,15 +85,17 @@ export default function CreateBlogPostPage() {
                                     id="articleSubtitle"
                                     name="subtitle"
                                     title="articleSubtitle"
-                                    maxLength={30}
+                                    minLength={25}
+                                    maxLength={60}
                                     spellCheck="true"
                                     value={characterValue.subtitle}
                                     onChange={handleTextChange}
+                                    required
                                 />
 
                                 <p>
                                     <span id="current2">{characterValue.subtitle.length}</span>
-                                    / 30 characters
+                                    / 60 characters
                                 </p>
 
                                 <label htmlFor="articleBody">Enter your article body</label>
@@ -101,10 +103,12 @@ export default function CreateBlogPostPage() {
                                     id="articleBody"
                                     name="body"
                                     title="articleBody"
-                                    maxLength={2000}
+                                    minLength={1000}
+                                    maxLength={3000}
                                     spellCheck="true"
                                     value={characterValue.body}
                                     onChange={handleTextChange}
+                                    required
                                 />
                                 <p>
                                     <span id="current">{characterValue.body.length}</span>
