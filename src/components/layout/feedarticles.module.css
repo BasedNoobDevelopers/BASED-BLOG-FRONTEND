@@ -1,0 +1,107 @@
+
+
+.personalArticlesList1 {
+  height: 100%;
+  display: grid;
+  gap: 30px;
+  margin: 10px auto;
+  grid-template-rows: repeat(1, 2fr);
+  justify-content: space-evenly;
+}
+
+.personalArticleGrid {
+  display: grid;
+  align-content: start;
+  width: 1000px;
+}
+
+.personalArticleDiv {
+  display: grid;
+  grid-template-columns: 800px repeat(auto-fill, 250px);
+  box-sizing: border-box;
+  background: var(--bg-panel);
+  width: 100%;
+  height: 240px;
+  margin: 20px auto 0;
+  border-radius: 0;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.35);
+  /* box-shadow: 6px 6px 0 var(--neon-pink); */
+}
+
+.personalArticleDiv:hover {
+  transform: translate(-3px, -3px);
+  border-color: var(--neon-pink);
+  box-shadow: 9px 9px 0 var(--neon-yellow);
+}
+
+.personalArticleDivInner {
+  font-family: 'DM Serif Display', Georgia, serif;
+  background: transparent;
+  border-start-start-radius: 0;
+  display: grid;
+  align-content: space-around;
+  align-items: end;
+  color: var(--ink-soft);
+  padding: 2px;
+  margin-left: 10px;
+  
+}
+
+
+.personalArticleAuthor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--bg-panel);
+  margin-bottom: 5px;
+  width: 40%;
+  padding: 5px;
+
+}
+
+.authorAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 1px solid var(--neon-yellow);
+  box-shadow:
+    0 0 0 2px var(--bg-deep),
+}
+
+.personalArticleLeftTitle {
+  font-family: 'Archivo Black', Impact, sans-serif;
+  font-size: 80%;
+  line-height: 1;
+  color: var(--neon-yellow);
+  text-transform: uppercase;
+  text-shadow: 2px 3px 0 var(--neon-pink);
+  text-align: left;
+  padding: 5px;
+}
+
+.personalArticleLeftBottom {
+  text-align: left;
+}
+
+
+.personalArticleRight {
+  margin-left: 10px;
+  border-left: 4px solid var(--neon-pink);
+  padding-left: 14px;
+}
+
+.personalArticleImgDiv {
+  overflow: hidden;
+  object-fit: contain;
+  border-left: 2px solid var(--neon-cyan);
+}
+
+.personalArticleImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.15) contrast(1.03);
+}
