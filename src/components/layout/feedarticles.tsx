@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { articles } from "@/lib/articles"
 import classes from './feedarticles.module.css'
 
