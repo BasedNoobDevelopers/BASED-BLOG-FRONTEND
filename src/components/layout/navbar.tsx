@@ -14,17 +14,17 @@ export default async function Navbar() {
             <Link href="/">
                 <Image
                     className={classes.navImg}
-                    src="/assets/navbar-logo.png" 
+                    src="/assets/navbar-logo.png"
                     alt="Navbar logo"
-                    width={80}
-                    height={80}
+                    width={50}
+                    height={50}
                     loading="eager"
                 />
-            </Link>
-            <header className={classes.header}>
-                YOUNG BASED BLOG
-            </header>
 
+                <header className={classes.header}>
+                    YOUNG BASED BLOG
+                </header>
+            </Link>
             {!isLoggedIn ? (
                 <>
                     <ul className="navPages">

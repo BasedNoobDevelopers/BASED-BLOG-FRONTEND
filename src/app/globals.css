@@ -5,12 +5,17 @@
 @tailwind utilities;
 
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
   font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   color: #f2e9ff;
   min-height: 100vh;
-  max-width: 100%;
+  min-width: 100%;
   background:
     /* Vertical Lines */
     linear-gradient(transparent 95%, rgba(255, 45, 149, 0.05) 95%) 0 0 / 100% 3px,
@@ -24,6 +29,18 @@ body {
   background-attachment: fixed;
 
 }
+
+
+
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+}
+
+
 
 @media (prefers-color-scheme: dark) {
   body {
