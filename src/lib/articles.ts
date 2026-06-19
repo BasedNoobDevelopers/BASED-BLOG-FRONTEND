@@ -59,6 +59,23 @@ export async function fetchBlogData(blogID:string): Promise<any> {
         return result
 }
 
+export async function fetchLatest(): Promise<any> {
+  const url = 'latest'
+  console.log("FETCH")
+  const body = {url}
+  console.log(body)
+   const response = await fetch('/api/blogs/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+        console.log("Response HER")
+       const result = await response.json();
+       console.log(result)
+        console.log("After respone")
+        return result
+}
+
 
 export const articles: Article[] = [
   {

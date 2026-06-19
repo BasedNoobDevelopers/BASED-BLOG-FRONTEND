@@ -12,6 +12,7 @@ export async function POST(request: Request) {
         switch(url) {
             case 'login': return await loginPOSTRequest(body);
             case 'register': return await registerPOSTRequest(body)
+            case 'latest': return await latest();
             case 'verification': return ""
             default: return NextResponse.json({ error: "Invalid URL route" }, { status: 400 });
         }
@@ -29,6 +30,19 @@ async function loginPOSTRequest(body: any) {
     
 
             const backendResponse = await fetch(`http://localhost:8080/v1/blogs/public/all`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+               
+            });
+            const data = await backendResponse.json();
+            return NextResponse.json(data, { status: 200 });
+}
+
+async function latest(body: any) {
+    //const requestBody = getLoginBody(body);
+    
+
+            const backendResponse = await fetch(`http://localhost:8080/v1/blogs/public/latest`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
                
