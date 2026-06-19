@@ -1,9 +1,10 @@
 import classes from './interests.module.css'
 // import { useRouter } from 'next/navigation'
 // import Image from 'next/image'
+import { cookies } from 'next/headers'
 
 
-export default function InterestsPage() {
+export default async function InterestsPage() {
     // const router = useRouter()
    
 
@@ -11,6 +12,14 @@ export default function InterestsPage() {
     //     e.preventDefault();
     //      router.push('/create')
     // }
+    async function test() {
+         const cookieStore = await cookies()
+          const token = cookieStore.get('token')?.value
+          console.log("Interest")
+          console.log("JERE IS TOKEN: " + token)
+    }
+
+    await test();
 
     return (
         <div>

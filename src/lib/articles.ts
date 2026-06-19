@@ -1,22 +1,63 @@
 export interface Article {
-  id: number;
-  author?: string;
-  authorAvatar?: string;
-  title: string;
-  category: string;
-  subtitle: string;
-  image: string;
-  firstParagraph?: string;
-  content: string;
-  uploadDate?: string;
-};
+  publicUserResponseDTO: PublicUserResponseDTO;
+  blogID: string;
+  blogTitle: string;
+  blogSubTitle: string;
+  blogContent: string;
+  blogTopic: string;
+  createdDate: string;
+  editedDate: string | null;
+  blogCoverImage: BlogCoverImage;
+  edited: boolean;
+}
 
+export interface PublicUserResponseDTO {
+  userName: string;
+}
+
+export interface BlogCoverImage {
+        imageKey: string;
+        imageUrl: string
+        thumbnailUrl: string
+}
 const date = new Date();
 const now = date.toLocaleDateString('en-US', {
   month: 'short',
   day: '2-digit',
   year: 'numeric',
 });
+
+export async function fetchData(): Promise<any> {
+  const url = 'login'
+  const body = {url}
+   const response = await fetch('/api/blogs/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+      //   console.log("Response HER")
+       const result = await response.json();
+      //  console.log(result)
+      //   console.log("After respone")
+        return result.content
+}
+
+export async function fetchBlogData(blogID:string): Promise<any> {
+  const url = 'register'
+  console.log("FETCH")
+  const body = {url, blogID}
+  console.log(body)
+   const response = await fetch('/api/blogs/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+        console.log("Response HER")
+       const result = await response.json();
+       console.log(result)
+        console.log("After respone")
+        return result
+}
 
 
 export const articles: Article[] = [
@@ -28,7 +69,7 @@ export const articles: Article[] = [
     uploadDate: now,
     category: "Random",
     subtitle: "The beginning of something big is right around the corner",
-    image: "/assets/mock/SMB3_Artwork.webp",
+
     firstParagraph: `Happy Mario Galaxy weekend to those who celebrate. Granted, many were celebrating Easter and Passover this week, but theaters certainly had something to celebrate as well. This was the fourth-best Easter weekend ever for the top 10 at the box office.`,
     content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat posuere orci, ac lobortis erat porttitor sit amet. Donec vel facilisis nunc. Sed eu mauris venenatis, iaculis ante ut, tristique dolor. Proin auctor sagittis enim nec egestas. Aenean libero leo, mattis sed justo vitae, tincidunt sodales dolor. Nunc ullamcorper ullamcorper velit, ut sagittis odio rhoncus ac. Duis dapibus risus vitae felis malesuada, sit amet imperdiet neque scelerisque.
               Sed nibh massa, aliquet mollis nulla et, dictum malesuada tellus. Nulla vulputate nulla tortor, non lobortis nulla blandit vitae. Donec at mauris et nisi placerat tincidunt. Pellentesque facilisis, est sed blandit finibus, magna nulla porta nisi, quis lacinia ex turpis sit amet lacus. Mauris et convallis ipsum. Cras lacinia sit amet mi at sodales. Vestibulum gravida, odio sit amet consequat tristique, dolor mauris venenatis massa, non finibus lacus lorem eu mi. Nunc pharetra ac ante quis luctus. Donec nec neque maximus, consectetur risus et, auctor nisl. Aenean malesuada arcu orci, vitae lobortis urna condimentum nec.

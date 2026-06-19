@@ -37,6 +37,7 @@ export default function Page() {
             alert(result.message)
         }
 
+
         console.log(result)
         const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/registration"
         router.push(nextPage);

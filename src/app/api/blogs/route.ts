@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import { parse, stringify } from 'uuid';
+import { cookies } from 'next/headers'
 
 export async function POST(request: Request) {
    try {
+
         const body = await request.json();
+        console.log("WAIT")
         const { url } = body;
 
         switch(url) {
@@ -21,23 +25,37 @@ export async function POST(request: Request) {
 
 
 async function loginPOSTRequest(body: any) {
-    const requestBody = getLoginBody(body);
-            const backendResponse = await fetch(`http://localhost:8080/v1/auth/login`, {
-                method: 'POST',
+    //const requestBody = getLoginBody(body);
+    
+
+            const backendResponse = await fetch(`http://localhost:8080/v1/blogs/public/all`, {
+                method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(requestBody),
+               
             });
             const data = await backendResponse.json();
             return NextResponse.json(data, { status: 200 });
 }
 
 async function registerPOSTRequest(body: any) {
-     const formData = getRegisterFormData(body);
-    const backendResponse = await fetch(`http://localhost:8080/v1/auth/register`, {
-        method: 'POST',
+     const {id} = body
+     if (!id) return;
+     console.log("HERERE")
+     console.log(body)
+     console.log(id)
+     const inputString = id
+
+// 1. Convert the string to a byte array
+const uuidBytes = parse(id);
+
+// 2. Convert the byte array back to a formatted UUID string
+const validUuid = stringify(uuidBytes);
+    const backendResponse = await fetch(`http://localhost:8080/v1/blogs/public/${validUuid}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
         // CRITICAL: No 'Content-Type' header here. Fetch creates it with the proper boundary automatically.
-        body: formData, 
     });
+    console.log(backendResponse)
 
     const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
