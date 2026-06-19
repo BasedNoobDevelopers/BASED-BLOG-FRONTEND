@@ -115,3 +115,15 @@
     transform: translateX(-100%);
   }
 }
+
+
+
+@media (max-width: 1300px) {
+  .carousel {
+    width: 75%;
+  }
+
+  .carouselHeading {
+    font-size: 36px;
+  }
+}

@@ -12,7 +12,7 @@ export default async function Navbar() {
     return (
         <nav className={classes.nav}>
             <Link href="/">
-                <Image
+                <img
                     className={classes.navImg}
                     src="/assets/navbar-logo.png"
                     alt="Navbar logo"

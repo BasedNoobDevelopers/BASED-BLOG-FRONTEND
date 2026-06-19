@@ -17,6 +17,8 @@ const now = date.toLocaleDateString('en-US', {
   day: '2-digit',
   year: 'numeric',
 });
+ 
+
 
 
 export const articles: Article[] = [
@@ -147,5 +149,6 @@ export const articles: Article[] = [
 
 
 export function getArticleById(id: number): Article | undefined {
+
   return articles.find((a) => a.id === id)
 }

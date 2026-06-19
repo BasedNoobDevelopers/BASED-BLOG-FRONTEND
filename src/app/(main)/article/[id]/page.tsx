@@ -7,6 +7,8 @@ export function generateStaticParams() {
     return articles.map((a) => ({ id: String(a.id) }))
 }
 
+
+
 export default async function ArticlePage({ params }: { params: { id: string } }) {
 
 
@@ -15,6 +17,10 @@ export default async function ArticlePage({ params }: { params: { id: string } }
     const { id } = await params;
     const article = getArticleById(Number(id));
 
+
+    // Grab the first sentense
+    const segments = new Intl.Segmenter('en', { granularity: 'sentence' })
+    // const sentence = segments.segment({articles.content})
 
     if (!article) return notFound();
 
