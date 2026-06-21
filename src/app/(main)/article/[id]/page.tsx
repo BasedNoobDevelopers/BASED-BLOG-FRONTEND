@@ -12,35 +12,41 @@ import { notFound } from 'next/navigation';
 
 export default async function ArticlePage({ params }: { params: { id: string } }) {
 
-
     // params must have await 
 
     const { id } = await params;
     // const [article, setArticle] = useState({})
     let article = undefined
-    
+
     async function test() {
-         const url = 'register'
-        const body = {url, id}
+        const url = 'register'
+        const body = { url, id }
         console.log(body)
         const response = await fetch('http://localhost:3000/api/blogs/', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(body)
-                })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        })
         console.log("Response HER")
-       const result = await response.json();
-       console.log(result)
-       result.createdDate = new Date(result.createdDate)
-       console.log(new Date())
-       const now = result.createdDate.toLocaleDateString('en-US', {
-                month: 'short',
-                day: '2-digit',
-                year: 'numeric',
-                });
-        result.createdDate = now     
+        const result = await response.json();
+        console.log(result)
+        result.createdDate = new Date(result.createdDate)
+        console.log(new Date())
+        const now = result.createdDate.toLocaleDateString('en-US', {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric',
+        });
+        result.createdDate = now
         console.log("After respone")
         article = result
+        const startIndex = article.blogContent.search(/[.?!]/)
+        article.firstSentence = article.blogContent.substring(0, startIndex + 1).trim()
+        article.blogContent = article.blogContent.substring(startIndex + 1).trim()
+        // article.blogContent = article.blogContent.split('\n') 
+        // article.blogContent = undefined;
+        console.log(article.blogContent)
+
     }
 
 
@@ -75,7 +81,7 @@ export default async function ArticlePage({ params }: { params: { id: string } }
                         <h1 id="hero-title">{article.blogTitle}</h1>
                         <p className={classes.heroSubtitle} id="hero-subtitle">{article.blogSubTitle}</p>
                         {/* <!-- <aside> --> */}
-                        <p className={classes.heroAuthor} id="hero-author">{article.publicUserResponseDTO ? article. publicUserResponseDTO.userName : ""}</p>
+                        <p className={classes.heroAuthor} id="hero-author">{article.publicUserResponseDTO ? article.publicUserResponseDTO.userName : ""}</p>
                         <p className={classes.uploadTime} id="upload-time">{article.createdDate}</p>
                         {/* <!-- </aside>   --> */}
                     </div>
@@ -85,8 +91,15 @@ export default async function ArticlePage({ params }: { params: { id: string } }
 
             <main className={classes.articleBody}>
                 <div className={classes.articleContainer}>
-                    <p className={classes.articleFirstParagraph}>{article.firstParagraph}</p>
+                    <p className={classes.articleFirstParagraph}>{article.firstSentence}</p>
                     <p className={classes.articleContent}>{article.blogContent}</p>
+                    {/* <p className={classes.articleContent}>{article.blogContent ? article.blogContent.map((line: string) => {
+                        if(line == ""){
+                         return  <><br  key={line} />  <br  key={line} /></>
+                        } else {
+                            return "\t" + line 
+                        }
+                    }) : ""}</p> */}
                 </div>
             </main>
         </>
