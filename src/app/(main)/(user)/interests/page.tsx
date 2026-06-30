@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import classes from './interests.module.css'
 // import { useRouter } from 'next/navigation'
 // import Image from 'next/image'
@@ -5,7 +6,7 @@ import classes from './interests.module.css'
 
 export default function InterestsPage() {
     // const router = useRouter()
-   
+
 
     // const  handleInterestSubmit = (e) => {
     //     e.preventDefault();
@@ -46,7 +47,7 @@ export default function InterestsPage() {
                         </label>
                         <label className={classes.formAnswer} htmlFor="interest-2">
 
-                            <span className={classes.interestText}>Streaming</span>
+                            <span className={classes.interestText}>TV/Movies</span>
 
                             <img
                                 className={classes.interestImg}
@@ -67,7 +68,7 @@ export default function InterestsPage() {
                             <span className={classes.interestText}>Tech</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/tech.jpg'
-                                alt="Tech" 
+                                alt="Tech"
                             />
                             <input
                                 className={classes.interestCheckbox}
@@ -85,7 +86,7 @@ export default function InterestsPage() {
                             <img
                                 className={classes.interestImg}
                                 src='/assets/interests/sliceoflife.jpg'
-                                alt="Slice of Life" 
+                                alt="Slice of Life"
                             />
                             <input className={classes.interestCheckbox}
                                 id="interest-4"
@@ -99,7 +100,7 @@ export default function InterestsPage() {
                             <span className={classes.interestText}>Music</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/music.jpg'
-                                alt="Music" 
+                                alt="Music"
                             />
                             <input className={classes.interestCheckbox}
                                 id="interest-5"
@@ -110,10 +111,10 @@ export default function InterestsPage() {
                         </label>
 
                         <label className={classes.formAnswer} htmlFor="interest-6">
-                            <span className={classes.interestText}>Manga</span>
+                            <span className={classes.interestText}>Anime/Manga</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/manga.jpg'
-                                alt="Manga" 
+                                alt="anime/manga"
                             />
                             <input className={classes.interestCheckbox}
                                 id="interest-6"
@@ -127,7 +128,7 @@ export default function InterestsPage() {
                             <span className={classes.interestText}>Sports</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/sports.jpg'
-                                alt="Sports" 
+                                alt="Sports"
                             />
                             <input className={classes.interestCheckbox}
                                 id="interest-7"
@@ -137,13 +138,51 @@ export default function InterestsPage() {
                             <div className="interest-title"></div>
                         </label>
 
-
+                        <label className={classes.formAnswer} htmlFor="interest-8">
+                            <span className={classes.interestText}>Art</span>
+                            <img className={classes.interestImg}
+                                src='/assets/interests/art.jpg'
+                                alt="art"
+                            />
+                            <input className={classes.interestCheckbox}
+                                id="interest-8"
+                                name="interests"
+                                type="checkbox"
+                                value="art" />
+                            <div className="interest-title"></div>
+                        </label>
+                        <label className={classes.formAnswer} htmlFor="interest-9">
+                            <span className={classes.interestText}>Literature</span>
+                            <img className={classes.interestImg}
+                                src='/assets/interests/literature.jpg'
+                                alt="literature"
+                            />
+                            <input className={classes.interestCheckbox}
+                                id="interest-9"
+                                name="interests"
+                                type="checkbox"
+                                value="literature" />
+                            <div className="interest-title"></div>
+                        </label>
+                        <label className={classes.formAnswer} htmlFor="interest-10">
+                            <span className={classes.interestText}>Misc/Other</span>
+                            <img className={classes.interestImg}
+                                src='/assets/interests/random.jpg'
+                                alt="misc/other"
+                            />
+                            <input className={classes.interestCheckbox}
+                                id="interest-10"
+                                name="interests"
+                                type="checkbox"
+                                value="misc/other" />
+                            <div className="interest-title"></div>
+                        </label>
 
                     </fieldset>
 
                     <div className={classes.stackFormControls}>
                         <button id="skip-btn" name="action" value="skip" title="Skip" className={classes.submitBtn} type="submit" data-cy="skip-btn">Skip</button>
-                        <button  id="continue-btn" name="action" value="continue" title="Continue" className={classes.submitBtn} type="submit" data-cy="continue-btn">Continue</button>
+                        <button id="continue-btn" name="action" value="continue" title="Continue" className={classes.submitBtn} type="submit" data-cy="continue-btn">Continue</button>
                     </div>
 
 

@@ -52,9 +52,9 @@ export default function CreateBlogPostPage() {
 
     return (
         <div className={classes.createArticlePage}>
-            <form className={classes.createArticleForm} 
+            <form className={classes.createArticleForm}
                 // onSubmit={handeSubmit}
-                action="/createArticle" 
+                action="/createArticle"
                 method="post"
             >
                 <div className={classes.createArticle}>
@@ -116,15 +116,25 @@ export default function CreateBlogPostPage() {
                                 </p>
 
                                 <label htmlFor="tags">Choose your article's topic:</label>
-                                <select title="topic" name="topic" id="topic">
-                                    <option value="Select">Select Topic</option>
+                                <select 
+                                    className={classes.createArticleUserInputSelect} 
+                                    title="topic" 
+                                    name="topic" 
+                                    id="topic"
+                                >
+                                    <option className={classes.createArticleUserOption} value="Select">Select Topic</option>
                                     <option value="Gaming">Gaming</option>
-                                    <option value="Streaming">Streaming</option>
+                                    <option value="Film/TV">Film/TV</option>
                                     <option value="Tech">Tech</option>
                                     <option value="Slice of Life">Slice of Life</option>
                                     <option value="Music">Music</option>
-                                    <option value="Manga">Manga</option>
+                                    <option value="Anime/Manga">Manga</option>
                                     <option value="Sports">Sports</option>
+                                    <option value="Art">Art</option>
+                                    <option value="Literature">Literature</option>
+                                    <option value="Misc/Other">Misc/Other</option>
+
+
                                 </select>
 
                             </div>
