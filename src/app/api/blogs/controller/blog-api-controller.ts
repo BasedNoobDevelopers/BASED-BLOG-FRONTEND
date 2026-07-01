@@ -1,42 +1,25 @@
 const ROUTE_URL_PREFIX = '/api/blogs/';
 
 
-
 export async function fetchLatest(): Promise<any> {
-
-   const response = await fetch(ROUTE_URL_PREFIX, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({route: "latest"})
-        });
-        
-
-       const result = await response.json();
-        return result
+    return fetchData(ROUTE_URL_PREFIX, {route: 'latest'});
 }
 
 export async function fetchAll(): Promise<any> {
-
-   const response = await fetch(ROUTE_URL_PREFIX, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({route: "all"})
-        });
-        
-
-       const result = await response.json();
-        return result
+   return fetchData(ROUTE_URL_PREFIX, {route: 'all'});
 }
 
 export async function fetchByID(ID: string): Promise<any> {
+    return fetchData("http://localhost:3000/api/blogs/", {route: 'id', ID});
+}
 
-   const response = await fetch("http://localhost:3000/api/blogs/", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({route: "id", ID})
-        });
-        
+async function fetchData(url: string, body: any) {
 
-       const result = await response.json();
-        return result
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(body)
+    });
+
+    return response.json();
 }

@@ -72,13 +72,6 @@ export default async function ArticlePage({ params }: { params: { id: string } }
                 <div className={classes.articleContainer}>
                     <p className={classes.articleFirstParagraph}>{article.firstSentence}</p>
                     <p className={classes.articleContent}>{article.blogContent}</p>
-                    {/* <p className={classes.articleContent}>{article.blogContent ? article.blogContent.map((line: string) => {
-                        if(line == ""){
-                         return  <><br  key={line} />  <br  key={line} /></>
-                        } else {
-                            return "\t" + line 
-                        }
-                    }) : ""}</p> */}
                 </div>
             </main>
         </>
