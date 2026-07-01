@@ -2,16 +2,11 @@ const ROUTE_URL_PREFIX = '/api/auth/';
 
 
 export async function login(loginRequest: any): Promise<any> {
-    const {username, password} = loginRequest
-    return fetchData(ROUTE_URL_PREFIX, {route: 'login', username, password});
+    return fetchData(ROUTE_URL_PREFIX, {route: 'login', loginRequest});
 }
 
-export async function fetchAll(): Promise<any> {
-   return fetchData(ROUTE_URL_PREFIX, {route: 'all'});
-}
-
-export async function fetchByID(ID: string): Promise<any> {
-    return fetchData("http://localhost:3000/api/blogs/", {route: 'id', ID});
+export async function register(registerRequest: any): Promise<any> {
+    return fetchData(ROUTE_URL_PREFIX, {route: 'register', registerRequest});
 }
 
 async function fetchData(url: string, body: any) {
