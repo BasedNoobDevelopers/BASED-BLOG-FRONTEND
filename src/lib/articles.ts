@@ -1,15 +1,25 @@
 export interface Article {
-  id: number;
-  author?: string;
-  authorAvatar?: string;
-  title: string;
-  category: string;
-  subtitle: string;
-  image: string;
-  firstParagraph?: string;
-  content: string;
-  uploadDate?: string;
+ publicUserResponseDTO: PublicUserResponseDTO;
+  blogID: string;
+  blogTitle: string;
+  blogSubTitle: string;
+  blogContent: string;
+  blogTopic: string;
+  createdDate: string;
+  editedDate: string | null;
+  blogCoverImage: BlogCoverImage;
+  edited: boolean;
 };
+
+export interface PublicUserResponseDTO {
+  userName: string;
+}
+
+export interface BlogCoverImage {
+        imageKey: string;
+        imageUrl: string
+        thumbnailUrl: string
+}
 
 const date = new Date();
 const now = date.toLocaleDateString('en-US', {
@@ -26,7 +36,7 @@ export const articles: Article[] = [
     id: 1,
     authorAvatar: "images/user-avatar-lime.jpg",
     author: "Joe Momma",
-    title: "Super Mario Galaxy the Movie is a Hit!",
+    title: "Super Mario Galaxy the Movie is a Hit! UYI TEST",
     uploadDate: now,
     category: "Random",
     subtitle: "The beginning of something big is right around the corner",

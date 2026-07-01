@@ -1,26 +1,43 @@
+"use client"
 /* eslint-disable @next/next/no-img-element */
 import classes from './grid.module.css'
 import { articles } from '@/lib/articles';
+import { fetchAll } from '@/app/api/blogs/controller/blog-api-controller';
+import { useState } from 'react'
 
 
 
 export default function HomeGrid() {
 
-    const cards = articles.map((article) => (
+    const [currArticles, setArticles] = useState(articles)
+    const [image, setImage] = useState('https://media.tenor.com/HEIXykQDLEYAAAAM/interrogate-interrogation.gif')
+    const [found, setFound] = useState(false)
 
-        <div className={classes.blogCard} key={article.id}>
-            <a href={`/article/${article.id}`}>
+    async function getAllHandler() {
+        const responseData = await fetchAll();
+        setArticles(responseData.content);
+        setFound(true)
+    }
+
+    if (found == undefined || found === false) {
+        getAllHandler();
+    }
+
+    const cards = currArticles.map((article) => (
+
+        <div className={classes.blogCard} key={article.blogID ? article.blogID : Math.random() * 10000}>
+            <a href={`/article/${article.blogID}`}>
                 <div className={classes.innerBlog}>
                     <div className={classes.titleDiv}>
-                        <h1 className={classes.blogTitle}>{article.title}</h1>
+                        <h1 className={classes.blogTitle}>{article.blogTitle}</h1>
                         <div className={classes.imgDiv}>
                             <img
                                 className={classes.blogImage}
-                                src={article.image}
-                                alt={article.title}
+                                src={article.blogCoverImage == undefined ? image : article.blogCoverImage.imageUrl}
+                                alt={article.blogTitle}
                             />
                         </div>
-                        <p className={classes.blogSubtitle}>{article.subtitle}</p>
+                        <p className={classes.blogSubtitle}>{article.blogSubTitle}</p>
                     </div>
                 </div>
             </a>
