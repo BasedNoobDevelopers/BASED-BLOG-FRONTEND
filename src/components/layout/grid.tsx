@@ -25,7 +25,7 @@ export default function HomeGrid() {
 
     const cards = currArticles.map((article) => (
 
-        <div className={classes.blogCard} key={article ? article.blogID : Math.random()}>
+        <div className={classes.blogCard} key={article.blogID ? article.blogID : Math.random() * 10000}>
             <a href={`/article/${article.blogID}`}>
                 <div className={classes.innerBlog}>
                     <div className={classes.titleDiv}>

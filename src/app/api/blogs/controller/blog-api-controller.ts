@@ -12,8 +12,6 @@ export async function fetchLatest(): Promise<any> {
         
 
        const result = await response.json();
-       console.log(result)
-        console.log("After respone")
         return result
 }
 
@@ -27,7 +25,5 @@ export async function fetchAll(): Promise<any> {
         
 
        const result = await response.json();
-       console.log(result)
-        console.log("After respone")
         return result
 }
