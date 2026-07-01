@@ -21,10 +21,11 @@ export async function POST(request: Request) {
 
         const body = await request.json();
         const {route} = body;
-
+        
         switch(route.trim().toLowerCase()) {
             case 'latest': return await getLatest();
             case 'all': return await getAll();
+            case 'id': return await getByID(body);
         }
 
     } catch(error: any) {
@@ -49,6 +50,21 @@ async function getAll() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         
+    });
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: 200 });
+}
+
+async function getByID(body: any) {
+    const {ID} = body;
+
+    const uuidBytes = parse(ID);
+
+    const validUuid = stringify(uuidBytes);
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/${validUuid}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
     });
 
     const data = await backendResponse.json();

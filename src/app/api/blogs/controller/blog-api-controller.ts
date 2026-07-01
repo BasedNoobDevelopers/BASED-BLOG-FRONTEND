@@ -27,3 +27,16 @@ export async function fetchAll(): Promise<any> {
        const result = await response.json();
         return result
 }
+
+export async function fetchByID(ID: string): Promise<any> {
+
+   const response = await fetch("http://localhost:3000/api/blogs/", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({route: "id", ID})
+        });
+        
+
+       const result = await response.json();
+        return result
+}
