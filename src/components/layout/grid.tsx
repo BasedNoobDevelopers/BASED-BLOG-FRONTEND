@@ -2,8 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import classes from './grid.module.css'
 import { articles } from '@/lib/articles';
-import { fetchLatest } from '@/app/api/blogs/controller/blog-api-controller';
-import { useState, useEffect } from 'react'
+import { fetchAll } from '@/app/api/blogs/controller/blog-api-controller';
+import { useState } from 'react'
 
 
 
@@ -13,15 +13,14 @@ export default function HomeGrid() {
     const [image, setImage] = useState(' ')
     const [found, setFound] = useState(false)
 
-    async function getLatestHandler() {
-        const responseData = await fetchLatest();
-        setArticles(responseData);
-        console.log(responseData)
+    async function getAllHandler() {
+        const responseData = await fetchAll();
+        setArticles(responseData.content);
         setFound(true)
     }
 
     if (found == undefined || found === false) {
-        getLatestHandler();
+        getAllHandler();
     }
 
     const cards = currArticles.map((article) => (

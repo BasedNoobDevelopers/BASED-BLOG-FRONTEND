@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { parse, stringify } from 'uuid';
 import { cookies } from 'next/headers'
 
-let HOST_URL = process.env.HOST_URL || "http://localhost"
+console.log("ENV FILE", process.env.HOST_URL)
+
+let HOST_URL = process.env.URL_HOST || "http://localhost"
 let HOST_PORT = process.env.HOST_PORT || "8080"
 
 const ENVIRONMENT = process.env.ENVIRONMENT || "local"
@@ -27,6 +29,7 @@ export async function POST(request: Request) {
 
         switch(route.trim().toLowerCase()) {
             case 'latest': return await getLatest();
+            case 'all': return await getAll();
         }
          console.log("HERE-2")
     } catch(error: any) {
@@ -42,9 +45,18 @@ async function getLatest() {
         headers: { 'Content-Type': 'application/json' },
         
     });
+
     const data = await backendResponse.json();
-    console.log("DATA")
-    console.log(data)
-    console.log("------------------------------------")
+    return NextResponse.json(data, { status: 200 });
+}
+
+async function getAll() {
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all?page=0&size=9`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        
+    });
+
+    const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
 }
