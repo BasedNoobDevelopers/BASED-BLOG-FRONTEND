@@ -26,6 +26,7 @@ export async function POST(request: Request) {
             case 'latest': return await getLatest();
             case 'all': return await getAll();
             case 'id': return await getByID(body);
+            case 'new': return await postNewArticle(body)
         }
 
     } catch(error: any) {
@@ -70,3 +71,59 @@ async function getByID(body: any) {
     const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
 }
+
+async function postNewArticle(body: any) {
+    const blogFormData = getBlogFormData(body)
+    const { token } = body
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/new`, {
+        method: 'POST',
+        headers: { "Authorization": `Bearer ${token}` },
+        body: blogFormData
+    });
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: 200 });
+}
+
+//#endregion Helper Methods (Start)
+
+// Helper to construct a real FormData object
+function getBlogFormData(requestBody: any): FormData {
+    const formData = new FormData();
+    const { blogTitle, blogSubTitle, blogContent, blogCoverImage, topic} = requestBody;
+
+    formData.append("blogTitle", blogTitle|| "");
+    formData.append("blogSubTitle", blogSubTitle || "");
+    formData.append("blogContent", blogContent || "");
+    formData.append("topic", topic || "");
+
+    // Handle the Base64 avatar conversion
+    if (blogCoverImage && blogCoverImage.startsWith("data:")) {
+        try {
+            // Split the metadata from the actual base64 data
+            const parts = blogCoverImage.split(",");
+            const mimeType = parts[0].match(/:(.*?);/)[1]; // e.g., "image/jpeg"
+            const base64Data = parts[1];
+
+            // Convert Base64 string to a NodeJS Buffer
+            const buffer = Buffer.from(base64Data, "base64");
+
+            // Convert Buffer to a standard Blob that FormData understands
+            const fileBlob = new Blob([buffer], { type: mimeType });
+            let imgType = mimeType.split("/")[1];
+            imgType = (imgType === "jpeg") ? "jpg" : imgType;
+
+            // CRITICAL: Providing a filename (3rd argument) forces FormData 
+            // to treat this property as a File instead of a plain string text field.
+            formData.append("blogCoverImage", fileBlob, `blogCoverImage.${imgType}`);
+        } catch (error) {
+            console.error("Failed to parse avatar Base64 string:", error);
+            // Optional fallback: formData.append("avatar", avatar);
+        }
+    }
+
+
+    return formData;
+}
+
+//#endregion Helper Methods (End)

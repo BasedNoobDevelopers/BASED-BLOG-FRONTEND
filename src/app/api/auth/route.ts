@@ -52,6 +52,8 @@ async function registerPOSTRequest(body: any) {
         body: formData, 
     });
 
+    
+
     const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
 }
