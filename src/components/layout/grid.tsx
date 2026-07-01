@@ -10,7 +10,7 @@ import { useState } from 'react'
 export default function HomeGrid() {
 
     const [currArticles, setArticles] = useState(articles)
-    const [image, setImage] = useState(' ')
+    const [image, setImage] = useState('https://media.tenor.com/HEIXykQDLEYAAAAM/interrogate-interrogation.gif')
     const [found, setFound] = useState(false)
 
     async function getAllHandler() {

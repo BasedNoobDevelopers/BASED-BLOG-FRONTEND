@@ -9,7 +9,7 @@ import { useState } from 'react'
 export default function UserCarousel() {
 
         const [currLatestArticles, setLatestArticles] = useState(articles)
-        const [image, setImage] = useState(' ')
+        const [image, setImage] = useState('https://media.tenor.com/HEIXykQDLEYAAAAM/interrogate-interrogation.gif')
         const [found, setFound] = useState(false)
     
         async function getAllHandler() {
@@ -28,7 +28,7 @@ export default function UserCarousel() {
             <a title="article" href={`/article/${article.blogID}`}>
                 <img
                     className={classes.cardImg}
-                    src={article.blogCoverImage ? article.blogCoverImage.imageUrl : 'https://media.tenor.com/HEIXykQDLEYAAAAM/interrogate-interrogation.gif'}
+                    src={article.blogCoverImage ? article.blogCoverImage.imageUrl : image}
                     alt={article.blogTitle}
                 />
                 <div className={classes.cardOverlay}>
