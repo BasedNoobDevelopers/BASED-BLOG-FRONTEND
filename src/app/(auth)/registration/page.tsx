@@ -24,20 +24,21 @@ export default function RegistrationPage() {
 
   async function handleSubmit(e:any) {
         e.preventDefault();
-
+        if (password != confirmPassword) {
+            alert("Password & Confirm Password Do Not Match")
+            return;
+        }
 
         const body = {firstName, lastName, userName, password, email, avatar} 
     
-
-        const response = await fetch('/api/auth', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(body)
-        })
-
-
-         const result = await response.json();
-        console.log(result)
+        const response = await register(body);
+        if (response.statusCode >= 400) {
+            alert(response.message)
+            return
+        }
+        console.log(response)
+        alert(`New user ${userName} has been created`)
+        router.push("/verification")
 
     }
 

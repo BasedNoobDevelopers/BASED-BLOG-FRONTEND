@@ -45,7 +45,8 @@ async function loginPOSTRequest(body: any) {
 }
 
 async function registerPOSTRequest(body: any) {
-     const formData = getRegisterFormData(body);
+    const {registerRequest} = body
+     const formData = getRegisterFormData(registerRequest);
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/register`, {
         method: 'POST',
         // CRITICAL: No 'Content-Type' header here. Fetch creates it with the proper boundary automatically.
