@@ -14,7 +14,7 @@ export default function Page() {
 
     async function handleFormSubmit(e:any) {
         e.preventDefault();
-        const body = {username, password}    
+        const body = {username, password}  
 
         const response = await login(body)
 
@@ -22,11 +22,13 @@ export default function Page() {
 
         if (result.statusCode >= 400) {
             alert(result.message)
+            return
         }
 
 
-        const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
-        router.push(nextPage);
+        console.log(result)
+        // const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
+        // router.push(nextPage);
 
     }
     return (

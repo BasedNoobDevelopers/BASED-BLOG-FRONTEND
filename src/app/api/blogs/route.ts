@@ -35,7 +35,6 @@ export async function POST(request: Request) {
 }
 
 async function getLatest() {
-
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/latest?limit=${LATEST_LIMIT}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },

@@ -62,8 +62,9 @@ async function registerPOSTRequest(body: any) {
 //#region  Helper Methods (Start)
 
 function getLoginBody(requestBody: any) {
-    const { username, password } = requestBody;
-    return { username, password };
+    const { loginRequest } = requestBody;
+    const { username, password } = loginRequest
+    return {username, password}
 }
 
 // Helper to construct a real FormData object
