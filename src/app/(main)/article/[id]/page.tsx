@@ -25,6 +25,15 @@ export default async function ArticlePage({ params }: { params: { id: string } }
             year: 'numeric',
         });
         result.createdDate = now
+
+        if (result.edited && result.editedDate) {
+            result.editedDate = new Date(result.editedDate).toLocaleDateString('en-US', {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric',
+            });
+        }
+
         article = result
         const startIndex = article.blogContent.search(/[.?!]/)
         article.firstSentence = article.blogContent.substring(0, startIndex + 1).trim()
@@ -61,7 +70,9 @@ export default async function ArticlePage({ params }: { params: { id: string } }
                         <p className={classes.heroSubtitle} id="hero-subtitle">{article.blogSubTitle}</p>
                         {/* <!-- <aside> --> */}
                         <p className={classes.heroAuthor} id="hero-author">{article.publicUserResponseDTO ? article.publicUserResponseDTO.userName : ""}</p>
-                        <p className={classes.uploadTime} id="upload-time">{article.createdDate}</p>
+                        <p className={classes.uploadTime} id="upload-time">
+                            {article.edited ? `Edited: ${article.editedDate}` : article.createdDate}
+                        </p>
                         {/* <!-- </aside>   --> */}
                     </div>
                 </div>
