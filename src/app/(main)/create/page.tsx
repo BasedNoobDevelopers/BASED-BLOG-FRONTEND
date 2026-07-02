@@ -1,6 +1,8 @@
 "use client"
 import React, { useState, useEffect, ChangeEvent } from "react";
 import classes from './create.module.css'
+import { postNewArticle } from "@/app/api/blogs/controller/blog-api-controller";
+import { useRouter } from 'next/navigation'
 
 interface FormState {
     title: string;
@@ -11,13 +13,16 @@ interface FormState {
 
 export default function CreateBlogPostPage() {
 
-    // const [count, setcount] = useState(0);
+    const router = useRouter();
+    const [topic, setTopic] = useState(' ')
+    const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
 
     const [characterValue, setCharacterValue] = useState<FormState>({
         title: "",
         subtitle: "",
         body: "",
     });
+
     const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
     // prevent memory leaks if new image selected
     const [fileObjectUrl, setFileObjectUrl] = useState<string | null>(null);
@@ -37,9 +42,14 @@ export default function CreateBlogPostPage() {
         if (fileObjectUrl) {
             URL.revokeObjectURL(fileObjectUrl);
         }
+
         const objectUrl = URL.createObjectURL(file);
         setFileObjectUrl(objectUrl);
         setImageUrl(objectUrl)
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => setBlogCoverImage(reader.result);
     };
 
     const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,14 +58,39 @@ export default function CreateBlogPostPage() {
     }
 
 
+    async function handleSubmit(e: any) {
+        e.preventDefault()
+        if (topic == undefined || topic == "" || topic === "Select") {
+            alert("Please select topic")
+            return
+        }
+         
+        const body = {
+            blogTitle: characterValue.title,
+            blogSubTitle: characterValue.subtitle,
+            blogContent: characterValue.body,
+            topic,
+            blogCoverImage: blogCoverImage,
+            token: ""
+        }
+
+        const response = await postNewArticle(body);
+        if (response.statusCode >= 400) {
+            alert(response.message)
+            return
+        }
+        
+        alert("New Article Created!")
+        window.location.reload()
+    }
+
+
 
 
     return (
         <div className={classes.createArticlePage}>
             <form className={classes.createArticleForm}
-                // onSubmit={handeSubmit}
-                action="/createArticle"
-                method="post"
+                onSubmit={handleSubmit}
             >
                 <div className={classes.createArticle}>
                     <h3>Add your article to the site</h3>
@@ -121,8 +156,10 @@ export default function CreateBlogPostPage() {
                                     title="topic" 
                                     name="topic" 
                                     id="topic"
+                                    value={topic}
+                                    onChange={(e) => setTopic(e.target.value)}
                                 >
-                                    <option className={classes.createArticleUserOption} value="Select">Select Topic</option>
+                                    <option className={classes.createArticleUserOption} value="">Select Topic</option>
                                     <option value="Gaming">Gaming</option>
                                     <option value="Film/TV">Film/TV</option>
                                     <option value="Tech">Tech</option>
