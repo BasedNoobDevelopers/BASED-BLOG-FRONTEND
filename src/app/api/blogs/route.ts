@@ -72,9 +72,11 @@ async function getByID(body: any) {
     return NextResponse.json(data, { status: 200 });
 }
 
-async function postNewArticle(body: any) {
+async function postNewArticle(requestBody: any) {
+    const {body} = requestBody;
     const blogFormData = getBlogFormData(body)
     const { token } = body
+
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/new`, {
         method: 'POST',
         headers: { "Authorization": `Bearer ${token}` },
