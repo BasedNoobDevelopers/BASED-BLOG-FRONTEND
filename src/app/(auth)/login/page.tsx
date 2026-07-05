@@ -25,10 +25,8 @@ export default function Page() {
             return
         }
 
-
-        console.log(result)
         // const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
-        // router.push(nextPage);
+        router.push("/feed");
 
     }
     return (

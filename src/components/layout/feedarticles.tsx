@@ -1,32 +1,50 @@
+"use client"
+
 /* eslint-disable @next/next/no-img-element */
-import { articles } from "@/lib/articles"
 import classes from './feedarticles.module.css'
+import { fetchMyFeed } from "@/app/api/user/controller/user-controller"
+import { useState } from "react"
 
 
 export default function PersonalFeedArticles() {
 
-    const card = articles.map((article) => (
-        <div  key={article.id}>
-            <a title="article" href={`/article/${article.id}`}>
+    const [currArticles, setArticles] = useState([])
+    const [image, setImage] = useState('https://media.tenor.com/HEIXykQDLEYAAAAM/interrogate-interrogation.gif')
+    const [found, setFound] = useState(false)
+
+    async function getAllHandler() {
+        const responseData = await fetchMyFeed();
+        setArticles(responseData.content);
+        console.log(responseData.content)
+        setFound(true)
+    }
+
+    if (found == undefined || found === false) {
+        getAllHandler();
+    }
+
+    const card = currArticles.map((article) => (
+        <div  key={article.blogID ? article.blogID : Math.random() * 10000}>
+            <a title="article" href={`/article/${article.blogID}`}>
                 <div className={classes.personalArticleDiv}>
                     <div className={classes.personalArticleDivInner}>
                         <div className={classes.personalArticleLeftTop}>
                             <div className={classes.personalArticleAuthor}>
                                 <img 
                                     className={classes.authorAvatar} 
-                                    src={article.authorAvatar} 
-                                    alt={article.author} 
+                                    src={article.publicUserResponseDTO.imageResponseDTO.imageUrl} 
+                                    alt={article.publicUserResponseDTO.userName} 
                                 />
-                                <p> {article.author}</p>
-                                <p> {article.uploadDate}</p>
+                                <p> {article.publicUserResponseDTO.userName}</p>
+                                <p> {article.createdDate}</p>
                             </div>
                             <div className={classes.personalArticleLeftTitle}>
-                                <h1>{article.title}</h1>
+                                <h1>{article.blogTitle}</h1>
                             </div>
                         </div>
                         <div className={classes.personalArticleLeftBottom}>
                             <div className={classes.personalArticleLeftSubtitle}>
-                                <h2>{article.subtitle}</h2>
+                                <h2>{article.blogSubTitle}</h2>
                             </div>
                         </div>
 
@@ -34,8 +52,8 @@ export default function PersonalFeedArticles() {
                     <div className={classes.personalArticleImgDiv}>
                         <img 
                             className={classes.personalArticleImg} 
-                            src={article.image} 
-                            alt={article.title} 
+                            src={article.blogCoverImage.imageUrl} 
+                            alt={article.blogTitle} 
                         />
                     </div>
                 </div>

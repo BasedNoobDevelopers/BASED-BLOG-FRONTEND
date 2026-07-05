@@ -41,6 +41,16 @@ async function loginPOSTRequest(body: any) {
     });
     
     const data = await backendResponse.json();
+    if (data.jwtToken) {
+        const cookieStore = await cookies();
+        cookieStore.set('auth_token', data.jwtToken, {
+            httpOnly: true,
+            secure: ENVIRONMENT === 'prod' || ENVIRONMENT === 'production',
+            sameSite: 'strict',
+            path: '/',
+            maxAge: data.expirationTime
+        })
+    }
     return NextResponse.json(data, { status: 200 });
 }
 
