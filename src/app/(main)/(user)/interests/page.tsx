@@ -1,10 +1,23 @@
+"use client"
+
 /* eslint-disable @next/next/no-img-element */
 import classes from './interests.module.css'
+import { useState } from 'react'
 // import { useRouter } from 'next/navigation'
 // import Image from 'next/image'
 
-
 export default function InterestsPage() {
+
+    const [selected, setSelected] = useState<string[]>([])
+
+
+    const handleToggle = (interest: string) => {
+        if (selected.includes(interest)) {
+            setSelected(selected.filter((i) => i !== interest));
+        } else if (selected.length < 5) {
+            setSelected([...selected, interest])
+        }
+    }
     // const router = useRouter()
 
 
@@ -34,6 +47,7 @@ export default function InterestsPage() {
                                 alt="PS4"
                                 height={210}
                                 width={240}
+
                             />
                             <input
                                 className={classes.interestCheckbox}
@@ -42,9 +56,12 @@ export default function InterestsPage() {
                                 type="checkbox"
                                 name="interests"
                                 value="gaming"
+                                checked={selected.includes('gaming')}
+                                onChange={() => handleToggle('gaming')}
                             />
                             <div className={classes.interestTitle}> </div>
                         </label>
+
                         <label className={classes.formAnswer} htmlFor="interest-2">
 
                             <span className={classes.interestText}>TV/Movies</span>
@@ -60,9 +77,12 @@ export default function InterestsPage() {
                                 name="interests"
                                 type="checkbox"
                                 value="streaming"
+                                checked={selected.includes('streaming')}
+                                onChange={() => handleToggle('streaming')}
                             />
                             <div className={classes.interestTitle} ></div>
                         </label>
+
                         <label className={classes.formAnswer} htmlFor="interest-3">
 
                             <span className={classes.interestText}>Tech</span>
@@ -76,6 +96,8 @@ export default function InterestsPage() {
                                 name="interests"
                                 type="checkbox"
                                 value="tech"
+                                checked={selected.includes('tech')}
+                                onChange={() => handleToggle('tech')}
                             />
                             <div className="interest-title"></div>
                         </label>
@@ -88,11 +110,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/sliceoflife.jpg'
                                 alt="Slice of Life"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-4"
                                 name="interests"
                                 type="checkbox"
-                                value="slice-of-life" />
+                                value="slice-of-life"
+                                checked={selected.includes('slice-of-life')}
+                                onChange={() => handleToggle('slice-of-life')}
+                            />
                             <div className="interest-title"></div>
                         </label>
 
@@ -102,11 +128,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/music.jpg'
                                 alt="Music"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-5"
                                 name="interests"
                                 type="checkbox"
-                                value="music" />
+                                value="music"
+                                checked={selected.includes('music')}
+                                onChange={() => handleToggle('music')}
+                            />
                             <div className="interest-title"></div>
                         </label>
 
@@ -116,11 +146,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/manga.jpg'
                                 alt="anime/manga"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-6"
                                 name="interests"
                                 type="checkbox"
-                                value="manga" />
+                                value="anime/manga"
+                                checked={selected.includes('anime/manga')}
+                                onChange={() => handleToggle('anime/manga')}
+                            />
                             <div className="interest-title"></div>
                         </label>
 
@@ -130,11 +164,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/sports.jpg'
                                 alt="Sports"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-7"
                                 name="interests"
                                 type="checkbox"
-                                value="sports" />
+                                value="sports"
+                                checked={selected.includes('sports')}
+                                onChange={() => handleToggle('sports')}
+                            />
                             <div className="interest-title"></div>
                         </label>
 
@@ -144,11 +182,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/art.jpg'
                                 alt="art"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-8"
                                 name="interests"
                                 type="checkbox"
-                                value="art" />
+                                value="art"
+                                checked={selected.includes('art')}
+                                onChange={() => handleToggle('art')}
+                            />
                             <div className="interest-title"></div>
                         </label>
                         <label className={classes.formAnswer} htmlFor="interest-9">
@@ -157,11 +199,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/literature.jpg'
                                 alt="literature"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-9"
                                 name="interests"
                                 type="checkbox"
-                                value="literature" />
+                                value="literature"
+                                checked={selected.includes('literature')}
+                                onChange={() => handleToggle('literature')}
+                            />
                             <div className="interest-title"></div>
                         </label>
                         <label className={classes.formAnswer} htmlFor="interest-10">
@@ -170,11 +216,15 @@ export default function InterestsPage() {
                                 src='/assets/interests/random.jpg'
                                 alt="misc/other"
                             />
-                            <input className={classes.interestCheckbox}
+                            <input
+                                className={classes.interestCheckbox}
                                 id="interest-10"
                                 name="interests"
                                 type="checkbox"
-                                value="misc/other" />
+                                value="misc/other"
+                                checked={selected.includes('misc/other')}
+                                onChange={() => handleToggle('misc/other')}
+                            />
                             <div className="interest-title"></div>
                         </label>
 
