@@ -161,11 +161,11 @@ export default function CreateBlogPostPage() {
                                 >
                                     <option className={classes.createArticleUserOption} value="">Select Topic</option>
                                     <option value="gaming">Gaming</option>
-                                    <option value="tv/movies">tv/movies</option>
+                                    <option value="tv/movies">TV/Movies</option>
                                     <option value="tech">Tech</option>
                                     <option value="slice-of-life">Slice of Life</option>
                                     <option value="music">Music</option>
-                                    <option value="anime/manga">Manga</option>
+                                    <option value="anime/manga">Anime/Manga</option>
                                     <option value="sports">Sports</option>
                                     <option value="art">Art</option>
                                     <option value="literature">Literature</option>
