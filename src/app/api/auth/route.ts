@@ -41,6 +41,7 @@ async function loginPOSTRequest(body: any) {
     });
     
     const data = await backendResponse.json();
+    
     if (data.jwtToken) {
         const cookieStore = await cookies();
         cookieStore.set('auth_token', data.jwtToken, {

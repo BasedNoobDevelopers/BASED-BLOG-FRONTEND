@@ -15,7 +15,6 @@ export default function PersonalFeedArticles() {
     async function getAllHandler() {
         const responseData = await fetchMyFeed();
         setArticles(responseData.content);
-        console.log(responseData.content)
         setFound(true)
     }
 
