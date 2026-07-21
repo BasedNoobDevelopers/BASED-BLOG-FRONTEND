@@ -69,16 +69,16 @@ export default function InterestsPage() {
                             <img
                                 className={classes.interestImg}
                                 src='/assets/interests/streaming.jpg'
-                                alt="streaming"
+                                alt="tv/movie"
                             />
                             <input
                                 className={classes.interestCheckbox}
                                 id="interest-2"
                                 name="interests"
                                 type="checkbox"
-                                value="streaming"
-                                checked={selected.includes('streaming')}
-                                onChange={() => handleToggle('streaming')}
+                                value="tv/movie"
+                                checked={selected.includes('tv/movie')}
+                                onChange={() => handleToggle('tv/movie')}
                             />
                             <div className={classes.interestTitle} ></div>
                         </label>
@@ -88,7 +88,7 @@ export default function InterestsPage() {
                             <span className={classes.interestText}>Tech</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/tech.jpg'
-                                alt="Tech"
+                                alt="tech"
                             />
                             <input
                                 className={classes.interestCheckbox}
@@ -108,7 +108,7 @@ export default function InterestsPage() {
                             <img
                                 className={classes.interestImg}
                                 src='/assets/interests/sliceoflife.jpg'
-                                alt="Slice of Life"
+                                alt="slice of life"
                             />
                             <input
                                 className={classes.interestCheckbox}
@@ -126,7 +126,7 @@ export default function InterestsPage() {
                             <span className={classes.interestText}>Music</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/music.jpg'
-                                alt="Music"
+                                alt="music"
                             />
                             <input
                                 className={classes.interestCheckbox}
@@ -162,7 +162,7 @@ export default function InterestsPage() {
                             <span className={classes.interestText}>Sports</span>
                             <img className={classes.interestImg}
                                 src='/assets/interests/sports.jpg'
-                                alt="Sports"
+                                alt="sports"
                             />
                             <input
                                 className={classes.interestCheckbox}

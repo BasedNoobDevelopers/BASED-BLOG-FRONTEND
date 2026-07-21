@@ -160,16 +160,16 @@ export default function CreateBlogPostPage() {
                                     onChange={(e) => setTopic(e.target.value)}
                                 >
                                     <option className={classes.createArticleUserOption} value="">Select Topic</option>
-                                    <option value="Gaming">Gaming</option>
-                                    <option value="Film/TV">Film/TV</option>
-                                    <option value="Tech">Tech</option>
-                                    <option value="Slice of Life">Slice of Life</option>
-                                    <option value="Music">Music</option>
-                                    <option value="Anime/Manga">Manga</option>
-                                    <option value="Sports">Sports</option>
-                                    <option value="Art">Art</option>
-                                    <option value="Literature">Literature</option>
-                                    <option value="Misc/Other">Misc/Other</option>
+                                    <option value="gaming">Gaming</option>
+                                    <option value="tv/movies">TV/Movies</option>
+                                    <option value="tech">Tech</option>
+                                    <option value="slice-of-life">Slice of Life</option>
+                                    <option value="music">Music</option>
+                                    <option value="anime/manga">Anime/Manga</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="art">Art</option>
+                                    <option value="literature">Literature</option>
+                                    <option value="misc/other">Misc/Other</option>
 
 
                                 </select>
