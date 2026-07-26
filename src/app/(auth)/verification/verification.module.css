@@ -2,6 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Press Start 2P", cursive;
+    font-size: 8px;
+    line-height: 20px;
 }
 
 .verification {
@@ -16,7 +19,7 @@
     background:
         linear-gradient(135deg, rgba(255, 45, 149, 0.12), rgba(0, 240, 255, 0.08)),
         var(--bg-panel);
-    color: var(--ink);
+    color: var(--neon-yellow);
     border: 2px solid var(--neon-pink);
     border-radius: 0;
     box-shadow:
@@ -26,7 +29,7 @@
 }
 
 .btnBox {
-    margin: 10px 1px;
+    margin: 20px 1px;
 }
 
 .button {
