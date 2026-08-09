@@ -19,13 +19,19 @@ export default function Page() {
         const response = await login(body)
 
         const result = response
+        const userResponse = result.userResponse;
 
         if (result.statusCode >= 400) {
             alert(result.message)
             return
         }
 
-        const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
+        let nextPage = "/verification"
+
+        if (userResponse.isVerified) {
+            nextPage = (userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
+        }
+
         router.push(nextPage);
 
     }
