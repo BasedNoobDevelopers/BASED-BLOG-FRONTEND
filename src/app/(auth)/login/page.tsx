@@ -25,8 +25,8 @@ export default function Page() {
             return
         }
 
-        // const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
-        router.push("/feed");
+        const nextPage = (result.userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
+        router.push(nextPage);
 
     }
     return (

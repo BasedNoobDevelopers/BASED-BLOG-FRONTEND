@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { parse, stringify } from 'uuid';
 import { cookies } from 'next/headers'
+import { json } from "stream/consumers";
 
 
 let HOST_URL = process.env.HOST_URL|| "http://localhost"
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
         
         switch(route.trim().toLowerCase()) {
             case 'feed': return await getMyFeed();
+            case 'interest': return await updateMyInterest(body)
         }
 
     } catch(error: any) {
@@ -32,7 +34,6 @@ export async function POST(request: Request) {
 }
 
 async function getMyFeed() {
-    console.log("HERE")
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/user/feed?page=0&size=${SIZE_LIMIT}`, {
@@ -40,6 +41,23 @@ async function getMyFeed() {
         headers: { 'Content-Type': 'application/json',
                    'Authorization' : `Bearer ${token}`
          },
+    });
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: 200 });
+}
+
+async function updateMyInterest(body: any) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+    const { interests } = body
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/user/interest`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization' : `Bearer ${token}`,
+         },
+         body: JSON.stringify(interests)
     });
 
     const data = await backendResponse.json();

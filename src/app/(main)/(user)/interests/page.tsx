@@ -3,7 +3,8 @@
 /* eslint-disable @next/next/no-img-element */
 import classes from './interests.module.css'
 import { useState } from 'react'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { updateMyInterest } from '@/app/api/user/controller/user-controller'
 // import Image from 'next/image'
 
 export default function InterestsPage() {
@@ -16,20 +17,28 @@ export default function InterestsPage() {
             setSelected(selected.filter((i) => i !== interest));
         } else if (selected.length < 5) {
             setSelected([...selected, interest])
+        
         }
     }
-    // const router = useRouter()
+    const router = useRouter()
 
 
-    // const  handleInterestSubmit = (e) => {
-    //     e.preventDefault();
-    //      router.push('/create')
-    // }
+   const handleInterestSubmit = async (e: any) => {
+        e.preventDefault();
+        const response = await updateMyInterest(selected)
+
+        if (response.statusCode >= 400) {
+            alert(response.message)
+            return
+        }
+    
+        router.push("/feed")
+    }
 
     return (
         <div>
             <div className={classes.cardFormContentBlock} data-cy="form-content-block">
-                <form action="personalFeed.html" method="GET" className={classes.formContent}>
+                <form onSubmit={handleInterestSubmit} className={classes.formContent}>
                     <fieldset id="interest-fieldset1" className={classes.interestFieldset} >
 
                         <legend className={classes.stack}>
