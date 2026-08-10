@@ -74,7 +74,10 @@ async function getByID(body: any) {
 async function postNewArticle(requestBody: any) {
     const {body} = requestBody;
     const blogFormData = getBlogFormData(body)
-    const { token } = body
+    // const { token } = body
+
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
 
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/new`, {
         method: 'POST',

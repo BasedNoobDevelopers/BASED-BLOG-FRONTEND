@@ -9,6 +9,14 @@ export async function register(registerRequest: any): Promise<any> {
     return fetchData(ROUTE_URL_PREFIX, {route: 'register', registerRequest});
 }
 
+export async function verfication(verificationRequest: any): Promise<any> {
+    return fetchData(ROUTE_URL_PREFIX, {route: "verification", verificationRequest})
+}
+
+export async function verificationResend(verificationResendRequest: any): Promise<any> {
+    return fetchData(ROUTE_URL_PREFIX, {route: "verification_resend", verificationResendRequest})
+}
+
 async function fetchData(url: string, body: any) {
 
     const response = await fetch(url, {

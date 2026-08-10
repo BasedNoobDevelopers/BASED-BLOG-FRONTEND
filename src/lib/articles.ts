@@ -13,6 +13,7 @@ export interface Article {
 
 export interface PublicUserResponseDTO {
   userName: string;
+  imageResponseDTO: BlogCoverImage
 }
 
 export interface BlogCoverImage {
