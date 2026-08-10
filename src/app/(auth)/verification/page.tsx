@@ -78,14 +78,17 @@ export default function VerificationPage() {
         }
 
 
+
         if (response.statusCode >= 400) {
             alert(response.message)
             if (!response.message.includes("Is Already Verified")) {
                 return;
             }
+            router.push("/login")
         }
 
-        router.push("\login")
+        alert("Verification resent to email")
+        
     }
 
     return (
