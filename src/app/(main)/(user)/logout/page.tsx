@@ -2,7 +2,7 @@
 "use client"
 import classes from './logout.module.css'
 // import Link from 'next/link'
-import { LogoutAuth} from '@/actions/auth';
+import { logout } from '@/app/api/auth/controller/authController';
 import { useRouter } from 'next/navigation'
 // import LogoutButton from '@/components/buttons/LogoutButton';
 
@@ -10,16 +10,17 @@ export default function LogoutPage() {
 
     const router = useRouter();
 
-    function handleFormSubmit(e) {
+    async function handleFormSubmit(e) {
         e.preventDefault();
-        LogoutAuth();
-        router.push('/');
-        console.log("Logging out...")
+        const response = await logout();
+        console.log(response)
+        // router.push('/');
+        // console.log("Logging out...")
     }
 
     return (
         <div>
-            <form onSubmit={handleFormSubmit} className={classes.logoutPage} action={LogoutAuth} >
+            <form onSubmit={handleFormSubmit} className={classes.logoutPage} >
                 <div className={classes.logout}>
                     <h3>Logging out?</h3>
 

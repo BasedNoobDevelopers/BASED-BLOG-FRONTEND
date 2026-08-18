@@ -14,6 +14,15 @@ export default function PersonalFeedArticles() {
 
     async function getAllHandler() {
         const responseData = await fetchMyFeed();
+        console.log(responseData.content[0].createdDate)
+        responseData.content[0].createdDate = new Date(responseData.content[0].createdDate)
+        const now = responseData.content[0].createdDate.toLocaleDateString('en-US', {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric',
+        });
+        responseData.content[0].createdDate = now
+
         setArticles(responseData.content);
         setFound(true)
     }

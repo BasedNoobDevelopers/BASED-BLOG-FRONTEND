@@ -75,7 +75,7 @@ export default function CreateBlogPostPage() {
         }
 
         const response = await postNewArticle(body);
-        if (response.statusCode >= 400) {
+        if (!response.statusCode || response.statusCode >= 400) {
             alert(response.message)
             return
         }
