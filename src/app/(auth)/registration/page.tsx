@@ -36,7 +36,6 @@ export default function RegistrationPage() {
             alert(response.message)
             return
         }
-        console.log(response)
         alert(`New user ${userName} has been created`)
         router.push("/verification")
 

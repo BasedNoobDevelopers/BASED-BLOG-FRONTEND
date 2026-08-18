@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from 'next/headers'
+import { verificationResend } from "./controller/authController";
 
 let HOST_URL = process.env.HOST_URL|| "http://localhost"
 let HOST_PORT = process.env.HOST_PORT || "8080"
@@ -21,7 +22,8 @@ export async function POST(request: Request) {
         switch(route.trim().toLowerCase()) {
             case 'login': return await loginPOSTRequest(body);
             case 'register': return await registerPOSTRequest(body)
-            case 'verification': return ""
+            case 'verification': return await verificationPOSTRequest(body)
+            case 'verification_resend' : return await verificationResendPOSTRequest(body)
             default: return NextResponse.json({ error: "Invalid URL route" }, { status: 400 });
         }
       
@@ -41,7 +43,42 @@ async function loginPOSTRequest(body: any) {
     });
     
     const data = await backendResponse.json();
+    
+    if (data.jwtToken) {
+        const cookieStore = await cookies();
+        cookieStore.set('auth_token', data.jwtToken, {
+            httpOnly: true,
+            secure: ENVIRONMENT === 'prod' || ENVIRONMENT === 'production',
+            sameSite: 'strict',
+            path: '/',
+            maxAge: data.expirationTime
+        })
+    }
     return NextResponse.json(data, { status: 200 });
+}
+
+async function verificationPOSTRequest(body: any) {
+    const verificationBody = getVerificationBody(body);
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/verify`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(verificationBody)
+    })
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, {status: 200})
+}
+
+async function verificationResendPOSTRequest(body: any) {
+    const verificationResendBody = getVerificationResendBody(body);
+    const { email } = verificationResendBody
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/resend?email=${email}`, {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/json'}
+    })
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, {status: 200})
 }
 
 async function registerPOSTRequest(body: any) {
@@ -66,6 +103,16 @@ function getLoginBody(requestBody: any) {
     const { loginRequest } = requestBody;
     const { username, password } = loginRequest
     return {username, password}
+}
+
+function getVerificationBody(verificationBody: any) {
+    const { verificationRequest } = verificationBody
+    return verificationRequest
+}
+
+function getVerificationResendBody(verificationResendBody: any) {
+    const { verificationResendRequest } = verificationResendBody
+    return verificationResendRequest
 }
 
 // Helper to construct a real FormData object
