@@ -2,13 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import classes from './navbar.module.css';
 import { cookies } from "next/headers";
+import LogoutButton from "../buttons/LogoutButton";
 // Change if user is signed in
 //Fetch cookies, session, or token?
 
 export default async function Navbar() {
     const cookieStore = await cookies();
-    const token = cookieStore.get('session-token');
+    const token = cookieStore.get('auth_token')?.value;
+    console.log("TOKEN", token)
     const isLoggedIn = !!token;
+
+
+
     return (
         <nav className={classes.nav}>
             <Link href="/">
@@ -16,8 +21,8 @@ export default async function Navbar() {
                     className={classes.navImg}
                     src="/assets/navbar-logo.png"
                     alt="Navbar logo"
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
                     loading="eager"
                 />
 
@@ -38,6 +43,7 @@ export default async function Navbar() {
                     <ul className="navPages">
                         <li id="blogs-btn"><Link href="/create">Create Post</Link></li>
                         <li id="login-btn"><Link className="login-nav" href="/logout"> Logout</Link></li>
+                       
                         {/* <li id="user-profile"><Link className="user-nav" href="user.html"> Profile </Link></li> */}
                     </ul>
 
