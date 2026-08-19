@@ -24,6 +24,7 @@ export async function POST(request: Request) {
             case 'register': return await registerPOSTRequest(body)
             case 'verification': return await verificationPOSTRequest(body)
             case 'verification_resend' : return await verificationResendPOSTRequest(body)
+            case 'logout' : return await logoutPOSTRequest()
             default: return NextResponse.json({ error: "Invalid URL route" }, { status: 400 });
         }
       
@@ -32,6 +33,10 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: error.message || error }, { status: 500 });
    }
 }
+
+// export async function PUT(request: Request) {
+
+// }
 
 
 async function loginPOSTRequest(body: any) {
@@ -91,6 +96,22 @@ async function registerPOSTRequest(body: any) {
     });
 
     
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: 200 });
+}
+
+async function logoutPOSTRequest() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+    console.log(token)
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/logout`, {
+        method: 'POST',
+        headers: { "Authorization": `Bearer ${token}` },
+        body: ""
+    })
+
+    cookieStore.delete('auth_token');
 
     const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
