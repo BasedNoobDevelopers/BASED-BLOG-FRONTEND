@@ -64,7 +64,7 @@ export default function CreateBlogPostPage() {
             alert("Please select topic")
             return
         }
-         
+
         const body = {
             blogTitle: characterValue.title,
             blogSubTitle: characterValue.subtitle,
@@ -75,11 +75,14 @@ export default function CreateBlogPostPage() {
         }
 
         const response = await postNewArticle(body);
-        if (!response.statusCode || response.statusCode >= 400) {
+
+        console.log(response)
+
+        if ((!response.blogID && !response.statusCode) || response.statusCode >= 400) {
             alert(response.message)
             return
         }
-        
+
         alert("New Article Created!")
         window.location.reload()
     }
@@ -120,7 +123,6 @@ export default function CreateBlogPostPage() {
                                     id="articleSubtitle"
                                     name="subtitle"
                                     title="articleSubtitle"
-                                    minLength={25}
                                     maxLength={60}
                                     spellCheck="true"
                                     value={characterValue.subtitle}
@@ -139,7 +141,7 @@ export default function CreateBlogPostPage() {
                                     name="body"
                                     title="articleBody"
                                     minLength={1000}
-                                    maxLength={3000}
+                                    maxLength={10000}
                                     spellCheck="true"
                                     value={characterValue.body}
                                     onChange={handleTextChange}
@@ -151,10 +153,10 @@ export default function CreateBlogPostPage() {
                                 </p>
 
                                 <label htmlFor="tags">Choose your article's topic:</label>
-                                <select 
-                                    className={classes.createArticleUserInputSelect} 
-                                    title="topic" 
-                                    name="topic" 
+                                <select
+                                    className={classes.createArticleUserInputSelect}
+                                    title="topic"
+                                    name="topic"
                                     id="topic"
                                     value={topic}
                                     onChange={(e) => setTopic(e.target.value)}

@@ -14,14 +14,20 @@ export default function PersonalFeedArticles() {
 
     async function getAllHandler() {
         const responseData = await fetchMyFeed();
-        console.log(responseData.content[0].createdDate)
-        responseData.content[0].createdDate = new Date(responseData.content[0].createdDate)
-        const now = responseData.content[0].createdDate.toLocaleDateString('en-US', {
-            month: 'short',
-            day: '2-digit',
-            year: 'numeric',
-        });
-        responseData.content[0].createdDate = now
+        const result = responseData.content;
+
+        for (const res of result) {
+            res.createdDate = new Date(res.createdDate)
+
+            const formattedTime = res.createdDate.toLocaleDateString('en-US', {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric',
+            });
+
+            res.createdDate = formattedTime;
+        }
+      
 
         setArticles(responseData.content);
         setFound(true)
@@ -32,16 +38,16 @@ export default function PersonalFeedArticles() {
     }
 
     const card = currArticles.map((article) => (
-        <div  key={article.blogID ? article.blogID : Math.random() * 10000}>
+        <div key={article.blogID ? article.blogID : Math.random() * 10000}>
             <a title="article" href={`/article/${article.blogID}`}>
                 <div className={classes.personalArticleDiv}>
                     <div className={classes.personalArticleDivInner}>
                         <div className={classes.personalArticleLeftTop}>
                             <div className={classes.personalArticleAuthor}>
-                                <img 
-                                    className={classes.authorAvatar} 
-                                    src={article.publicUserResponseDTO.imageResponseDTO.imageUrl} 
-                                    alt={article.publicUserResponseDTO.userName} 
+                                <img
+                                    className={classes.authorAvatar}
+                                    src={article.publicUserResponseDTO.imageResponseDTO.imageUrl}
+                                    alt={article.publicUserResponseDTO.userName}
                                 />
                                 <p> {article.publicUserResponseDTO.userName}</p>
                                 <p> {article.createdDate}</p>
@@ -58,10 +64,10 @@ export default function PersonalFeedArticles() {
 
                     </div>
                     <div className={classes.personalArticleImgDiv}>
-                        <img 
-                            className={classes.personalArticleImg} 
-                            src={article.blogCoverImage.imageUrl} 
-                            alt={article.blogTitle} 
+                        <img
+                            className={classes.personalArticleImg}
+                            src={article.blogCoverImage.imageUrl}
+                            alt={article.blogTitle}
                         />
                     </div>
                 </div>
@@ -70,7 +76,7 @@ export default function PersonalFeedArticles() {
 
     ))
     return (
-         <div className={classes.personalArticlesList1}>
+        <div className={classes.personalArticlesList1}>
             {card}
         </div>
     )
