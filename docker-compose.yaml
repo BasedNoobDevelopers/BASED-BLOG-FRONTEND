@@ -1,0 +1,16 @@
+services:
+  next-app:
+    container_name: nextjs_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./Styles:/app/Styles
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
