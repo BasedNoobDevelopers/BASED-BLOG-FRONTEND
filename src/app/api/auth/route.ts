@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from 'next/headers'
-import { verificationResend } from "./controller/authController";
 
-let HOST_URL = process.env.HOST_URL|| "http://localhost"
+let HOST_URL = process.env.HOST_URL || "http://localhost"
 let HOST_PORT = process.env.HOST_PORT || "8080"
 
 const ENVIRONMENT = process.env.ENVIRONMENT || "local"
@@ -15,23 +14,23 @@ if (ENVIRONMENT == undefined || ENVIRONMENT === "local") {
 
 
 export async function POST(request: Request) {
-   try {
+    try {
         const body = await request.json();
         const { route } = body;
 
-        switch(route.trim().toLowerCase()) {
+        switch (route.trim().toLowerCase()) {
             case 'login': return await loginPOSTRequest(body);
             case 'register': return await registerPOSTRequest(body)
             case 'verification': return await verificationPOSTRequest(body)
-            case 'verification_resend' : return await verificationResendPOSTRequest(body)
-            case 'logout' : return await logoutPOSTRequest()
+            case 'verification_resend': return await verificationResendPOSTRequest(body)
+            case 'logout': return await logoutPOSTRequest()
             default: return NextResponse.json({ error: "Invalid URL route" }, { status: 400 });
         }
-      
 
-   } catch(error: any) {
+
+    } catch (error: any) {
         return NextResponse.json({ error: error.message || error }, { status: 500 });
-   }
+    }
 }
 
 // export async function PUT(request: Request) {
@@ -46,9 +45,9 @@ async function loginPOSTRequest(body: any) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody),
     });
-    
+
     const data = await backendResponse.json();
-    
+
     if (data.jwtToken) {
         const cookieStore = await cookies();
         cookieStore.set('auth_token', data.jwtToken, {
@@ -66,12 +65,12 @@ async function verificationPOSTRequest(body: any) {
     const verificationBody = getVerificationBody(body);
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/verify`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(verificationBody)
     })
 
     const data = await backendResponse.json();
-    return NextResponse.json(data, {status: 200})
+    return NextResponse.json(data, { status: 200 })
 }
 
 async function verificationResendPOSTRequest(body: any) {
@@ -79,23 +78,23 @@ async function verificationResendPOSTRequest(body: any) {
     const { email } = verificationResendBody
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/resend?email=${email}`, {
         method: 'POST',
-        headers: {'Content-Type' : 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
     })
 
     const data = await backendResponse.json();
-    return NextResponse.json(data, {status: 200})
+    return NextResponse.json(data, { status: 200 })
 }
 
 async function registerPOSTRequest(body: any) {
-    const {registerRequest} = body
-     const formData = getRegisterFormData(registerRequest);
+    const { registerRequest } = body
+    const formData = getRegisterFormData(registerRequest);
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/register`, {
         method: 'POST',
         // CRITICAL: No 'Content-Type' header here. Fetch creates it with the proper boundary automatically.
-        body: formData, 
+        body: formData,
     });
 
-    
+
 
     const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
@@ -104,7 +103,6 @@ async function registerPOSTRequest(body: any) {
 async function logoutPOSTRequest() {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
-    console.log(token)
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/auth/logout`, {
         method: 'POST',
         headers: { "Authorization": `Bearer ${token}` },
@@ -113,8 +111,8 @@ async function logoutPOSTRequest() {
 
     cookieStore.delete('auth_token');
 
-    const data = await backendResponse.json();
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json({ success: backendResponse.ok })
+
 }
 
 
@@ -123,7 +121,7 @@ async function logoutPOSTRequest() {
 function getLoginBody(requestBody: any) {
     const { loginRequest } = requestBody;
     const { username, password } = loginRequest
-    return {username, password}
+    return { username, password }
 }
 
 function getVerificationBody(verificationBody: any) {

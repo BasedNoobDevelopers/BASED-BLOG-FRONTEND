@@ -12,9 +12,9 @@ export default function Page() {
     const [username, setUsername] = useState(' ')
     const [password, setPassword] = useState(' ')
 
-    async function handleFormSubmit(e:any) {
+    async function handleFormSubmit(e: any) {
         e.preventDefault();
-        const body = {username, password}  
+        const body = { username, password }
 
         const response = await login(body)
 
@@ -32,7 +32,9 @@ export default function Page() {
             nextPage = (userResponse.isFirstTimeLogin) ? "/interests" : "/feed"
         }
 
-        router.push(nextPage);
+        await router.replace(nextPage)
+
+        router.refresh()
 
     }
     return (
@@ -54,8 +56,8 @@ export default function Page() {
                             Password
                         </h2>
                     </label>
-                    <input title="password" type="password" required onChange={(e) => setPassword(e.target.value)}/>
-            
+                    <input title="password" type="password" required onChange={(e) => setPassword(e.target.value)} />
+
                     <div className={classes.btnBox}>
                         <button className="login-btn2" id="submit-btn" type="submit">Login</button>
                     </div>
