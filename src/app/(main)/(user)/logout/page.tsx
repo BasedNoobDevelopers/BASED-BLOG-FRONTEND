@@ -1,35 +1,28 @@
 
 "use client"
 import classes from './logout.module.css'
-// import Link from 'next/link'
 import { logout } from '@/app/api/auth/controller/authController';
-import { useRouter } from 'next/navigation'
-// import LogoutButton from '@/components/buttons/LogoutButton';
 
 export default function LogoutPage() {
-
-    const router = useRouter();
-
-    async function handleFormSubmit(e) {
-        e.preventDefault();
+    async function handleLogout() {
         await logout();
-        await router.replace('/');
-        await router.refresh();
-    }
+        window.location.replace('/')
+
+    };
 
     return (
         <div>
-            <form onSubmit={handleFormSubmit} className={classes.logoutPage} >
+            <div className={classes.logoutPage} >
                 <div className={classes.logout}>
                     <h3>Logging out?</h3>
 
                     <div className={classes.btnBox}>
-                        <button id="logout" type="submit">Yes</button>
+                        <button onClick={handleLogout} id="logout">Yes</button>
 
                     </div>
 
                 </div>
-            </form>
+            </div>
 
         </div>
     )
