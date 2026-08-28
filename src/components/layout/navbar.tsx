@@ -1,26 +1,34 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import classes from './navbar.module.css';
 import { useEffect, useState } from "react";
-
+import { useRouter, usePathname } from 'next/navigation'
 import { fetchMe } from "@/app/api/user/controller/user-controller";
-// Change if user is signed in
-//Fetch cookies, session, or token?
 
 export default function Navbar() {
 
-    const [response, setResponse] = useState(false)
-
+    const [response, setResponse] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
     useEffect(() => {
         async function checkValidation() {
-            const res = await fetchMe()
-            setResponse(res.success)
-        } checkValidation()
-    }, [])
+            try {
+                const res = await fetchMe();
+                setResponse(res.success);
+                const paths = ['/feed', '/logout', '/create'];
 
+                if (!res.success && paths.includes(pathname)) {
+                    router.push('/');
+                }
+            } catch (error) {
+                console.error("Navbar validation error:", error);
+                router.push('/');
+            }
 
+        } checkValidation();
+    }, [router, pathname]);
 
 
     return (
