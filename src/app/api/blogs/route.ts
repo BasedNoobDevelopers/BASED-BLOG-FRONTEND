@@ -3,7 +3,7 @@ import { parse, stringify } from 'uuid';
 import { cookies } from 'next/headers'
 
 
-let HOST_URL = process.env.HOST_URL|| "http://localhost"
+let HOST_URL = process.env.HOST_URL || "http://localhost"
 let HOST_PORT = process.env.HOST_PORT || "8080"
 
 const ENVIRONMENT = process.env.ENVIRONMENT || "local"
@@ -18,19 +18,23 @@ if (ENVIRONMENT == undefined || ENVIRONMENT === "local") {
 
 export async function POST(request: Request) {
     try {
-
         const body = await request.json();
-        const {route} = body;
-        
-        switch(route.trim().toLowerCase()) {
+        const { route } = body;
+
+        switch (route.trim().toLowerCase()) {
             case 'latest': return await getLatest();
             case 'all': return await getAll();
+            case 'allbyuser': return await getAllByUsername();
             case 'id': return await getByID(body);
             case 'new': return await postNewArticle(body)
+            case 'edit': return await patchEditArticle(body)
+            case 'delete': return await deleteById(body)
         }
 
-    } catch(error: any) {
-        return NextResponse.json({error: error.message || error }, {status: 500})
+
+
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message || error }, { status: 500 })
     }
 }
 
@@ -38,7 +42,7 @@ async function getLatest() {
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/latest?limit=${LATEST_LIMIT}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-        
+
     });
 
     const data = await backendResponse.json();
@@ -49,15 +53,25 @@ async function getAll() {
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all?page=0&size=${SIZE_LIMIT}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-        
+
     });
 
     const data = await backendResponse.json();
     return NextResponse.json(data, { status: 200 });
 }
 
+async function getAllByUsername() {
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all/filter?criteria=AUTHOR&value=Karrma`,{
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json'}
+    });
+    const data = await backendResponse.json();
+    console.log(data)
+    return NextResponse.json(data, {status: 200})
+}
+
 async function getByID(body: any) {
-    const {ID} = body;
+    const { ID } = body;
 
     const uuidBytes = parse(ID);
 
@@ -72,7 +86,7 @@ async function getByID(body: any) {
 }
 
 async function postNewArticle(requestBody: any) {
-    const {body} = requestBody;
+    const { body } = requestBody;
     const blogFormData = getBlogFormData(body)
     // const { token } = body
 
@@ -89,14 +103,53 @@ async function postNewArticle(requestBody: any) {
     return NextResponse.json(data, { status: 200 });
 }
 
+async function patchEditArticle(requestBody: any) {
+    const { ID } = requestBody;
+    const { body } = requestBody;
+
+    const uuidBytes = parse(ID);
+    const validUuid = stringify(uuidBytes);
+    const editedFormData = getBlogFormData(body);
+
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/edit/${validUuid}`, {
+        method: 'PATCH',
+        headers: { "Authorization": `Bearer ${token}` },
+        body: editedFormData
+    })
+
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: 200 });
+}
+
+
+async function deleteById(body: any) {
+    const { ID } = body;
+    const uuidBytes = parse(ID);
+    const validUuid = stringify(uuidBytes);
+    const cookieStore = await cookies();
+    const token = cookieStore.get('auth_token')?.value;
+
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/delete/${validUuid}`, {
+        method: 'DELETE',
+        headers: { "Authorization": `Bearer ${token}` },
+    })
+
+
+    return NextResponse.json({ success: backendResponse.ok });
+
+}
+
 //#endregion Helper Methods (Start)
 
 // Helper to construct a real FormData object
 function getBlogFormData(requestBody: any): FormData {
     const formData = new FormData();
-    const { blogTitle, blogSubTitle, blogContent, blogCoverImage, topic} = requestBody;
+    const { blogTitle, blogSubTitle, blogContent, blogCoverImage, topic } = requestBody;
 
-    formData.append("blogTitle", blogTitle|| "");
+    formData.append("blogTitle", blogTitle || "");
     formData.append("blogSubTitle", blogSubTitle || "");
     formData.append("blogContent", blogContent || "");
     formData.append("topic", topic || "");
