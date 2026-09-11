@@ -134,13 +134,14 @@ export default function CreateBlogPostPage() {
                                     / 60 characters
                                 </p>
 
-                                <label htmlFor="articleBody">Enter your article body</label>
+                                <label htmlFor="articleBody">Enter your article's body</label>
                                 <textarea
                                     id="articleBody"
                                     name="body"
                                     title="articleBody"
-                                    minLength={1000}
-                                    maxLength={10000}
+                                    placeholder="Minimum character limit - 500"
+                                    minLength={500}
+                                    maxLength={2000}
                                     spellCheck="true"
                                     value={characterValue.body}
                                     onChange={handleTextChange}
@@ -151,34 +152,12 @@ export default function CreateBlogPostPage() {
                                     / 2000 characters
                                 </p>
 
-                                <label htmlFor="tags">Choose your article's topic:</label>
-                                <select
-                                    className={classes.createArticleUserInputSelect}
-                                    title="topic"
-                                    name="topic"
-                                    id="topic"
-                                    value={topic}
-                                    onChange={(e) => setTopic(e.target.value)}
-                                >
-                                    <option className={classes.createArticleUserOption} value="">Select Topic</option>
-                                    <option value="gaming">Gaming</option>
-                                    <option value="tv/movies">TV/Movies</option>
-                                    <option value="tech">Tech</option>
-                                    <option value="slice-of-life">Slice of Life</option>
-                                    <option value="music">Music</option>
-                                    <option value="anime/manga">Anime/Manga</option>
-                                    <option value="sports">Sports</option>
-                                    <option value="art">Art</option>
-                                    <option value="literature">Literature</option>
-                                    <option value="misc/other">Misc/Other</option>
 
-
-                                </select>
 
                             </div>
                         </div>
                         <div className={classes.createArticleRightBox}>
-                            <h2>Upload your article image</h2>
+                            <h2>Upload your article's image</h2>
                             <div className={classes.imageBox}>
                                 <label htmlFor="articleFilePath">
                                     <img
@@ -190,6 +169,10 @@ export default function CreateBlogPostPage() {
                                         height={40}
                                     />
                                 </label>
+                                <p></p>
+                                <label htmlFor="articleFilePath">Max upload size - 1MB</label>
+
+
                             </div>
                             {/* <span className={classes.materialSymbolsOutlined}>
                                 photo_camera_front
@@ -202,7 +185,32 @@ export default function CreateBlogPostPage() {
                                 accept="image/jpeg, image/png, image/jpg"
                                 id="articleFilePath"
                             />
+                                
 
+                            <p className={classes.createArticleUserInputSelectLabel} htmlFor="tags">Choose your article's topic:</p>
+                            <select
+                                className={classes.createArticleUserInputSelect}
+                                title="topic"
+                                name="topic"
+                                id="topic"
+                                value={topic}
+                                onChange={(e) => setTopic(e.target.value)}
+                                required
+                            >
+                                <option className={classes.createArticleUserOption} value="">Select Topic</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="tv/movies">TV/Movies</option>
+                                <option value="tech">Tech</option>
+                                <option value="slice-of-life">Slice of Life</option>
+                                <option value="music">Music</option>
+                                <option value="anime/manga">Anime/Manga</option>
+                                <option value="sports">Sports</option>
+                                <option value="art">Art</option>
+                                <option value="literature">Literature</option>
+                                <option value="misc/other">Misc/Other</option>
+
+
+                            </select>
                         </div>
 
                     </div>
