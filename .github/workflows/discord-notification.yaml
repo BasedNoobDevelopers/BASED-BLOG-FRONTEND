@@ -32,7 +32,7 @@ jobs:
             '{
               username: $username,
               avatar_url: $avatar_url,
-              content: " @ionlyhave1hp & @MKULTRA & @acompletenoobsmoke New pull request activity detected",
+              content: " <@616915316500463626> & <@881782686195269653> & <@415344830705565696> --- New pull request activity detected",
               embeds: [
                 {
                   title: $pr_title,
@@ -60,7 +60,10 @@ jobs:
                     text: "GitHub Pull Request Event"
                   }
                 }
-              ]
+              ],
+              allowed_mentions: {
+                users: ["616915316500463626", "881782686195269653", "415344830705565696"]
+              }
             }' > payload.json
 
       - name: Validate JSON
