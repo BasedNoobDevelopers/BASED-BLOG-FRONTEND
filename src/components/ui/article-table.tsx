@@ -6,6 +6,7 @@ import { fetchAllByUsername } from "@/app/api/blogs/controller/blog-api-controll
 import { Article } from "@/lib/articles";
 import { formatDate } from "@/utils/format";
 import { useState, useEffect } from "react";
+import { UsernameAction } from "@/actions/action";
 
 
 
@@ -13,11 +14,11 @@ export default function ArticleTable() {
 
     const [articleList, setArticleList] = useState<Article[]>([]);
 
-
     useEffect(() => {
         async function handleAllArticlesByUser() {
             try {
-                const response = await fetchAllByUsername();
+                const username = await UsernameAction();
+                const response = await fetchAllByUsername(username);
                 setArticleList(response.content);
             } catch (error) {
                 console.error("Failed to fetch articles:", error);
@@ -53,11 +54,11 @@ export default function ArticleTable() {
                             </td>
                             <td>
                                 <button className={classes.tableButtons}>Edit</button>
-                                <DeleteButton blogId = {article.blogID} />
+                                <DeleteButton blogId={article.blogID} />
                             </td>
 
                         </tr>
-                    )) : ( 
+                    )) : (
                         <tr>
                             <td colSpan={4} className={classes.noArticles}>
                                 No articles found.

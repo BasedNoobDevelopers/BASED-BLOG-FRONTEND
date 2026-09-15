@@ -9,8 +9,8 @@ export async function fetchAll(): Promise<any> {
    return fetchData(ROUTE_URL_PREFIX, {route: 'all'});
 }
 
-export async function fetchAllByUsername():Promise <any> {
-    return fetchData(ROUTE_URL_PREFIX, {route: 'allbyuser'})
+export async function fetchAllByUsername(username:any):Promise <any> {
+    return fetchData(ROUTE_URL_PREFIX, {route: 'allbyuser', username})
 }
 
 export async function fetchByID(ID: string): Promise<any> {
