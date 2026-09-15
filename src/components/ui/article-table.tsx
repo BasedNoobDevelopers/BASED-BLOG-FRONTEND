@@ -53,11 +53,11 @@ export default function ArticleTable() {
                             </td>
                             <td>
                                 <button className={classes.tableButtons}>Edit</button>
-                                <DeleteButton id = {article.blogID} />
+                                <DeleteButton blogId = {article.blogID} />
                             </td>
 
                         </tr>
-                    )) : (
+                    )) : ( 
                         <tr>
                             <td colSpan={4} className={classes.noArticles}>
                                 No articles found.

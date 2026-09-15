@@ -3,14 +3,11 @@
 import { deleteArticle} from "@/app/api/blogs/controller/blog-api-controller"
 
 
-export function DeleteButton(blogId:any) {
+export function DeleteButton({blogId} : {blogId:string}) {
 
   function handleDelete() {
     
-        console.log("INSIDE DELETE")
-        const {id} = blogId
-        console.log(id)
-        deleteArticle(id)
+        deleteArticle(blogId)
     
     }
 
