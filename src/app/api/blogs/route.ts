@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         switch (route.trim().toLowerCase()) {
             case 'latest': return await getLatest();
             case 'all': return await getAll();
-            case 'allbyuser': return await getAllByUsername();
+            case 'allbyuser': return await getAllByUsername(body);
             case 'id': return await getByID(body);
             case 'new': return await postNewArticle(body)
             case 'edit': return await patchEditArticle(body)
@@ -60,13 +60,12 @@ async function getAll() {
     return NextResponse.json(data, { status: 200 });
 }
 
-async function getAllByUsername() {
-    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all/filter?criteria=AUTHOR&value=Karrma`,{
+async function getAllByUsername({username}:{username: string}) {
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all/filter?criteria=AUTHOR&value=${username}`,{
         method: 'GET',
         headers: { 'Content-Type': 'application/json'}
     });
     const data = await backendResponse.json();
-    console.log(data)
     return NextResponse.json(data, {status: 200})
 }
 

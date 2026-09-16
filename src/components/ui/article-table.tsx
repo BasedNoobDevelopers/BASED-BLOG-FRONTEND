@@ -6,6 +6,7 @@ import { fetchAllByUsername } from "@/app/api/blogs/controller/blog-api-controll
 import { Article } from "@/lib/articles";
 import { formatDate } from "@/utils/format";
 import { useState, useEffect } from "react";
+import { UsernameAction } from "@/actions/action";
 
 
 
@@ -13,11 +14,11 @@ export default function ArticleTable() {
 
     const [articleList, setArticleList] = useState<Article[]>([]);
 
-
     useEffect(() => {
         async function handleAllArticlesByUser() {
             try {
-                const response = await fetchAllByUsername();
+                const username = await UsernameAction();
+                const response = await fetchAllByUsername(username);
                 setArticleList(response.content);
             } catch (error) {
                 console.error("Failed to fetch articles:", error);
@@ -46,14 +47,14 @@ export default function ArticleTable() {
                         <tr key={article.blogID || article.blogTitle || index}>
                             <td className={classes.rowTitle}>{article.blogTitle}</td>
                             <td className={classes.rowTopic}>
-                                {article.blogTopic.charAt(0).toUpperCase() + article.blogTopic.slice(1)}
+                                {article.blogTopic.toUpperCase()}
                             </td>
                             <td className={classes.rowDate}>
                                 {formatDate(article.createdDate)}
                             </td>
                             <td>
                                 <button className={classes.tableButtons}>Edit</button>
-                                <DeleteButton id = {article.blogID} />
+                                <DeleteButton blogId={article.blogID} />
                             </td>
 
                         </tr>

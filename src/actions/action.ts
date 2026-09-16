@@ -14,3 +14,13 @@ export async function CreateArticleAction() {
     console.log("TOKEN", token)
     return !!token;
 }
+
+
+export async function UsernameAction(){
+    const cookieStore = await cookies();
+    const cookie = cookieStore.get('username')
+
+   
+    const username = cookie ? cookie.value : undefined; // check if it exists
+    return username;
+}

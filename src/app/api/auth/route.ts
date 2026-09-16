@@ -47,7 +47,6 @@ async function loginPOSTRequest(body: any) {
     });
 
     const data = await backendResponse.json();
-
     if (data.jwtToken) {
         const cookieStore = await cookies();
         cookieStore.set('auth_token', data.jwtToken, {
@@ -56,7 +55,8 @@ async function loginPOSTRequest(body: any) {
             sameSite: 'strict',
             path: '/',
             maxAge: data.expirationTime
-        })
+        });
+        cookieStore.set('username', data.userResponse.userName)
     }
     return NextResponse.json(data, { status: 200 });
 }
@@ -110,7 +110,8 @@ async function logoutPOSTRequest() {
     })
 
     cookieStore.delete('auth_token');
-
+    cookieStore.delete('username')
+    
     return NextResponse.json({ success: backendResponse.ok })
 
 }
