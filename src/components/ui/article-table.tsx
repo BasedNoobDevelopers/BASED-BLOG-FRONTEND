@@ -47,7 +47,7 @@ export default function ArticleTable() {
                         <tr key={article.blogID || article.blogTitle || index}>
                             <td className={classes.rowTitle}>{article.blogTitle}</td>
                             <td className={classes.rowTopic}>
-                                {article.blogTopic.charAt(0).toUpperCase() + article.blogTopic.slice(1)}
+                                {article.blogTopic.toUpperCase()}
                             </td>
                             <td className={classes.rowDate}>
                                 {formatDate(article.createdDate)}
