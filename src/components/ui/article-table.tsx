@@ -2,6 +2,7 @@
 
 import classes from "./article-table.module.css"
 import { DeleteButton } from "../buttons/delete-button"
+import { EditButton } from "../buttons/edit-button";
 import { fetchAllByUsername } from "@/app/api/blogs/controller/blog-api-controller";
 import { Article } from "@/lib/articles";
 import { formatDate } from "@/utils/format";
@@ -53,7 +54,7 @@ export default function ArticleTable() {
                                 {formatDate(article.createdDate)}
                             </td>
                             <td>
-                                <button className={classes.tableButtons}>Edit</button>
+                                <EditButton blogId={article.blogID} />
                                 <DeleteButton blogId={article.blogID} />
                             </td>
 
