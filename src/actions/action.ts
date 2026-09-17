@@ -7,14 +7,6 @@ export async function ClearStateAction() {
     cookieStore.delete('auth_token');
 }
 
-export async function CreateArticleAction() {
-
-    const cookieStore = await cookies();
-    const token = cookieStore.get('auth_token')?.value;
-    console.log("TOKEN", token)
-    return !!token;
-}
-
 
 export async function UsernameAction(){
     const cookieStore = await cookies();

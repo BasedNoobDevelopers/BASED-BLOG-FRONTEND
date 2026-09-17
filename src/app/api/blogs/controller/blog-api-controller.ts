@@ -21,8 +21,8 @@ export async function postNewArticle(body: any): Promise<any> {
     return fetchData(ROUTE_URL_PREFIX, {route: 'new', body})
 }
 
-export async function editArticle(body:any): Promise<any>{
-    return fetchData(ROUTE_URL_PREFIX, {route: 'edit', body});
+export async function editArticle(ID:any, body:any): Promise<any>{
+    return fetchData("http://localhost:3000/api/blogs/", {route: 'edit', ID, body});
 }
 
 export async function deleteArticle(ID:string): Promise<any>{

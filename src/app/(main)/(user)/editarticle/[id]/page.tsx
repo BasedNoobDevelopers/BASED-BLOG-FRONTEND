@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import classes from './editarticle.module.css'
 import { editArticle, fetchByID } from "@/app/api/blogs/controller/blog-api-controller";
 import { useParams } from 'next/navigation'
@@ -12,31 +12,23 @@ interface FormState {
 }
 
 
+
 export default function EditArticlePostPage() {
+
+    const [stopped, setStopped] = useState(false)
+    const [title, setTitle] = useState('');
+    const [subtitle, setSubtitle] = useState('');
+    const [articleBody, setArticleBody] = useState('');
+
     const { id } = useParams<{ id: string }>();
 
-    async function handleArticle() {
-        console.log("ID")
-        if (id !== undefined) {
-            const data = await fetchByID(id)
-            console.log(data.blogTitle)
-        }
-
-    }
-
-    handleArticle()
 
     const [topic, setTopic] = useState(' ')
     const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
 
-    const [characterValue, setCharacterValue] = useState<FormState>({
-        title: "",
-        subtitle: "",
-        body: "",
-    });
 
     const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
-    // prevent memory leaks if new image selected
+
     const [fileObjectUrl, setFileObjectUrl] = useState<string | null>(null);
     useEffect(() => {
         return () => {
@@ -45,6 +37,35 @@ export default function EditArticlePostPage() {
             }
         }
     }, [fileObjectUrl])
+
+
+    async function handleArticle() {
+        if (id) {
+            const data = await fetchByID(id)
+            setTitle(data.blogTitle)
+            setSubtitle(data.blogSubTitle)
+            setArticleBody(data.blogContent)
+            setImageUrl(data.blogCoverImage.imageUrl)
+            setStopped(true)
+        }
+
+    }
+    if (!stopped) {
+        handleArticle()
+
+    }
+
+    function handleTitleChange(event){
+        setTitle(event.target.value)
+    };
+
+    function handleSubtitleChange(e){
+        setSubtitle(e.target.value);
+    }
+
+    function handleBodyChange(e){
+        setArticleBody(e.target.value);
+    }
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -64,10 +85,7 @@ export default function EditArticlePostPage() {
         reader.onload = () => setBlogCoverImage(reader.result);
     };
 
-    const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setCharacterValue((prev) => ({ ...prev, [name]: value }));
-    }
+
 
 
     async function handleSubmit(e: any) {
@@ -78,15 +96,14 @@ export default function EditArticlePostPage() {
         }
 
         const body = {
-            blogTitle: characterValue.title,
-            blogSubTitle: characterValue.subtitle,
-            blogContent: characterValue.body,
+            blogTitle: title,
+            blogSubTitle: subtitle,
+            blogContent: articleBody,
             topic,
             blogCoverImage: blogCoverImage,
-            token: ""
         }
 
-        const response = await editArticle(body);
+        const response = await editArticle(id, body);
 
 
         if ((!response.blogID && !response.statusCode) || response.statusCode >= 400) {
@@ -120,12 +137,12 @@ export default function EditArticlePostPage() {
                                     title="articleTitle"
                                     maxLength={60}
                                     spellCheck="true"
-                                    value={characterValue.title}
-                                    onChange={handleTextChange}
+                                    value={title}
+                                    onChange={handleTitleChange}
                                     required
                                 />
                                 <p>
-                                    <span id="current1">{characterValue.title.length}</span>
+                                    <span id="current1">{title.length}</span>
                                     / 60 characters
                                 </p>
 
@@ -136,13 +153,13 @@ export default function EditArticlePostPage() {
                                     title="articleSubtitle"
                                     maxLength={60}
                                     spellCheck="true"
-                                    value={characterValue.subtitle}
-                                    onChange={handleTextChange}
+                                    value={subtitle}
+                                    onChange={handleSubtitleChange}
                                     required
                                 />
 
                                 <p>
-                                    <span id="current2">{characterValue.subtitle.length}</span>
+                                    <span id="current2">{subtitle.length}</span>
                                     / 60 characters
                                 </p>
 
@@ -155,12 +172,12 @@ export default function EditArticlePostPage() {
                                     minLength={500}
                                     maxLength={2000}
                                     spellCheck="true"
-                                    value={characterValue.body}
-                                    onChange={handleTextChange}
+                                    value={articleBody}
+                                    onChange={handleBodyChange}
                                     required
                                 />
                                 <p>
-                                    <span id="current">{characterValue.body.length}</span>
+                                    <span id="current">{articleBody.length}</span>
                                     / 2000 characters
                                 </p>
 

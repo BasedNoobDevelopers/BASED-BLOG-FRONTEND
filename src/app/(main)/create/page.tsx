@@ -71,7 +71,6 @@ export default function CreateBlogPostPage() {
             blogContent: characterValue.body,
             topic,
             blogCoverImage: blogCoverImage,
-            token: ""
         }
 
         const response = await postNewArticle(body);
