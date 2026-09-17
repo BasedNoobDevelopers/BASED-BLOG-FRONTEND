@@ -20,6 +20,7 @@ export default function ArticleTable() {
             try {
                 const username = await UsernameAction();
                 const response = await fetchAllByUsername(username);
+                console.log("ARTICLES", response.content)
                 setArticleList(response.content);
             } catch (error) {
                 console.error("Failed to fetch articles:", error);
@@ -43,7 +44,7 @@ export default function ArticleTable() {
             </thead>
 
             <tbody className={classes.tableBody}>
-                {articleList.length > 0 ?
+                { articleList && articleList.length > 0 ?
                     articleList?.map((article, index) => (
                         <tr key={article.blogID || article.blogTitle || index}>
                             <td className={classes.rowTitle}>{article.blogTitle}</td>
