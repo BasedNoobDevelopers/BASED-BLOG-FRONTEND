@@ -3,29 +3,20 @@ import { useState, useEffect, ChangeEvent } from "react";
 import classes from './edit.module.css'
 import { editArticle, fetchByID } from "@/app/api/blogs/controller/blog-api-controller";
 import { useParams } from 'next/navigation'
-
-interface FormState {
-    title: string;
-    subtitle: string;
-    body: string;
-    topic?: string;
-}
+import { useRouter } from 'next/navigation'
 
 
 
 export default function EditArticlePostPage() {
-
-    const [stopped, setStopped] = useState(false)
-    const [title, setTitle] = useState('');
-    const [subtitle, setSubtitle] = useState('');
-    const [articleBody, setArticleBody] = useState('');
-
-    const { id } = useParams<{ id: string }>();
-
-
-    const [topic, setTopic] = useState(' ')
+    const router = useRouter();
+    const [stopped, setStopped] = useState<boolean>(false)
+    const [title, setTitle] = useState<string>('');
+    const [subtitle, setSubtitle] = useState<string>('');
+    const [articleBody, setArticleBody] = useState<string>('');
+    const [topic, setTopic] = useState<string>('')
     const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
 
+    const { id } = useParams<{ id: string }>();
 
     const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
 
@@ -46,6 +37,7 @@ export default function EditArticlePostPage() {
             setSubtitle(data.blogSubTitle)
             setArticleBody(data.blogContent)
             setImageUrl(data.blogCoverImage.imageUrl)
+            setTopic(data.blogTopic)
             setStopped(true)
         }
 
@@ -111,8 +103,8 @@ export default function EditArticlePostPage() {
             return
         }
 
-        alert("This Article Was Edited!")
-        window.location.reload()
+        alert(`"${title}" was edited!`)
+        router.push('/my-articles')
     }
 
 
@@ -187,6 +179,10 @@ export default function EditArticlePostPage() {
                         </div>
                         <div className={classes.createArticleRightBox}>
                             <h2>Upload your article's image</h2>
+                                <p></p>
+
+                                <label htmlFor="articleFilePath">Max upload size - 1 MB</label>
+<p></p>
                             <div className={classes.imageBox}>
                                 <label htmlFor="articleFilePath">
                                     <img
@@ -198,8 +194,6 @@ export default function EditArticlePostPage() {
                                         height={40}
                                     />
                                 </label>
-                                <p></p>
-                                <label htmlFor="articleFilePath">Max upload size - 1MB</label>
 
 
                             </div>
@@ -216,7 +210,7 @@ export default function EditArticlePostPage() {
                             />
 
 
-                            <p className={classes.createArticleUserInputSelectLabel} htmlFor="tags">Choose your article's topic:</p>
+                            <p className={classes.createArticleUserInputSelectLabel} htmlFor="tags">Choose your article's topic</p>
                             <select
                                 className={classes.createArticleUserInputSelect}
                                 title="topic"

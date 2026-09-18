@@ -4,7 +4,7 @@
   align-items: start;
   justify-content: flex-start;
   width: 75%;
-  height: 52rem;
+  height: 55rem;
   max-width: 100rem;
   min-width: 30rem;
   background: var(--bg-panel);
@@ -100,7 +100,7 @@
 }
 
 .createArticleUserInputSelectLabel {
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 .createArticleUserInputSelect {
@@ -166,8 +166,9 @@
 
 }
 
-.imageBox label {
+.createArticleRightBox label {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: small;
 }
 
 .articleSubmitBtn {
