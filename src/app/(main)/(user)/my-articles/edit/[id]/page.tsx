@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, ChangeEvent } from "react";
-import classes from './editarticle.module.css'
+import classes from './edit.module.css'
 import { editArticle, fetchByID } from "@/app/api/blogs/controller/blog-api-controller";
 import { useParams } from 'next/navigation'
 
