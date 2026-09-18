@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent, use } from "react";
 import classes from './edit.module.css'
 import { editArticle, fetchByID } from "@/app/api/blogs/controller/blog-api-controller";
 import { useParams } from 'next/navigation'
@@ -9,16 +9,16 @@ import { useRouter } from 'next/navigation'
 
 export default function EditArticlePostPage() {
     const router = useRouter();
-    const [stopped, setStopped] = useState<boolean>(false)
+    const [stopped, setStopped] = useState<boolean>(false);
     const [title, setTitle] = useState<string>('');
     const [subtitle, setSubtitle] = useState<string>('');
     const [articleBody, setArticleBody] = useState<string>('');
     const [topic, setTopic] = useState<string>('')
     const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
+    const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
 
     const { id } = useParams<{ id: string }>();
 
-    const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
 
     const [fileObjectUrl, setFileObjectUrl] = useState<string | null>(null);
     useEffect(() => {
@@ -29,33 +29,44 @@ export default function EditArticlePostPage() {
         }
     }, [fileObjectUrl])
 
+    useEffect(() => {
+        async function handleArticle() {
+            if (!id){
+               return;
+            } 
+            try {
+                const data = await fetchByID(id)
+                if(!data){
+                    return;
+                }
+                setTitle(data.blogTitle)
+                setSubtitle(data.blogSubTitle)
+                setArticleBody(data.blogContent)
+                setImageUrl(data.blogCoverImage.imageUrl)
+                setTopic(data.blogTopic)
+                setStopped(true)
+            }            
+            catch(error) {
+                console.error(error)
+            }
 
-    async function handleArticle() {
-        if (id) {
-            const data = await fetchByID(id)
-            setTitle(data.blogTitle)
-            setSubtitle(data.blogSubTitle)
-            setArticleBody(data.blogContent)
-            setImageUrl(data.blogCoverImage.imageUrl)
-            setTopic(data.blogTopic)
-            setStopped(true)
         }
 
-    }
-    if (!stopped) {
         handleArticle()
 
-    }
 
-    function handleTitleChange(event){
+    }, [id])
+
+
+    function handleTitleChange(event) {
         setTitle(event.target.value)
     };
 
-    function handleSubtitleChange(e){
+    function handleSubtitleChange(e) {
         setSubtitle(e.target.value);
     }
 
-    function handleBodyChange(e){
+    function handleBodyChange(e) {
         setArticleBody(e.target.value);
     }
 
@@ -109,7 +120,7 @@ export default function EditArticlePostPage() {
 
 
 
-
+ 
     return (
         <div className={classes.createArticlePage}>
             <form className={classes.createArticleForm}
@@ -179,10 +190,10 @@ export default function EditArticlePostPage() {
                         </div>
                         <div className={classes.createArticleRightBox}>
                             <h2>Upload your article's image</h2>
-                                <p></p>
+                            <p></p>
 
-                                <label htmlFor="articleFilePath">Max upload size - 1 MB</label>
-<p></p>
+                            <label htmlFor="articleFilePath">Max upload size - 1 MB</label>
+                            <p></p>
                             <div className={classes.imageBox}>
                                 <label htmlFor="articleFilePath">
                                     <img
