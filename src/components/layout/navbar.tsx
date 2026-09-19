@@ -17,7 +17,7 @@ export default function Navbar() {
             try {
                 const res = await fetchMe();
                 setResponse(res.success);
-                const paths = ['/feed', '/logout', '/create'];
+                const paths = ['/feed', '/my-articles', '/logout', '/create'];
 
                 if (!res.success && paths.includes(pathname)) {
                     router.push('/');
@@ -52,6 +52,7 @@ export default function Navbar() {
             {response ? (<>
                 <ul className="navPages">
                     <li id="login-btn"><Link className="login-nav" href="/feed"> Feed</Link></li>
+                    <li id ="my-articles-btn"><Link href="/my-articles">My Articles</Link></li>
                     <li id="blogs-btn"><Link href="/create">Create Post</Link></li>
                     <li id="login-btn"><Link className="login-nav" href="/logout"> Logout</Link></li>
 
