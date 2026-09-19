@@ -1,14 +1,17 @@
 "use client"
-import { useState, useEffect, ChangeEvent, use } from "react";
-import classes from './edit.module.css'
+import { useState, useEffect, ChangeEvent } from "react";
+import classes from './edit.module.css';
 import { editArticle, fetchByID } from "@/app/api/blogs/controller/blog-api-controller";
-import { useParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import NotFound from "@/app/not-found";
+
 
 
 
 export default function EditArticlePostPage() {
     const router = useRouter();
+    const [notFound, setNotFound] = useState<boolean>(false);
     const [stopped, setStopped] = useState<boolean>(false);
     const [title, setTitle] = useState<string>('');
     const [subtitle, setSubtitle] = useState<string>('');
@@ -16,11 +19,11 @@ export default function EditArticlePostPage() {
     const [topic, setTopic] = useState<string>('')
     const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
     const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
+    const [fileObjectUrl, setFileObjectUrl] = useState<string | null>(null);
 
     const { id } = useParams<{ id: string }>();
 
 
-    const [fileObjectUrl, setFileObjectUrl] = useState<string | null>(null);
     useEffect(() => {
         return () => {
             if (fileObjectUrl) {
@@ -31,28 +34,34 @@ export default function EditArticlePostPage() {
 
     useEffect(() => {
         async function handleArticle() {
-            if (!id){
-               return;
-            } 
+            if (!id) {
+                setNotFound(true);
+                return;
+            }
             try {
-                const data = await fetchByID(id)
-                if(!data){
+                const data = await fetchByID(id);
+                console.log(data)
+                if (data.statusCode === 404) {
+                    setNotFound(true);
+                    console.log(data.message)
                     return;
-                }
-                setTitle(data.blogTitle)
-                setSubtitle(data.blogSubTitle)
-                setArticleBody(data.blogContent)
-                setImageUrl(data.blogCoverImage.imageUrl)
-                setTopic(data.blogTopic)
-                setStopped(true)
-            }            
-            catch(error) {
+                };
+
+                setTitle(data.blogTitle);
+                setSubtitle(data.blogSubTitle);
+                setArticleBody(data.blogContent);
+                setImageUrl(data.blogCoverImage.imageUrl);
+                setTopic(data.blogTopic);
+                setStopped(true);
+            }
+            catch (error) {
                 console.error(error)
+                setNotFound(true);
             }
 
         }
 
-        handleArticle()
+        handleArticle();
 
 
     }, [id])
@@ -120,7 +129,10 @@ export default function EditArticlePostPage() {
 
 
 
- 
+    if (notFound) {
+        <NotFound/>;
+    }
+
     return (
         <div className={classes.createArticlePage}>
             <form className={classes.createArticleForm}
