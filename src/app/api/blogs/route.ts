@@ -20,7 +20,6 @@ export async function POST(request: Request) {
     try {
         const body = await request.json();
         const { route } = body;
-
         switch (route.trim().toLowerCase()) {
             case 'latest': return await getLatest();
             case 'all': return await getAll();
@@ -103,8 +102,8 @@ async function postNewArticle(requestBody: any) {
 }
 
 async function patchEditArticle(requestBody: any) {
-    const { ID } = requestBody;
-    const { body } = requestBody;
+    const {ID}  = requestBody;
+    const {body}  = requestBody;
 
     const uuidBytes = parse(ID);
     const validUuid = stringify(uuidBytes);
@@ -118,8 +117,10 @@ async function patchEditArticle(requestBody: any) {
         headers: { "Authorization": `Bearer ${token}` },
         body: editedFormData
     })
-
+    
     const data = await backendResponse.json();
+
+
     return NextResponse.json(data, { status: 200 });
 }
 

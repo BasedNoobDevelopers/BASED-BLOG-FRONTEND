@@ -1,31 +1,29 @@
 "use client"
-import React, { useState, useEffect, ChangeEvent } from "react";
-import classes from './create.module.css'
-import { postNewArticle } from "@/app/api/blogs/controller/blog-api-controller";
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, ChangeEvent } from "react";
+import classes from './edit.module.css';
+import { editArticle, fetchByID } from "@/app/api/blogs/controller/blog-api-controller";
+import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import NotFound from "@/app/not-found";
 
-interface FormState {
-    title: string;
-    subtitle: string;
-    body: string;
-    topic?: string;
-}
 
-export default function CreateBlogPostPage() {
 
+
+export default function EditArticlePostPage() {
     const router = useRouter();
-    const [topic, setTopic] = useState(' ')
+    const [notFound, setNotFound] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('')
+    const [title, setTitle] = useState<string>('');
+    const [subtitle, setSubtitle] = useState<string>('');
+    const [articleBody, setArticleBody] = useState<string>('');
+    const [topic, setTopic] = useState<string>('')
     const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
-
-    const [characterValue, setCharacterValue] = useState<FormState>({
-        title: "",
-        subtitle: "",
-        body: "",
-    });
-
     const [imageUrl, setImageUrl] = useState<string>('/assets/checkerboard.svg')
-    // prevent memory leaks if new image selected
     const [fileObjectUrl, setFileObjectUrl] = useState<string | null>(null);
+
+    const { id } = useParams<{ id: string }>();
+
+
     useEffect(() => {
         return () => {
             if (fileObjectUrl) {
@@ -33,6 +31,48 @@ export default function CreateBlogPostPage() {
             }
         }
     }, [fileObjectUrl])
+
+    useEffect(() => {
+        async function handleArticle() {
+
+            try {
+             
+                const data = await fetchByID(id);
+                if (data.statusCode >= 400) {
+                    setErrorMessage(data.message);
+                    throw new Error(data.message);
+                };
+
+                setTitle(data.blogTitle);
+                setSubtitle(data.blogSubTitle);
+                setArticleBody(data.blogContent);
+                setImageUrl(data.blogCoverImage.imageUrl);
+                setTopic(data.blogTopic);
+            }
+            catch (error:any) {
+                console.error(error.message);
+                setNotFound(true);
+            }
+
+        }
+
+        handleArticle();
+
+
+    }, [id])
+
+
+    function handleTitleChange(event) {
+        setTitle(event.target.value)
+    };
+
+    function handleSubtitleChange(e) {
+        setSubtitle(e.target.value);
+    }
+
+    function handleBodyChange(e) {
+        setArticleBody(e.target.value);
+    }
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -52,10 +92,7 @@ export default function CreateBlogPostPage() {
         reader.onload = () => setBlogCoverImage(reader.result);
     };
 
-    const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setCharacterValue((prev) => ({ ...prev, [name]: value }));
-    }
+
 
 
     async function handleSubmit(e: any) {
@@ -66,27 +103,27 @@ export default function CreateBlogPostPage() {
         }
 
         const body = {
-            blogTitle: characterValue.title,
-            blogSubTitle: characterValue.subtitle,
-            blogContent: characterValue.body,
+            blogTitle: title,
+            blogSubTitle: subtitle,
+            blogContent: articleBody,
             topic,
             blogCoverImage: blogCoverImage,
         }
-
-        const response = await postNewArticle(body);
-
+        const response = await editArticle(id, body);
 
         if ((!response.blogID && !response.statusCode) || response.statusCode >= 400) {
             alert(response.message)
             return
         }
 
-        alert("New Article Created!")
-        window.location.reload()
+        alert(`"${title}" was edited!`)
+        router.push('/my-articles')
     }
 
 
-
+    if (notFound) {
+        return <NotFound message={errorMessage} />;
+    }
 
     return (
         <div className={classes.createArticlePage}>
@@ -107,12 +144,12 @@ export default function CreateBlogPostPage() {
                                     title="articleTitle"
                                     maxLength={60}
                                     spellCheck="true"
-                                    value={characterValue.title}
-                                    onChange={handleTextChange}
+                                    value={title}
+                                    onChange={handleTitleChange}
                                     required
                                 />
                                 <p>
-                                    <span id="current1">{characterValue.title.length}</span>
+                                    <span id="current1">{title.length}</span>
                                     / 60 characters
                                 </p>
 
@@ -123,13 +160,13 @@ export default function CreateBlogPostPage() {
                                     title="articleSubtitle"
                                     maxLength={60}
                                     spellCheck="true"
-                                    value={characterValue.subtitle}
-                                    onChange={handleTextChange}
+                                    value={subtitle}
+                                    onChange={handleSubtitleChange}
                                     required
                                 />
 
                                 <p>
-                                    <span id="current2">{characterValue.subtitle.length}</span>
+                                    <span id="current2">{subtitle.length}</span>
                                     / 60 characters
                                 </p>
 
@@ -142,12 +179,12 @@ export default function CreateBlogPostPage() {
                                     minLength={500}
                                     maxLength={2000}
                                     spellCheck="true"
-                                    value={characterValue.body}
-                                    onChange={handleTextChange}
+                                    value={articleBody}
+                                    onChange={handleBodyChange}
                                     required
                                 />
                                 <p>
-                                    <span id="current">{characterValue.body.length}</span>
+                                    <span id="current">{articleBody.length}</span>
                                     / 2000 characters
                                 </p>
 
@@ -157,6 +194,10 @@ export default function CreateBlogPostPage() {
                         </div>
                         <div className={classes.createArticleRightBox}>
                             <h2>Upload your article's image</h2>
+                            <p></p>
+
+                            <label htmlFor="articleFilePath">Max upload size - 1 MB</label>
+                            <p></p>
                             <div className={classes.imageBox}>
                                 <label htmlFor="articleFilePath">
                                     <img
@@ -168,8 +209,6 @@ export default function CreateBlogPostPage() {
                                         height={40}
                                     />
                                 </label>
-                                <p></p>
-                                <label htmlFor="articleFilePath">Max upload size - 1MB</label>
 
 
                             </div>
@@ -184,9 +223,9 @@ export default function CreateBlogPostPage() {
                                 accept="image/jpeg, image/png, image/jpg"
                                 id="articleFilePath"
                             />
-                                
 
-                            <p className={classes.createArticleUserInputSelectLabel} htmlFor="tags">Choose your article's topic:</p>
+
+                            <p className={classes.createArticleUserInputSelectLabel} htmlFor="tags">Choose your article's topic</p>
                             <select
                                 className={classes.createArticleUserInputSelect}
                                 title="topic"
