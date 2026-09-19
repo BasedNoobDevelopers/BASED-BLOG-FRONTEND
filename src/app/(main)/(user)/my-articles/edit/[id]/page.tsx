@@ -13,6 +13,7 @@ export default function EditArticlePostPage() {
     const router = useRouter();
     const [notFound, setNotFound] = useState<boolean>(false);
     const [stopped, setStopped] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('')
     const [title, setTitle] = useState<string>('');
     const [subtitle, setSubtitle] = useState<string>('');
     const [articleBody, setArticleBody] = useState<string>('');
@@ -40,10 +41,9 @@ export default function EditArticlePostPage() {
             }
             try {
                 const data = await fetchByID(id);
-                console.log(data)
                 if (data.statusCode === 404) {
+                   setErrorMessage(data.message)
                     setNotFound(true);
-                    console.log(data.message)
                     return;
                 };
 
@@ -128,9 +128,8 @@ export default function EditArticlePostPage() {
     }
 
 
-
     if (notFound) {
-        <NotFound/>;
+       return <NotFound message = {errorMessage}/>;
     }
 
     return (
