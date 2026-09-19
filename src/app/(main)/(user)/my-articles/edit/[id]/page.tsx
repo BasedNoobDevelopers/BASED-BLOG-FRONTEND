@@ -12,7 +12,6 @@ import NotFound from "@/app/not-found";
 export default function EditArticlePostPage() {
     const router = useRouter();
     const [notFound, setNotFound] = useState<boolean>(false);
-    const [stopped, setStopped] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('')
     const [title, setTitle] = useState<string>('');
     const [subtitle, setSubtitle] = useState<string>('');
@@ -35,16 +34,13 @@ export default function EditArticlePostPage() {
 
     useEffect(() => {
         async function handleArticle() {
-            if (!id) {
-                setNotFound(true);
-                return;
-            }
+
             try {
+             
                 const data = await fetchByID(id);
-                if (data.statusCode === 404) {
-                   setErrorMessage(data.message)
-                    setNotFound(true);
-                    return;
+                if (data.statusCode >= 400) {
+                    setErrorMessage(data.message);
+                    throw new Error(data.message);
                 };
 
                 setTitle(data.blogTitle);
@@ -52,10 +48,9 @@ export default function EditArticlePostPage() {
                 setArticleBody(data.blogContent);
                 setImageUrl(data.blogCoverImage.imageUrl);
                 setTopic(data.blogTopic);
-                setStopped(true);
             }
-            catch (error) {
-                console.error(error)
+            catch (error:any) {
+                console.error(error.message);
                 setNotFound(true);
             }
 
@@ -114,9 +109,7 @@ export default function EditArticlePostPage() {
             topic,
             blogCoverImage: blogCoverImage,
         }
-
         const response = await editArticle(id, body);
-
 
         if ((!response.blogID && !response.statusCode) || response.statusCode >= 400) {
             alert(response.message)
@@ -129,7 +122,7 @@ export default function EditArticlePostPage() {
 
 
     if (notFound) {
-       return <NotFound message = {errorMessage}/>;
+        return <NotFound message={errorMessage} />;
     }
 
     return (
