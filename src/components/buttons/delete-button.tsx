@@ -11,8 +11,7 @@ export function DeleteButton({blogId} : {blogId:string}) {
     
     }
 
-    //window.confirm?
-
+    
     return (
         <>
 
