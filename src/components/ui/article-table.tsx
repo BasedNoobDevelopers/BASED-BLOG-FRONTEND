@@ -8,27 +8,39 @@ import { Article } from "@/lib/articles";
 import { formatDate } from "@/utils/format";
 import { useState, useEffect } from "react";
 import { UsernameAction } from "@/actions/action";
-
+import NotFound from "@/app/not-found";
 
 
 export default function ArticleTable() {
-
+    const [notFound, setNotFound] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('')
     const [articleList, setArticleList] = useState<Article[]>([]);
 
     useEffect(() => {
         async function handleAllArticlesByUser() {
             try {
                 const username = await UsernameAction();
+
                 const response = await fetchAllByUsername(username);
+
+                if (response.statusCode >= 400) {
+                    setErrorMessage(response.message);
+                    throw new Error(response.message);
+                }
+
                 setArticleList(response.content);
-            } catch (error) {
-                console.error("Failed to fetch articles:", error);
+            } catch (error: any) {
+                console.error("Failed to fetch articles:", error.message);
+                setNotFound(true);
             }
         }
 
         handleAllArticlesByUser();
     }, []);
 
+    if (notFound) {
+        return <NotFound message={errorMessage} />;
+    }
     const headers = ['Title', 'Topic', 'Date', 'Actions']
     return (
         <table className={classes.table}>
@@ -43,7 +55,7 @@ export default function ArticleTable() {
             </thead>
 
             <tbody className={classes.tableBody}>
-                { articleList && articleList.length > 0 ?
+                {articleList && articleList.length > 0 ?
                     articleList?.map((article, index) => (
                         <tr key={article.blogID || article.blogTitle || index}>
                             <td className={classes.rowTitle}>{article.blogTitle}</td>
