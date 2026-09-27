@@ -55,7 +55,7 @@ export default function ArticleTable() {
                             </td>
                             <td>
                                 <EditButton blogId={article.blogID} />
-                                <DeleteButton blogId={article.blogID} />
+                                <DeleteButton blogId={article.blogID} blogTitle={article.blogTitle} />
                             </td>
 
                         </tr>
