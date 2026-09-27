@@ -9,7 +9,6 @@ import { formatDate } from "@/utils/format";
 import { useState, useEffect } from "react";
 import { UsernameAction } from "@/actions/action";
 import NotFound from "@/app/not-found";
-import { logout } from "@/app/api/auth/controller/authController";
 
 
 export default function ArticleTable() {
@@ -21,12 +20,6 @@ export default function ArticleTable() {
         async function handleAllArticlesByUser() {
             try {
                 const username = await UsernameAction();
-
-                // Caught bug when browser closes user is still logged in!!
-                if (username === undefined) {
-                    await logout();
-                    window.location.replace('/');
-                }
 
                 const response = await fetchAllByUsername(username);
 

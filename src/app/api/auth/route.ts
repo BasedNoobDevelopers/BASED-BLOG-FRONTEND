@@ -56,7 +56,9 @@ async function loginPOSTRequest(body: any) {
             path: '/',
             maxAge: data.expirationTime
         });
-        cookieStore.set('username', data.userResponse.userName)
+        cookieStore.set('username', data.userResponse.userName, {
+            maxAge: data.expirationTime
+        })
     }
     return NextResponse.json(data, { status: 200 });
 }

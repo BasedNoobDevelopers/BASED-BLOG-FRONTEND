@@ -60,8 +60,6 @@ async function getAll() {
 }
 
 async function getAllByUsername({ username }: { username: string }) {
-    const cookieStore = await cookies();
-    const cookie = cookieStore.get('username')?.value
     const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all/filter?criteria=AUTHOR&value=${username}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
