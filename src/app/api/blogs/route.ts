@@ -59,13 +59,15 @@ async function getAll() {
     return NextResponse.json(data, { status: 200 });
 }
 
-async function getAllByUsername({username}:{username: string}) {
-    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all/filter?criteria=AUTHOR&value=${username}`,{
+async function getAllByUsername({ username }: { username: string }) {
+    const cookieStore = await cookies();
+    const cookie = cookieStore.get('username')?.value
+    const backendResponse = await fetch(`${HOST_URL}/${API_VERSION}/blogs/public/all/filter?criteria=AUTHOR&value=${username}`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
     });
     const data = await backendResponse.json();
-    return NextResponse.json(data, {status: 200})
+    return NextResponse.json(data, { status: 200 })
 }
 
 async function getByID(body: any) {
@@ -86,7 +88,6 @@ async function getByID(body: any) {
 async function postNewArticle(requestBody: any) {
     const { body } = requestBody;
     const blogFormData = getBlogFormData(body)
-    // const { token } = body
 
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
@@ -102,8 +103,8 @@ async function postNewArticle(requestBody: any) {
 }
 
 async function patchEditArticle(requestBody: any) {
-    const {ID}  = requestBody;
-    const {body}  = requestBody;
+    const { ID } = requestBody;
+    const { body } = requestBody;
 
     const uuidBytes = parse(ID);
     const validUuid = stringify(uuidBytes);
@@ -117,7 +118,7 @@ async function patchEditArticle(requestBody: any) {
         headers: { "Authorization": `Bearer ${token}` },
         body: editedFormData
     })
-    
+
     const data = await backendResponse.json();
 
 

@@ -111,7 +111,7 @@ async function logoutPOSTRequest() {
 
     cookieStore.delete('auth_token');
     cookieStore.delete('username')
-    
+
     return NextResponse.json({ success: backendResponse.ok })
 
 }
