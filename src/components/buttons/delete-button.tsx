@@ -1,14 +1,27 @@
 'use client'
 
-import { deleteArticle} from "@/app/api/blogs/controller/blog-api-controller"
+import { useState } from "react"
+import { createPortal } from "react-dom"
+import { deleteArticle } from "@/app/api/blogs/controller/blog-api-controller"
+import classes from './delete-button.module.css'
 
 
-export function DeleteButton({blogId} : {blogId:string}) {
+export function DeleteButton({ blogId, blogTitle }: { blogId: string, blogTitle: string }) {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  function handleDelete() {
-    
-        deleteArticle(blogId)
-    
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function handleDelete() {
+
+        deleteArticle(blogId);
+        closeModal();
+        window.location.reload();
     }
 
     //window.confirm?
@@ -16,8 +29,30 @@ export function DeleteButton({blogId} : {blogId:string}) {
     return (
         <>
 
-        <button onClick={handleDelete}>Delete?</button>
-           
+            <button onClick={openModal}>Delete</button>
+
+            {isOpen && createPortal(
+                <div className={classes.modalOverlay} onClick={closeModal}>
+                    <div className={classes.modal}>
+                        <h2 id="confirm-title">Are you sure you want to delete </h2>
+                        <h2>&quot;
+                            <em> {blogTitle} </em>
+                            &quot;
+                        </h2>
+                        <p id="confirm-message">This action cannot be undone.</p>
+
+                        <menu>
+                            <button onClick={handleDelete} id="confirm-delete">Confirm</button>
+                            <button onClick={closeModal} id="confirm-cancel">Cancel</button>
+                        </menu>
+
+
+                    </div>
+
+                </div>,
+
+                document.body
+            )}
         </>
     )
 }
