@@ -35,7 +35,10 @@ export function DeleteButton({ blogId, blogTitle }: { blogId: string, blogTitle:
                 <div className={classes.modalOverlay} onClick={closeModal}>
                     <div className={classes.modal}>
                         <h2 id="confirm-title">Are you sure you want to delete </h2>
-                        <h2>&quot;{blogTitle}&quot;</h2>
+                        <h2>&quot;
+                            <em> {blogTitle} </em>
+                            &quot;
+                        </h2>
                         <p id="confirm-message">This action cannot be undone.</p>
 
                         <menu>
