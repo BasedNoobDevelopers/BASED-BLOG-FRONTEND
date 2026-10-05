@@ -24,11 +24,8 @@ export function DeleteButton({ blogId, blogTitle }: { blogId: string, blogTitle:
         window.location.reload();
     }
 
-    //window.confirm?
-
     return (
         <>
-
             <button onClick={openModal}>Delete</button>
 
             {isOpen && createPortal(
@@ -46,9 +43,7 @@ export function DeleteButton({ blogId, blogTitle }: { blogId: string, blogTitle:
                             <button onClick={closeModal} id="confirm-cancel">Cancel</button>
                         </menu>
 
-
                     </div>
-
                 </div>,
 
                 document.body

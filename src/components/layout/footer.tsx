@@ -18,8 +18,6 @@ export default function Footer() {
                     </div>
                     {/* <div className="footer-social">
 
-                            <a href="#">Twitter</a>
-                            <a href="#">YouTube</a>
                             <a href="#">Discord</a>
                             <a href="#">GitHub</a>
 
@@ -29,14 +27,12 @@ export default function Footer() {
 
                         <p>© 2026 YoungBasedBlog </p>
 
-                        <div className={classes.footerLegal}>
+                        {/* <div className={classes.footerLegal}>
 
-                            <a href="/privacy">Privacy</a>
-                            <a href="/terms">Terms</a>
+                            <a href="/about">About</a>
                             <a href="/contact">Contact</a>
 
-                        </div>
-
+                        </div> */}
                     </div>
 
 

@@ -43,7 +43,6 @@ export default function Page() {
                 <div className={classes.login}>
                     <h3>Welcome back!</h3>
 
-
                     <label htmlFor="first-name">
                         <h2 className={classes.loginHeadline} id="form-question">
                             Username
