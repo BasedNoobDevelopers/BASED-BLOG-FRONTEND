@@ -1,8 +1,7 @@
 "use client"
-import React, { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import classes from './create.module.css'
 import { postNewArticle } from "@/app/api/blogs/controller/blog-api-controller";
-import { useRouter } from 'next/navigation'
 
 interface FormState {
     title: string;
@@ -13,7 +12,6 @@ interface FormState {
 
 export default function CreateBlogPostPage() {
 
-    const router = useRouter();
     const [topic, setTopic] = useState(' ')
     const [blogCoverImage, setBlogCoverImage] = useState<string | ArrayBuffer | null>(null);
 
@@ -173,10 +171,6 @@ export default function CreateBlogPostPage() {
 
 
                             </div>
-                            {/* <span className={classes.materialSymbolsOutlined}>
-                                photo_camera_front
-                            </span> */}
-
 
                             <input onChange={handleImageChange}
                                 hidden

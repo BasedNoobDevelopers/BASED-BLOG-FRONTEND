@@ -5,7 +5,6 @@ import classes from './interests.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { updateMyInterest } from '@/app/api/user/controller/user-controller'
-// import Image from 'next/image'
 
 export default function InterestsPage() {
 

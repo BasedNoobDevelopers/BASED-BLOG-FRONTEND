@@ -1,15 +1,7 @@
-import { getArticleById, articles } from '@/lib/articles';
 import classes from './article.module.css'
-import { notFound } from 'next/navigation';
 import { fetchByID } from '@/app/api/blogs/controller/blog-api-controller';
-//https://nextjs.org/docs/app/api-reference/functions/generate-static-params   
-
-
 
 export default async function ArticlePage({ params }: { params: { id: string } }) {
-
-
-    // params must have await 
 
     const { id } = await params;
     let article = undefined
