@@ -131,7 +131,7 @@ export default function EditArticlePostPage() {
                 onSubmit={handleSubmit}
             >
                 <div className={classes.createArticle}>
-                    <h3>Add your article to the site</h3>
+                    <h3>Make a change to your article</h3>
 
                     <div className={classes.createArticleRow}>
                         <div className={classes.createArticleUserInput}>
