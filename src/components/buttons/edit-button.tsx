@@ -6,7 +6,7 @@ export function EditButton({ blogId }: { blogId: string }) {
     const router = useRouter();
     
     async function HandleEdit() {
-        router.push(`/my-articles/edit/${blogId}`);
+        router.push(`/edit/${blogId}`);
     }
 
     return (
